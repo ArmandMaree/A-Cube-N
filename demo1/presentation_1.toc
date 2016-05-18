@@ -1,3 +1,0 @@
-\beamer@endinputifotherversion {3.24pt}
-\beamer@sectionintoc {1}{Some Section}{3}{0}{1}
-\beamer@subsectionintoc {1}{1}{Some Subsection}{3}{0}{1}
