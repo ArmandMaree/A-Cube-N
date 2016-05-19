@@ -32,14 +32,32 @@
 	\subsection{Overview}
 		\begin{frame}
 		\frametitle{Project Overview}
-		Mind Mapped PIM is a program that will process existing PIM sources such as Facebook and Gmail and construct a mind map using that data. 
-		The mind map will allow functionality of the sources e.g. send an email. It will be programmed in a way to display information that is most relevant to you at a particular time
+			Mind Mapped PIM is a program that will process existing PIM sources such as Facebook and Gmail and construct a mind map using that data. 
+			The mind map will allow functionality of the sources e.g. send an email. It will be programmed in a way to display information that is most relevant to you at a particular time
 		\end{frame}
 	
 	\subsection{What it is not}
 		\begin{frame}
 		\frametitle{What it is not}
-		The Mind Map PIM is not a new social media platform. Rather it acts as a filter for current your current social media platforms.  It will use intelligent algorithms to determine what information you would most likely want to see.
+			The Mind Map PIM is not a new social media platform. Rather it acts as a filter for current your current social media platforms.  It will use intelligent algorithms to determine what information you would most likely want to see.
+		\end{frame}
+			
+	\subsection{Services we will use}
+		\begin{frame}
+		\frametitle{Services we will use}
+			We will make use of the following social media platforms by using the APIs that are provided by them:
+			\begin{enumerate}
+				\item Google services (priority)
+					\begin{enumerate}
+						\item Gmail
+						\item Calendar
+						\item Notes
+						\item Plus
+					\end{enumerate}
+				\item Facebook
+				\item LinkedIn
+			\end{enumerate}
+			We will be using dependency injection to implement the different platforms. This will enable future expansion to more platforms.
 		\end{frame}
 		
 \section{Software Architecture}
@@ -102,8 +120,8 @@
 			\end{figure}
 		\end{frame}
 
-\begin{frame}
-	\Huge{\centerline{The End}}
-\end{frame}
+		\begin{frame}
+			\Huge{\centerline{The End}}
+		\end{frame}
 
 \end{document} 
