@@ -43,7 +43,7 @@
 	\pagenumbering{arabic}
 	
 	\section{Introduction} 
-	People of this day and age often make use of many technologies and platforms for the purpose of staying in contact with people, sharing moments with friends,communicating with people and organising their day-to-day lives. Generally all the above tasks of a person in the 21st century are done on different platforms for example Facebook, Email and Google Calendar. This project serves to provide the people described above, with a single PIM platform with which they can interact to make use of the functionality from other platforms. A PIM as defined by \textit{TechTerms} is "a software application that serves as a planner, notebook, and address book all in one. It can also include things like a calculator, clock , and photo album." 
+	People of this day and age often make use of many technologies and platforms for the purpose of staying in contact with people, sharing moments with friends, communicating with people and organising their day-to-day lives. Generally all the above tasks of a person in the 21st century are done on different platforms for example Facebook, Email and Google Calendar. This project serves to provide the people described above, with a single PIM platform with which they can interact to make use of the functionality from other platforms. A PIM as defined by \textit{TechTerms} is "a software application that serves as a planner, notebook, and address book all in one. It can also include things like a calculator, clock , and photo album." 
 	
 	
 	\section{Vision}
@@ -98,6 +98,14 @@
 		\subsection{Tactics}
 		
 	\section{Database and Persistence}
+	
+	
+	\section{Process Specification}
+		\subsection{Server}
+		In the back end, the system would have a polling service that polls the social media sites for new information about the users. If a polling thread receives new data from the platform they add this new data to a queue to be processed. Several worker threads dequeue data from the queue and uses the natural language processing to determine the topic(s) of the data. This data is then added to a database and the corresponding topic(s) as well. Note that since hashtags are used so frequently, any hashtag in the text should be added as a topic of its own. When a user requests their mind map, the system responds with all relevant topics of their life based on frequency and recency. These topics are then returned to the user in the form of JSON objects. Once a user expands one of the nodes a request is sent to the server to retrieve all the relevant articles corresponding to the topic to the user. These new data is then added to the mind map in the form of nodes. Relevant articles are found on the basis of your own events and the events of your friends.
+		
+		\subsection{Front End}
+		The user starts out with a root node that has relevant topics connected to it including a friends node. All these nodes can be expanded and reveal information related to that topic. The friends node shows contacts you recently communicated with or might want to communicate with now. Expanding one of these contacts will show the different platforms you can interact with this contact, including viewing a profile and sending a message/email. Other topics will expand into relevant articles and those can be expanded again and so forth. Upon expanding an article a user can then interact with that article (comment/reply) in a side panel that will be presented on the right of the screen.
 	
 	\section{Functional Requirements}		
 		
