@@ -65,21 +65,59 @@
 	\section{Architecture Requirements}
 		
 		\subsection{Access Channel Requirements}
-		
+    		\subsubsection{Human Access Channels}
+                Users  will access the "Mind mapped PIM" system through a website. It should be available to anyone wishing to sign up  through any browser i.e. Chrome, Mozilla Firefox, Internet Explorer, Safari and Edge. When on the website, the user will have to log in, the option given to log in with their Facebook or Google user name and passwords.  The website will be under strict standards-compliance that is having the website comply with the World Wide Web Consortium (W3C) (W3C, 2016)  so that the website will run on every browser exactly the same. The website should be mobile friendly as to be able to scale down to a phone screen size and still be usable and interactive. Offline capabilities for users who have already used the service before should also be allowed.
+            \subsubsection{System Access Channels}
+                RESTful web services will as the system access channel for its lightweightedness, maintainability, and scalability. It will use URI's to allow easy access from the client side web service to server side. 
 		
 		\subsection{Quality Requirements}
-		
+            The following quality requirements have been placed in order of priority.
+            \subsubsection{Performance}
+                Performance has the highest priority since this system has to be real time. Any new information that is updated on the respective websites and email clients should, in the least amount of time possible, update the mind map too. \\
+                
+                Performance in terms of front-end should also be addressed. The system is a fully graphic website and thus should give the user the most fluid and smooth experience. To implement a fast interactive system technologies such as SVG or HTML canvas can be used to render the graph with smooth user interaction.
+            \subsubsection{Usability}
+                Usability is the second highest priority as the system is fully graphic in terms of what the end user will use. The system needs to have a very good UX and must be completely user friendly so it is not difficult to use. The end goal is to let the system give benefit to it being graphic so the user can interpolate the data, and not make it more difficult
+            \subsubsection{Reliability}
+                The system needs to be reliable, since it has to provide information in real time. this cannot happen if the system is constantly down or can only cater for X amount of users before it starts slowing down. When, for example, a user clicks to expand a node the result should be almost instant and not break the graph or slow down the whole system because it is retrieving a few nodes.\\
+                
+                Reliability also refers to providing accuracy, and such needs to be implemented to provide the correct information to the right nodes.
+                \\
+                Implementation of reliability should be done in two parts, namely first prevention of faults, and secondly detection of faults.
+            \subsubsection{Scalability}
+                this system needs to be highly scalable both in terms in the non restriction on the amount of users that can use the system simultaneously and the amount of data stored of each user that needs to be both stored and displayed without hindering the rest of the system.\\
+            
+                
+                The amount of users using the system could be large at any time, and the use of the system by one user should not impact the use of the system by another user. The actual Mind map should also not become slower or unresponsive if the amount of nodes grow, which it will.\\
+                
+                Polling of the respective social media and email should also be considered. The increase in the amount of threads used for this operation should not make the system unresponsive
+            \subsubsection{Flexibility}
+                The system must be flexible in terms of plugablity of subsystems that are used namely our social media and emails. Since all of these system are different and use different API's and architectures. The system should be able to handle this, and any future systems that need to be added.\\
+                Some users will not have a Facebook account for example, and thus the system should still irrespective if the user has a certain social media.
+
+            \subsubsection{Security}
+                The system should be very secure since it is using private information that belongs solely to that user. Private information such as emails and photos isn't something that users would like other people seeing. Thus implementation of a secure log in process has to be implemented. Since Google and Facebook have both good log in systems, we will use that to log in to the system.\\
+                If a user prefers to not have certain features of social media, such as only look at posts and photos on Facebook but not post on their behalf, then the system should cater for that.
+            \subsubsection{Auditability/Monitorability}
+                Logs of all actions and settings of the user should be maintained. When the user logs back in at a different time, the graph that was displayed before should be displayed again and updated with new things that had happened while the user was offline. Settings should remain the same between sessions. Logs will be used to track any unhandled exceptions or problems.
+            \subsubsection{Integrability}
+                The system should be integrable in terms of how well it integrates with other systems like Facebook and Google. This information should be easy to access and does not affect the functioning of the overall system.
+
 		
 		\subsection{Integration Requirements}
-		We will be integrating our application with
-		\begin{itemize}
-			\item Facebook
-			\item LinkedIn
-			\item Gmail
-			\item Google Calendar
-			\item Google Notes
-			\item Hangouts
-		\end{itemize}
+		\begin{enumerate}
+        \item \textbf{HTTP:}\\
+            This is the main protocol for all websites and will be the interface for the user to easily navigate the system.
+        \item \textbf{SMTP and IMAP:}\\
+            Sometimes a user does not want to connect their social media for safety concerns and so the system cannot use the APIs required and thus will need to manually get the information by making use of IMAP to retrieve and sort though the users mailbox and SMPT to still have the option for the system to send emails on behalf of the user. This allows the system to still have functionality without any specified API's for those users who do not wish to share that information or who do not own social media.\\
+        \item \textbf{REST:}\\
+            As mentioned before, REST will be implemented. It is simple to implement and integrates well with systems already operational. REST integrates will with HTTP and follows a client-server model which is something our system utilizes. REST is vital to the use of API's to gain access to information of social media of the user.\\
+        \item \textbf{TCP:}\\
+            This protocol will be needed to establish network connections between the users computers and the system servers. Theses data streams can then be exchanged between the connected hosts. TCP will allow for error detection and rectification of data transmission. This will be done at a high level and would typially be handled by libraries or the OS.\\
+        
+        \item \textbf{API:}\\
+            Since the system will gather its information through the consented use of the users social media, a vital part of the system is to use the already well developed infrastructure created by social media and access the information through API's or application programming interfaces. We will use API's from Google (https://developers.google.com/apis-explorer/#p/) to access contacts, email, calender, hangouts/sms, Facebooks API (https://developers.facebook.com/products) for Facebook content and LinkedIn API(https://developer.linkedin.com/docs/rest-api) for LinkedIn related information.\\
+    \end{enumerate}
 		
 		\subsection{Architecture Constraints}
 			Technical constraints include:
