@@ -397,10 +397,15 @@
 			
 	\section{Technologies}
 		\subsection{Framework}
-			The framework we decided to use is Spring Boot. This was chosen on the fact that Spring is a lot more lightweight than JavaEE. Spring also uses the convention-over-configuration idea that simplifies the learning experience.
+			The framework we decided to use is Spring Boot. This was chosen on the fact that Spring is a lot more lightweight than JavaEE. Spring also uses the convention-over-configuration idea that simplifies the learning experience.\\
+			Spring is a well known framework with a large community of support. It is highly scalable and works towards being stateless. Spring also integrates well with technologies like Tomcat and build tools like Gradle. Spring Boot was chosen over Spring MVC for its simplicity.\\
+			
+			Research on Googles framework "Google Guice" was also done as an alternative, and while a good architecture in terms of what it does and how it makes it simpler for the programmer by moving away from XML, it is still a relatively new framework and does not have much support yet. Spring has been tried and tested and the fault tolerance on Spring is the deciding factor over Google Guice
 			
 		\subsection{Web Container}
-			The web container we have chosen to use is Tomcat. Spring and Tomcat have very good integrability. Jetty was also considered but due to the amount of documentation and experience that Tomcat has over Jetty, the choice was made to rather go with Tomcat.
+			The web container we have chosen to use is Tomcat. Since, as mentioned before, we have chosen to use Spring as our framework Tomcat would be the obvious choice, given it good integrability with Spring.\\
+			Jetty was also considered but due to the amount of documentation and experience that Tomcat has over Jetty, the choice was made to rather go with Tomcat. Benchmark tests were also run with Tomcat, Jetty, Glassfish and it was shown that Tomcat was the better contender.\\
+			We have decided to move away EJB containers and thus Java EE containers to use the much lighter web container server in response to the dynamics of our particular system which required a fast, light footprint system to run our framework on.
 		
 		\subsection{Natural Language Processor}
 			Google recently released their English natural language processor called Parsey McParseface. This will be used to analyse text to determine topics.
@@ -409,7 +414,9 @@
 			Gradle was chosen as the build tool due to its simplicity and simplistic integrability with Spring. It also doesn't use the XML approach that Maven uses but rather uses a more natural programming style that is recognizable.
 			
 		\subsection{Communication}
-			Currently we are looking into web sockets that will enable two way communication between the clients and the server. But its definite usage is still unknown.
+			WebSockets will be used to have a persistent client to server communication that will create a low latency, real time interaction, a requirement for our system. Some of the advantages of WebSockets is is its high scalability, high performance and protocol layering.\\
+			A hypothesis with WebSockets initially was that not all browsers could support this technology. This was however proven incorrect as tests run with all browsers showed that every browser except Opera mini (A mobile client for Opera) supported WebSockets. \\
+			http://caniuse.com/#feat=websockets
 	
 	\section{Open Issues}
 		\begin{itemize}
