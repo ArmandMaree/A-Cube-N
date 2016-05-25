@@ -58,7 +58,13 @@
 		\subsection{The Client's Problem}
 		The client wants to have a way of displaying all relevant information in one place in the form of a mind map. This will help to organize general life events such as meetings and current tasks that need to be completed. This information will come from different sources and enables the user to see all relevant information without having to go to each source individually
 		
-	\section{Scope}
+	\section{Important Terminology}
+		\begin{itemize}
+			\item \textbf{UrBubbles} The commercial name for the application.
+			\item \textbf{Bubble} A single node in the mind map.
+			\item \textbf{Bubble Map} The mind map that is presented to the user.
+			\item \textbf{PIM} Personal Information Manager such as Google Calendar and social media platforms like Facebook.
+		\end{itemize}
 	
 	
 	\section{Software Architecture Overview}
@@ -162,14 +168,14 @@
 	
 	\section{Process Specification}
 		\subsection{Server}
-		In the back end, the system would have a polling service that polls the social media sites for new information about the users. If a polling thread receives new data from the platform they add this new data to a queue to be processed. Several worker threads dequeue data from the queue and uses the natural language processing to determine the topic(s) of the data. This data is then added to a database and the corresponding topic(s) as well. Note that since hashtags are used so frequently, any hashtag in the text should be added as a topic of its own. When a user requests their mind map, the system responds with all relevant topics of their life based on frequency and recency. These topics are then returned to the user in the form of JSON objects. Once a user expands one of the bubbles a request is sent to the server to retrieve all the relevant articles corresponding to the topic to the user. These new data is then added to the mind map in the form of bubbles. Relevant articles are found on the basis of your own events and the events of your friends.
+		In the back end, the system would have a polling service that polls the PIMs for new information about the users. If a polling thread receives new data from the platform they add this new data to a queue to be processed. Several worker threads dequeue data from the queue and uses the natural language processing to determine the topic(s) of the data. This data is then added to a database and the corresponding topic(s) as well. Note that since hashtags are used so frequently, any hashtag in the text should be added as a topic of its own. When a user requests their bubble map, the system responds with all relevant topics of their life based on frequency and recency. These topics are then returned to the user in the form of JSON objects. Once a user expands one of the bubbles a request is sent to the server to retrieve all the relevant topic corresponding to the topic to the user. These new topic is then added to the bubble map in the form of bubbles. Relevant topics are found on the basis of your own events and the events of your friends.
 		
 		\subsection{Front End}
-		The user starts out with a root bubble that has relevant topics connected to it including a friends bubble. All these bubbles can be expanded and reveal information related to that topic. The friends bubble shows contacts you recently communicated with or might want to communicate with now. Expanding one of these contacts will show the different platforms you can interact with this contact, including viewing a profile and sending a message/email. Other topics will expand into relevant articles and those can be expanded again and so forth. Upon expanding an article a user can then interact with that article (comment/reply) in a side panel that will be presented on the right of the screen.
+		The user starts out with a root bubble that has relevant topics connected to it including a friends bubble. All these bubbles can be expanded and reveal information related to that topic. The "friends" bubble shows contacts you recently communicated with or might want to communicate with now. Expanding one of these contacts will show the different platforms you can interact with this contact, including viewing a profile and sending a message/email. Other topics will expand into related topics and those can be expanded again and so forth. Upon expanding a topic a user can then interact with a specific occurrence in that topic (comment/reply) in a side panel that will be presented on the right of the screen.
 	
 	\section{Functional Requirements}		
 		\subsection{Use Case Prioritisation}
-			\textbf{Critical}
+			\textbf{Critical} (See figure \ref{UseCaseUserManagement})
 			\begin{itemize}
 			    \item Sign up
 			    \item Choose your data sources
@@ -177,34 +183,38 @@
 			    \item Logout
 			    \item Delete Account
 			\end{itemize}
-			\textbf{Important}
+			\begin{figure}[!h]
+				\includegraphics[width=\linewidth]{UserManagement.jpg}
+				\caption{Use Case: User Management}
+				\label{UseCaseUserManagement}
+			\end{figure}
+			\textbf{Important} (See figure \ref{UseCaseUserPreferences})
 			\begin{itemize}
 			    \item Specify the initial depth
 			    \item Specify the branch factor
 			    \item Specify filter
-			\end{itemize}
-			\textbf{Nice-to-Have}
-			\begin{itemize}
 			    \item Expand bubble
-			    \item View bubble
+			   	\item View bubble
+			\end{itemize}
+			\begin{figure}[!h]
+			\includegraphics[width=\linewidth]{User Preferences.jpg}
+			\caption{Use Case: User Preferences}
+			\label{UseCaseUserPreferences}
+			\end{figure}
+			\textbf{Nice-to-Have} (See figure \ref{UseCaseBubbleMapInteraction})
+			\begin{itemize}
 			    \item Delete bubble
 			    \item Minimize bubble
+			    \item Customize layout
+			    \item Dedicated Android App
 			\end{itemize}
+			\begin{figure}[!h]
+				\includegraphics[width=\linewidth]{BubbleMap Interaction.jpg}
+				\caption{Use Case: Bubble Map Interaction Functionality}
+				\label{UseCaseBubbleMapInteraction}
+			\end{figure}
 		\subsection{Use Case/Services Contracts}
 		
-		\begin{figure}
-		\includegraphics[width=\linewidth]{User Preferences.jpg}
-		\caption{Use Case: User Preferences}
-		\end{figure}
-		\begin{figure}
-			\includegraphics[width=\linewidth]{UserManagement.jpg}
-			\caption{Use Case: User Management}
-		\end{figure}
-		\begin{figure}
-			\includegraphics[width=\linewidth]{BubbleMap Interaction.jpg}
-			\caption{Use Case: Bubble Map Interaction Functionality}
-		\end{figure}
-	
 		\subsection{Required Functionality}
 			Functionality that should be included in the system includes:
 			\begin{itemize}
@@ -214,6 +224,22 @@
 			\item Expanding bubbles in order to find articles related to that bubble.
 			\item Rapidly integrate new information into the system.
 			\end{itemize}
+			
+	\section{Technologies}
+		\subsection{Framework}
+			The framework we decided to use is Spring Boot. This was chosen on the fact that Spring is a lot more lightweight than JavaEE. Spring also uses the convention-over-configuration idea that simplifies the learning experience.
+			
+		\subsection{Web Container}
+			The web container we have chosen to use is Tomcat. Spring and Tomcat have very good integrability. Jetty was also considered but due to the amount of documentation and experience that Tomcat has over Jetty, the choice was made to rather go with Tomcat.
+		
+		\subsection{Natural Language Processor}
+			Google recently released their English natural language processor called Parsey McParseface. This will be used to analyse text to determine topics.
+			
+		\subsection{Build Tool}
+			Gradle was chosen as the build tool due to its simplicity and simplistic integrability with Spring. It also doesn't use the XML approach that Maven uses but rather uses a more natural programming style that is recognizable.
+			
+		\subsection{Communication}
+			Currently we are looking into web sockets that will enable two way communication between the clients and the server. But its definite usage is still unknown.
 	
 	\section{Open Issues}
 		\begin{itemize}
