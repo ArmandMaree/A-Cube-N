@@ -79,16 +79,16 @@
             \subsubsection{Usability}
                 Usability is the second highest priority as the system is fully graphic in terms of what the end user will use. The system needs to have a very good UX and must be completely user friendly so it is not difficult to use. The end goal is to let the system give benefit to it being graphic so the user can interpolate the data, and not make it more difficult
             \subsubsection{Reliability}
-                The system needs to be reliable, since it has to provide information in real time. this cannot happen if the system is constantly down or can only cater for X amount of users before it starts slowing down. When, for example, a user clicks to expand a node the result should be almost instant and not break the graph or slow down the whole system because it is retrieving a few nodes.\\
+                The system needs to be reliable, since it has to provide information in real time. this cannot happen if the system is constantly down or can only cater for X amount of users before it starts slowing down. When, for example, a user clicks to expand a bubble the result should be almost instant and not break the graph or slow down the whole system because it is retrieving a few bubbles.\\
                 
-                Reliability also refers to providing accuracy, and such needs to be implemented to provide the correct information to the right nodes.
+                Reliability also refers to providing accuracy, and such needs to be implemented to provide the correct information to the right bubbles.
                 \\
                 Implementation of reliability should be done in two parts, namely first prevention of faults, and secondly detection of faults.
             \subsubsection{Scalability}
                 this system needs to be highly scalable both in terms in the non restriction on the amount of users that can use the system simultaneously and the amount of data stored of each user that needs to be both stored and displayed without hindering the rest of the system.\\
             
                 
-                The amount of users using the system could be large at any time, and the use of the system by one user should not impact the use of the system by another user. The actual Mind map should also not become slower or unresponsive if the amount of nodes grow, which it will.\\
+                The amount of users using the system could be large at any time, and the use of the system by one user should not impact the use of the system by another user. The actual Mind map should also not become slower or unresponsive if the amount of bubbles grow, which it will.\\
                 
                 Polling of the respective social media and email should also be considered. The increase in the amount of threads used for this operation should not make the system unresponsive
             \subsubsection{Flexibility}
@@ -140,10 +140,10 @@
 	
 	\section{Process Specification}
 		\subsection{Server}
-		In the back end, the system would have a polling service that polls the social media sites for new information about the users. If a polling thread receives new data from the platform they add this new data to a queue to be processed. Several worker threads dequeue data from the queue and uses the natural language processing to determine the topic(s) of the data. This data is then added to a database and the corresponding topic(s) as well. Note that since hashtags are used so frequently, any hashtag in the text should be added as a topic of its own. When a user requests their mind map, the system responds with all relevant topics of their life based on frequency and recency. These topics are then returned to the user in the form of JSON objects. Once a user expands one of the nodes a request is sent to the server to retrieve all the relevant articles corresponding to the topic to the user. These new data is then added to the mind map in the form of nodes. Relevant articles are found on the basis of your own events and the events of your friends.
+		In the back end, the system would have a polling service that polls the social media sites for new information about the users. If a polling thread receives new data from the platform they add this new data to a queue to be processed. Several worker threads dequeue data from the queue and uses the natural language processing to determine the topic(s) of the data. This data is then added to a database and the corresponding topic(s) as well. Note that since hashtags are used so frequently, any hashtag in the text should be added as a topic of its own. When a user requests their mind map, the system responds with all relevant topics of their life based on frequency and recency. These topics are then returned to the user in the form of JSON objects. Once a user expands one of the bubbles a request is sent to the server to retrieve all the relevant articles corresponding to the topic to the user. These new data is then added to the mind map in the form of bubbles. Relevant articles are found on the basis of your own events and the events of your friends.
 		
 		\subsection{Front End}
-		The user starts out with a root node that has relevant topics connected to it including a friends node. All these nodes can be expanded and reveal information related to that topic. The friends node shows contacts you recently communicated with or might want to communicate with now. Expanding one of these contacts will show the different platforms you can interact with this contact, including viewing a profile and sending a message/email. Other topics will expand into relevant articles and those can be expanded again and so forth. Upon expanding an article a user can then interact with that article (comment/reply) in a side panel that will be presented on the right of the screen.
+		The user starts out with a root bubble that has relevant topics connected to it including a friends bubble. All these bubbles can be expanded and reveal information related to that topic. The friends bubble shows contacts you recently communicated with or might want to communicate with now. Expanding one of these contacts will show the different platforms you can interact with this contact, including viewing a profile and sending a message/email. Other topics will expand into relevant articles and those can be expanded again and so forth. Upon expanding an article a user can then interact with that article (comment/reply) in a side panel that will be presented on the right of the screen.
 	
 	\section{Functional Requirements}		
 		\subsection{Use Case Prioritisation}
@@ -163,9 +163,10 @@
 			\end{itemize}
 			\textbf{Nice-to-Have}
 			\begin{itemize}
-			    \item Expand Node
-			    \item View Node
-			    \item Delete Node
+			    \item Expand bubble
+			    \item View bubble
+			    \item Delete bubble
+			    \item Minimize bubble
 			\end{itemize}
 		\subsection{Use Case/Services Contracts}
 	
