@@ -140,6 +140,7 @@
 		\subsection{Architectural components addressing architectural responsibilities}
 		
 		\subsection{Infrastructure}
+			We will be using the layered system architecture. Figure \ref{LayeredAchitecture} shows the design at the first level of granularity. Starting from the top where the clients are located, the web interface and a possible Android interface. The web services will be implemented with the Spring MVC programming model. Spring will be the framework we use as the application server. Our data access layer will be done with Spring Data JPA. And finally MongoDB will lie on the bottom layer as the persistence database we will be using.
 		
 		\subsection{Tactics}
 			\subsubsection{Flexibility}
@@ -175,7 +176,7 @@
 	
 	\section{Functional Requirements}		
 		\subsection{Use Case Prioritisation}
-			\textbf{Critical}
+			\textbf{Critical} (See figure \ref{UseCaseUserManagement})
 			\begin{itemize}
 			    \item Sign up
 			    \item Choose Data Sources
@@ -183,254 +184,207 @@
 			    \item Logout
 			    \item Delete Account
 			\end{itemize}
-			\textbf{Important}
+			\begin{figure}[!h]
+				\includegraphics[width=\linewidth]{UserManagement.jpg}
+				\caption{Use Case: User Management}
+				\label{UseCaseUserManagement}
+			\end{figure}
+			\textbf{Important} (See figure \ref{UseCaseUserPreferences})
 			\begin{itemize}
 			    \item Expand bubble
-			    \item View bubble
+			   	\item View bubble
 			    \item Hide bubble
 			    \item Minimize bubble
 			\end{itemize}
-			\textbf{Nice-to-Have}
+			\begin{figure}[!h]
+				\includegraphics[width=\linewidth]{User Preferences.jpg}
+				\caption{Use Case: User Preferences}
+				\label{UseCaseUserPreferences}
+			\end{figure}
+			\textbf{Nice-to-Have} (See figure \ref{UseCaseBubbleMapInteraction})
 			\begin{itemize}
-			\item Specify the initial depth
+			    \item Minimize bubble
+			    \item Customize layout
+			    \item Dedicated Android App
+				\item Specify the initial depth
 			    \item Specify the branch factor
 			    \item Specify filter
-			    
 			\end{itemize}
-		\subsection{Use Case Diagrams}
-		
-		
-		\begin{figure}
-		\includegraphics[width=\linewidth]{User Preferences.jpg}
-		\caption{Use Case: User Preferences}
-		\end{figure}
-		\begin{figure}
-			\includegraphics[width=\linewidth]{UserManagement.jpg}
-			\caption{Use Case: User Management}
-		\end{figure}
-		\begin{figure}
-			\includegraphics[width=\linewidth]{BubbleMap Interaction.jpg}
-			\caption{Use Case: Bubble Map Interaction Functionality}
-		\end{figure}
+			\begin{figure}[!h]
+				\includegraphics[width=\linewidth]{BubbleMap Interaction.jpg}
+				\caption{Use Case: Bubble Map Interaction Functionality}
+				\label{UseCaseBubbleMapInteraction}
+			\end{figure}
 		
 		\subsection{Use Case/Service Contracts}
-		\subsubsection{Sign up}
-	\textbf{Description:}  A user is required to sign up on our system. This entails using one's Gmail account
-	\\
-    \textbf{Prioritisation:} Critical\\
-    
-    
-      \textbf{Pre-conditions}
-    \begin{itemize}
-        \item A user must have a Gmail account
-        \item The user must enter the correct information in order for the validation to be successful.
-    \end{itemize}
-    
-    \textbf{Post-conditions}
-     \begin{itemize}
-        \item The user will have access to the functionality provided by our system
-        \item The user may set their preferences as they wish.
-        \item The user may add or remove data sources.
-        \item The user may log out of the system when they wish to.
-        \item The user may delete their account should they so wish.
-    \end{itemize}
-    
-    \subsubsection{Choose Data Sources}
-	\textbf{Description:}  A user is required to select the various data sources they wish to be used when extracting data to build their BubbleMap
-	\\
-    \textbf{Prioritisation:} Critical\\
-    
-    
-      \textbf{Pre-conditions}
-    \begin{itemize}
-        \item A user must be registered
-        \item A user must be logged in to the system
-        \item The user must have an active and valid account for that data source
-    \end{itemize}
-    
-    \textbf{Post-conditions}
-     \begin{itemize}
-        \item The user may add or remove data sources.
-        \item The selected data sources will be mined for data.
-        \item The unselected data sources will not be mined for data.
-    \end{itemize}
-    
-    \subsubsection{Login to Data sources}
-	\textbf{Description:}  A user is required to provide us with their login credentials for their selected data sources. 
-	\\
-    \textbf{Prioritisation:} Critical\\
-    
-    
-      \textbf{Pre-conditions}
-    \begin{itemize}
-        \item A user must be logged in to the system.
-        \item A user must have selected at least one data source.
-        \item A user must have an active and valid account for that data source
-    \end{itemize}
-    
-    \textbf{Post-conditions}
-     \begin{itemize}
-        \item The data sources will be mined for data.
-        \item The login credentials for that data source for a specific user will be stored in our database.
-    \end{itemize}
-    
-    \subsubsection{Logout}
-	\textbf{Description:}  A user can choose to log out of the system in a secure manner.
-	\\
-    \textbf{Prioritisation:} Critical\\
-    
-    
-      \textbf{Pre-conditions}
-    \begin{itemize}
-        \item A user must be registered on the system and logged in to the system.
-    \end{itemize}
-    
-    \textbf{Post-conditions}
-     \begin{itemize}
-        \item The user will not have access to the main functionality provided by the system.
-        \item The user will need to log in again to access their BubbleMap.
-    \end{itemize}
-    
-    \subsubsection{Delete Account}
-	\textbf{Description:}  A user can choose to permanently delete their account.
-	\\
-    \textbf{Prioritisation:} Critical\\
-    
-    
-      \textbf{Pre-conditions}
-    \begin{itemize}
-        \item A user must be registered on the system .
-    \end{itemize}
-    
-    \textbf{Post-conditions}
-     \begin{itemize}
-        \item The user will not have access to the main functionality provided by the system.
-        \item The user will need to sign up again to access the system functionality.
-    \end{itemize}
-    
-    \subsubsection{Expand Bubble}
-	\textbf{Description:}  A user can choose to expand a Bubble to reveal more topics related to the Bubble.
-	\\
-    \textbf{Prioritisation:} Important\\
-    
-    
-      \textbf{Pre-conditions}
-    \begin{itemize}
-        \item A user must be registered and logged in on the system.
-        \item A user must have selected data sources to be mined.
-    \end{itemize}
-    
-    \textbf{Post-conditions}
-     \begin{itemize}
-        \item The system will expand the BubbleMap and introduce new topics.
-    \end{itemize}
-    
-     \subsubsection{View Bubble}
-	\textbf{Description:}  A user can choose to view a Bubble to reveal specific data and functionality surrounding a chosen Bubble.
-	\\
-    \textbf{Prioritisation:} Important\\
-    
-    
-      \textbf{Pre-conditions}
-    \begin{itemize}
-        \item A user must be registered and logged in on the system.
-        \item A user must have selected data sources to be mined.
-    \end{itemize}
-    
-    \textbf{Post-conditions}
-     \begin{itemize}
-        \item The system will reveal specific data regarding this topic in a side panel.
-        \item The system will provide certain functionality for certain types of data e.g. a Facebook post will have the functionality to be like, commented on or shared.
-    \end{itemize}
-    
-    \subsubsection{Hide Bubble}
-	\textbf{Description:}  A user can choose to hide a Bubble which will hide all Bubbles related to it.
-	\\
-    \textbf{Prioritisation:}Important\\
-    
-    
-      \textbf{Pre-conditions}
-    \begin{itemize}
-        \item A user must be registered and logged in on the system.
-        \item A user must have selected data sources to be mined.
-    \end{itemize}
-    
-    \textbf{Post-conditions}
-     \begin{itemize}
-        \item The system will hide the specified Bubble.
-        \item The system will hide all Bubbles related to the selected Bubble.
-    \end{itemize}
-    
-    \subsubsection{Minimize Bubble}
-	\textbf{Description:}  A user can choose to minimize a Bubble which will shrink the BubbleMap and essentially hide all sub-Bubbles related to it 'behind' it.
-	\\
-    \textbf{Prioritisation:}Important\\
-    
-    
-      \textbf{Pre-conditions}
-    \begin{itemize}
-        \item A user must be registered and logged in on the system.
-        \item A user must have selected data sources to be mined.
-    \end{itemize}
-    
-    \textbf{Post-conditions}
-     \begin{itemize}
-        \item The system will hide the sub-Bubbles of a selected Bubble.
-       \item The Bubble will provide the functionality to be expanded again.
-    \end{itemize}
-    
-    \subsubsection{Specify the initial depth}
-	\textbf{Description:}  A user can choose specify the extent to which the BubbleMap will bubble out i.e. the extent to which it will expand.
-	\\
-    \textbf{Prioritisation:} Nice-to-Have\\
-    
-    
-      \textbf{Pre-conditions}
-    \begin{itemize}
-        \item A user must be registered and logged in on the system.
-        \item A user must have selected data sources to be mined.
-    \end{itemize}
-    
-    \textbf{Post-conditions}
-     \begin{itemize}
-        \item The user's BubbleMap will modify itself to adapt to the user's specifications.
-    \end{itemize}
-    
-    \subsubsection{Specify the branch factor}
-	\textbf{Description:}  A user can choose specify how many branches the BubbleMap will initially have.
-	\\
-    \textbf{Prioritisation:} Nice-to-Have\\
-    
-    
-      \textbf{Pre-conditions}
-    \begin{itemize}
-        \item A user must be registered and logged in on the system.
-        \item A user must have selected data sources to be mined.
-    \end{itemize}
-    
-    \textbf{Post-conditions}
-     \begin{itemize}
-        \item The user's BubbleMap will modify itself to adapt to the user's specifications.
-    \end{itemize}
-    
-    \subsubsection{Specify a filter}
-	\textbf{Description:}  A user can choose specify a filter to use on the BubbleMap
-	\\
-    \textbf{Prioritisation:} Nice-to-Have\\
-    
-    
-      \textbf{Pre-conditions}
-    \begin{itemize}
-        \item A user must be registered and logged in on the system.
-        \item A user must have selected data sources to be mined.
-    \end{itemize}
-    
-    \textbf{Post-conditions}
-     \begin{itemize}
-        \item The user's BubbleMap will modify itself to adapt to the user's specifications.
-    \end{itemize}
-    
-		
+			\subsubsection{Sign up}
+				\textbf{Description:}  A user is required to sign up on our system. This entails using one's Gmail account
+				\\
+    			\textbf{Prioritisation:} Critical\\
+      			\textbf{Pre-conditions}
+    			\begin{itemize}
+        			\item A user must have a Gmail account
+        			\item The user must enter the correct information in order for the validation to be successful.
+    			\end{itemize}
+    			\textbf{Post-conditions}
+     			\begin{itemize}
+        			\item The user will have access to the functionality provided by our system
+        			\item The user may set their preferences as they wish.
+        			\item The user may add or remove data sources.
+        			\item The user may log out of the system when they wish to.
+        			\item The user may delete their account should they so wish.
+    			\end{itemize}
+    		\subsubsection{Choose Data Sources}
+				\textbf{Description:}  A user is required to select the various data sources they wish to be used when extracting data to build their BubbleMap
+				\\
+    			\textbf{Prioritisation:} Critical\\
+      			\textbf{Pre-conditions}
+    			\begin{itemize}
+        			\item A user must be registered
+        			\item A user must be logged in to the system
+        			\item The user must have an active and valid account for that data source
+    			\end{itemize}
+    			\textbf{Post-conditions}
+     			\begin{itemize}
+        			\item The user may add or remove data sources.
+        			\item The selected data sources will be mined for data.
+        			\item The unselected data sources will not be mined for data.
+    			\end{itemize}
+    		\subsubsection{Login to Data sources}
+				\textbf{Description:}  A user is required to provide us with their login credentials for their selected data sources. 
+				\\
+    			\textbf{Prioritisation:} Critical\\
+      			\textbf{Pre-conditions}
+    			\begin{itemize}
+        			\item A user must be logged in to the system.
+        			\item A user must have selected at least one data source.
+        			\item A user must have an active and valid account for that data source
+    			\end{itemize}
+    			\textbf{Post-conditions}
+     			\begin{itemize}
+        			\item The data sources will be mined for data.
+        			\item The login credentials for that data source for a specific user will be stored in our database.
+    			\end{itemize}
+    		\subsubsection{Logout}
+				\textbf{Description:}  A user can choose to log out of the system in a secure manner.
+				\\
+    			\textbf{Prioritisation:} Critical\\
+      			\textbf{Pre-conditions}
+    			\begin{itemize}
+        			\item A user must be registered on the system and logged in to the system.
+    			\end{itemize}
+    			\textbf{Post-conditions}
+     			\begin{itemize}
+        			\item The user will not have access to the main functionality provided by the system.
+        			\item The user will need to log in again to access their BubbleMap.
+    			\end{itemize}
+    		\subsubsection{Delete Account}
+				\textbf{Description:}  A user can choose to permanently delete their account.
+				\\
+    			\textbf{Prioritisation:} Critical\\
+      			\textbf{Pre-conditions}
+    			\begin{itemize}
+        			\item A user must be registered on the system .
+    			\end{itemize}
+    			\textbf{Post-conditions}
+     			\begin{itemize}
+        			\item The user will not have access to the main functionality provided by the system.
+        			\item The user will need to sign up again to access the system functionality.
+    			\end{itemize}
+		    \subsubsection{Expand Bubble}
+				\textbf{Description:}  A user can choose to expand a Bubble to reveal more topics related to the Bubble.
+				\\
+			    \textbf{Prioritisation:} Important\\
+      			\textbf{Pre-conditions}
+			    \begin{itemize}
+			        \item A user must be registered and logged in on the system.
+			        \item A user must have selected data sources to be mined.
+			    \end{itemize}
+			    \textbf{Post-conditions}
+			     \begin{itemize}
+			        \item The system will expand the BubbleMap and introduce new topics.
+			    \end{itemize}
+			\subsubsection{View Bubble}
+				\textbf{Description:}  A user can choose to view a Bubble to reveal specific data and functionality surrounding a chosen Bubble.
+				\\
+			    \textbf{Prioritisation:} Important\\
+			    \textbf{Pre-conditions}
+			    \begin{itemize}
+			        \item A user must be registered and logged in on the system.
+			        \item A user must have selected data sources to be mined.
+			    \end{itemize}
+				\textbf{Post-conditions}
+				\begin{itemize}
+					\item The system will reveal specific data regarding this topic in a side panel.
+					\item The system will provide certain functionality for certain types of data e.g. a Facebook post will have the functionality to be like, commented on or shared.
+				\end{itemize}
+   			\subsubsection{Hide Bubble}
+				\textbf{Description:}  A user can choose to hide a Bubble which will hide all Bubbles related to it.
+				\\
+			    \textbf{Prioritisation:}Important\\
+     			\textbf{Pre-conditions}
+				\begin{itemize}
+					\item A user must be registered and logged in on the system.
+					\item A user must have selected data sources to be mined.
+				\end{itemize}
+    			\textbf{Post-conditions}
+     			\begin{itemize}
+			        \item The system will hide the specified Bubble.
+			        \item The system will hide all Bubbles related to the selected Bubble.
+    			\end{itemize}
+    		\subsubsection{Minimize Bubble}
+				\textbf{Description:}  A user can choose to minimize a Bubble which will shrink the BubbleMap and essentially hide all sub-Bubbles related to it 'behind' it.
+				\\
+    			\textbf{Prioritisation:}Important\\
+    			\textbf{Pre-conditions}
+			    \begin{itemize}
+			        \item A user must be registered and logged in on the system.
+			        \item A user must have selected data sources to be mined.
+			    \end{itemize}
+			    \textbf{Post-conditions}
+			     \begin{itemize}
+			        \item The system will hide the sub-Bubbles of a selected Bubble.
+			       \item The Bubble will provide the functionality to be expanded again.
+			    \end{itemize}
+    		\subsubsection{Specify the initial depth}
+				\textbf{Description:}  A user can choose specify the extent to which the BubbleMap will bubble out i.e. the extent to which it will expand.
+				\\
+			    \textbf{Prioritisation:} Nice-to-Have\\
+      			\textbf{Pre-conditions}
+			    \begin{itemize}
+			        \item A user must be registered and logged in on the system.
+			        \item A user must have selected data sources to be mined.
+			    \end{itemize}
+    			\textbf{Post-conditions}
+     			\begin{itemize}
+        			\item The user's BubbleMap will modify itself to adapt to the user's specifications.
+    			\end{itemize}
+    		\subsubsection{Specify the branch factor}
+				\textbf{Description:}  A user can choose specify how many branches the BubbleMap will initially have.
+				\\
+			    \textbf{Prioritisation:} Nice-to-Have\\
+      			\textbf{Pre-conditions}
+			    \begin{itemize}
+			        \item A user must be registered and logged in on the system.
+			        \item A user must have selected data sources to be mined.
+			    \end{itemize}
+    			\textbf{Post-conditions}
+			    \begin{itemize}
+			    	\item The user's BubbleMap will modify itself to adapt to the user's specifications.
+    			\end{itemize}
+    		\subsubsection{Specify a filter}
+				\textbf{Description:}  A user can choose specify a filter to use on the BubbleMap
+				\\
+			    \textbf{Prioritisation:} Nice-to-Have\\
+    			\textbf{Pre-conditions}
+			    \begin{itemize}
+			        \item A user must be registered and logged in on the system.
+			        \item A user must have selected data sources to be mined.
+			    \end{itemize}
+    			\textbf{Post-conditions}
+     			\begin{itemize}
+        			\item The user's BubbleMap will modify itself to adapt to the user's specifications.
+    			\end{itemize}
 		\subsection{Required Functionality}
 			Functionality that should be included in the system includes:
 			\begin{itemize}
