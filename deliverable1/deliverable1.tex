@@ -136,9 +136,29 @@
 		\subsection{Infrastructure}
 		
 		\subsection{Tactics}
+			\subsubsection{Flexibility}
+				\begin{itemize}
+					\item Hot deployment
+					\item Contract based programming, i.e. providing proper interfaces that allows future expansion.
+				\end{itemize}
+			
+			\subsubsection{Reliability}
+				\begin{itemize}
+					\item Ability to roll back database changes should an error occur during the change.
+					\item Ability to restart services that have crashed due to some error that occurred.
+				\end{itemize}
+							
+			\subsubsection{Security}
+				\begin{itemize}
+					\item Authentication will be required for a user to use the system.
+					\item Data confidentiality will be achieved by using secure communication (HTTPS) and by applying salted hashing algorithms to keep passwords safe. Encryption will also be used on data that needs to be retrieved but has to be kept secure.
+				\end{itemize}
+											
+			\subsubsection{Auditability}
+				Auditability will be achieved by logging all events that occur on the server. This will ensure first of all, accountability and secondly it can assist in fault and error tracking later on.
 		
 	\section{Database and Persistence}
-	
+		We plan on using MongoDB as our database. This choice was made on the basis that a NoSQL database's graph structure would fit our application's needs better than a standard relational database. MongoDB is also the perfect tool to use when data mining and high write loads are bought into play.
 	
 	\section{Process Specification}
 		\subsection{Server}
