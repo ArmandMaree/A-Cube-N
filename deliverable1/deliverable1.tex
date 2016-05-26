@@ -200,7 +200,7 @@
 	\section{Process Specification}
 		\subsection{Server}
 			\paragraph\indent
-			In the back end, the system would have a polling service that polls the PIMs for new information about the users. If a polling thread receives new data from the platform they add this new data to a queue to be processed. Several worker threads dequeue data from the queue and uses the natural language processing to determine the topic(s) of the data. This data is then added to a database and the corresponding topic(s) as well. Note that since hashtags are used so frequently, any hashtag in the text should be added as a topic of its own. When a user requests their bubble map, the system responds with all relevant topics of their life based on frequency and recency. These topics are then returned to the user in the form of JSON objects. Once a user expands one of the bubbles a request is sent to the server to retrieve all the relevant topic corresponding to the topic to the user. These new topic is then added to the bubble map in the form of bubbles. Relevant topics are found on the basis of your own events and the events of your friends.
+			In the back end, the system would have a polling service that polls the data sources for new information about the users. If a polling thread receives new data from the platform they add this new data to a queue to be processed. Several worker threads dequeue data from the queue and uses the natural language processing to determine the topic(s) of the data. This data is then added to a database and the corresponding topic(s) as well. Note that since hashtags are used so frequently, any hashtag in the text should be added as a topic of its own. When a user requests their bubble map, the system responds with all relevant topics of their life based on frequency and recency. These topics are then returned to the user in the form of JSON objects. Once a user expands one of the bubbles a request is sent to the server to retrieve all the relevant topic corresponding to the topic to the user. These new topic is then added to the bubble map in the form of bubbles. Relevant topics are found on the basis of your own events and the events of your friends.
 		
 		\subsection{Front End}
 			\paragraph\indent
@@ -399,7 +399,7 @@
     			\textbf{Pre-conditions}
 			    \begin{itemize}
 			        \item A user must be registered and logged in on the system.
-			        \item A user must have selected data sources to be mined.
+			        \item A user must have selected data sources to Fbe mined.
 			    \end{itemize}
     			\textbf{Post-conditions}
      			\begin{itemize}
@@ -410,7 +410,7 @@
 			\begin{itemize}
 			\item A login/sign up system. 
 			\item Adding various data sources to your account.
-			\item Interaction with PIMs directly from the mind map itself (commenting, emailing, etc.).
+			\item Interaction with data sources directly from the mind map itself (commenting, emailing, etc.).
 			\item Expanding bubbles in order to find articles related to that bubble.
 			\item Rapidly integrate new information into the system.
 			\end{itemize}
