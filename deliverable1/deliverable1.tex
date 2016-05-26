@@ -123,7 +123,7 @@
 
             \subsubsection{Security}
             	\paragraph\indent
-                The system should be very secure since it is using private information that belongs solely to that user. Private information such as emails and photos isn't something that users would like other people seeing. Thus implementation of a secure log in process has to be implemented. Since Google and Facebook have both good log in systems, we will use that to log in to the system.\\
+                The system should be very secure since it is using private information that belongs solely to that user. Private information such as emails and photos isn't something that users would like other people seeing. Thus implementation of a secure log in process has to be implemented. Since Google and Facebook have both good log in systems, we will use that to log in to the system by using the OAUTH protocol.\\
                 If a user prefers to not have certain features of social media, such as only look at posts and photos on Facebook but not post on their behalf, then the system should cater for that.
                 
             \subsubsection{Auditability/Monitorability}
@@ -257,11 +257,11 @@
 		
 		\subsection{Use Case/Service Contracts}
 			\subsubsection{Sign up}
-				\textbf{Description:}  A user is required to sign up on our system. This entails using one's Gmail account.\\
+				\textbf{Description:}  A user is required to sign up on our system. This entails using one's Google account.\\
     			\textbf{Prioritisation:} Critical\\
       			\textbf{Pre-conditions}
     			\begin{itemize}
-        			\item A user must have a Gmail account.
+        			\item A user must have a Google account.
         			\item The user must enter the correct information in order for the validation to be successful.
     			\end{itemize}
     			\textbf{Post-conditions}
@@ -290,7 +290,7 @@
     			\end{itemize}
     			
     		\subsubsection{Login to Data sources}
-				\textbf{Description:}  A user is required to provide us with their login credentials for their selected data sources.\\
+				\textbf{Description:}  A user will login with their Google account. This will be done by using the OAUTH protocol which is compatible with the Google API.\\
     			\textbf{Prioritisation:} Critical\\
       			\textbf{Pre-conditions}
     			\begin{itemize}
