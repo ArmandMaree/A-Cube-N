@@ -213,7 +213,7 @@
 		
 		\subsection{Server}
 			\paragraph\indent
-			In the back end, the system would have a polling service that polls the data sources for new information about the users. If a polling thread receives new data from the platform they add this new data to a queue to be processed. Several worker threads dequeue data from the queue and uses natural language processing to determine the topic(s) of the data. This data is then added to a database and the corresponding topic(s) as well. Note that since hashtags are used so frequently, any hashtag in the text should be added as a topic of its own. When a user requests their bubble map, the system responds with all relevant topics of their life based on frequency and recency. The topics thus have a weight related to them that is calculated by the frequency and the temperal component. The weight is used to decide which topics should be selected. These topics are then returned to the user in the form of JSON objects. Once a user expands one of the bubbles a request is sent to the server to retrieve all the relevant topic corresponding to the topic to the user. These new topics is then added to the bubble map in the form of bubbles. Relevant topics are found on the basis of your own events and the events of your friends.
+			In the back end, the system would have a polling service that polls the PIMs for new information about the users. If a polling thread receives new data from the platform they add this new data to a queue to be processed. Several worker threads dequeue data from the queue and uses natural language processing to determine the topic(s) of the data. This data is then added to a database and the corresponding topic(s) as well. Note that since hashtags are used so frequently, any hashtag in the text should be added as a topic of its own. When a user requests their bubble map, the system responds with all relevant topics of their life based on frequency and recency. The topics thus have a weight related to them that is calculated by the frequency and the temperal component. The weight is used to decide which topics should be selected. These topics are then returned to the user in the form of JSON objects. Once a user expands one of the bubbles a request is sent to the server to retrieve all the relevant topic corresponding to the topic to the user. These new topics is then added to the bubble map in the form of bubbles. Relevant topics are found on the basis of your own events and the events of your friends.
 		
 		\subsection{Front End}
 			\paragraph\indent
@@ -279,7 +279,7 @@
         			\item The user may deactivate/delete their account should they so wish.
     			\end{itemize}
     			
-    		\subsubsection{Choose Data Sources}
+    		\subsubsection{Choose PIMs}
 				\textbf{Description:}  A user is required to select the various PIMs they wish to be used when extracting data to build their bubble map.\\
     			\textbf{Prioritisation:} Critical\\
       			\textbf{Pre-conditions}
@@ -295,7 +295,7 @@
         			\item The unselected PIMs will not be mined for data.
     			\end{itemize}
     			
-    		\subsubsection{Login to Data sources}
+    		\subsubsection{Login to PIMs}
 				\textbf{Description:}  A user will login with their Google account. This will be done by using the OAUTH protocol which is compatible with the Google and Facebook API.\\
     			\textbf{Prioritisation:} Critical\\
       			\textbf{Pre-conditions}
@@ -447,7 +447,7 @@
 				\caption{Class Diagram: Domain Model}
 			\end{figure}
 			\paragraph \indent
-			The mind map for a user will portray information from data sources requested by the user. The mind map will consist of a root node containing child nodes of relevant information (topics). Each topic will point to a source (Facebook, Google etc.) and will contain a map of information relative to the topic.
+			The mind map for a user will portray information from PIMs requested by the user. The mind map will consist of a root node containing child nodes of relevant information (topics). Each topic will point to a source (Facebook, Google etc.) and will contain a map of information relative to the topic.
 	\section{Technologies}
 		\subsection{Framework}
 			\paragraph\indent
