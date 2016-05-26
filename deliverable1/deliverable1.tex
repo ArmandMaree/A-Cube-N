@@ -136,11 +136,21 @@
 			Further there are no constraints and the architects have free roam to implement an architecture that suits their needs.
 			
 	\section{Architecture Design}
-	
 		\subsection{Architectural components addressing architectural responsibilities}
+			See figure \ref{ResponsibilityAllocation} for the responsibilities and which part of the system would be responsible for them.
+			\begin{figure}[!h]
+				\includegraphics[width=\linewidth]{ResponsibilityAllocation.jpg}
+				\caption{Responsibilities and Responsibility Allocation}
+				\label{ResponsibilityAllocation}
+			\end{figure}
 		
 		\subsection{Infrastructure}
 			We will be using the layered system architecture. Figure \ref{LayeredAchitecture} shows the design at the first level of granularity. Starting from the top where the clients are located, the web interface and a possible Android interface. The web services will be implemented with the Spring MVC programming model. Spring will be the framework we use as the application server. Our data access layer will be done with Spring Data JPA. And finally MongoDB will lie on the bottom layer as the persistence database we will be using.
+			\begin{figure}[!h]
+				\includegraphics[width=\linewidth]{LayerSystem.jpg}
+				\caption{Layered System Architecture}
+				\label{LayeredAchitecture}
+			\end{figure}
 		
 		\subsection{Tactics}
 			\subsubsection{Flexibility}
