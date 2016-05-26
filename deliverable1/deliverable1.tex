@@ -76,6 +76,7 @@
     		\subsubsection{Human Access Channels}
     			\paragraph\indent
                 Users  will access the "Mind mapped PIM" system through a website. It should be available to anyone wishing to sign up  through any browser i.e. Chrome, Mozilla Firefox, Internet Explorer, Safari and Edge. When on the website, the user will have to log in, the option given to log in with their Facebook or Google user name and passwords.  The website will be under strict standards-compliance that is having the website comply with the World Wide Web Consortium (W3C) (W3C, 2016)  so that the website will run on every browser exactly the same. The website should be mobile friendly as to be able to scale down to a phone screen size and still be usable and interactive. Offline capabilities for users who have already used the service before should also be allowed.
+                
             \subsubsection{System Access Channels}
             	\paragraph\indent
                 RESTful web services will as the system access channel for its lightweightedness, maintainability, and scalability. It will use URI's to allow easy access from the client side web service to server side. 
@@ -89,9 +90,11 @@
                 
                 \paragraph\indent
                 Performance in terms of front-end should also be addressed. The system is a fully graphic website and thus should give the user the most fluid and smooth experience. To implement a fast interactive system technologies such as SVG or HTML canvas can be used to render the graph with smooth user interaction.
+                
             \subsubsection{Usability}
             	\paragraph\indent
-                Usability is the second highest priority as the system is fully graphic in terms of what the end user will use. The system needs to have a very good UX and must be completely user friendly so it is not difficult to use. The end goal is to let the system give benefit to it being graphic so the user can interpolate the data, and not make it more difficult
+                Usability is the second highest priority as the system is fully graphic in terms of what the end user will use. The system needs to have a very good UX and must be completely user friendly so it is not difficult to use. The end goal is to let the system give benefit to it being graphic so the user can interpolate the data, and not make it more difficult.
+                
             \subsubsection{Reliability}
             	\paragraph\indent
                 The system needs to be reliable, since it has to provide information in real time. this cannot happen if the system is constantly down or can only cater for X amount of users before it starts slowing down. When, for example, a user clicks to expand a bubble the result should be almost instant and not break the graph or slow down the whole system because it is retrieving a few bubbles.
@@ -101,6 +104,7 @@
                 
                 \paragraph\indent
                 Implementation of reliability should be done in two parts, namely first prevention of faults, and secondly detection of faults.
+                
             \subsubsection{Scalability}
                 this system needs to be highly scalable both in terms in the non restriction on the amount of users that can use the system simultaneously and the amount of data stored of each user that needs to be both stored and displayed without hindering the rest of the system.
                 
@@ -108,7 +112,8 @@
                 The amount of users using the system could be large at any time, and the use of the system by one user should not impact the use of the system by another user. The actual Mind map should also not become slower or unresponsive if the amount of bubbles grow, which it will.
                 
                 \paragraph\indent
-                Polling of the respective social media and email should also be considered. The increase in the amount of threads used for this operation should not make the system unresponsive
+                Polling of the respective social media and email should also be considered. The increase in the amount of threads used for this operation should not make the system unresponsive.
+                
             \subsubsection{Flexibility}
             	\paragraph\indent
                 The system must be flexible in terms of plugablity of subsystems that are used namely our social media and emails. Since all of these system are different and use different API's and architectures. The system should be able to handle this, and any future systems that need to be added.
@@ -120,14 +125,15 @@
             	\paragraph\indent
                 The system should be very secure since it is using private information that belongs solely to that user. Private information such as emails and photos isn't something that users would like other people seeing. Thus implementation of a secure log in process has to be implemented. Since Google and Facebook have both good log in systems, we will use that to log in to the system.\\
                 If a user prefers to not have certain features of social media, such as only look at posts and photos on Facebook but not post on their behalf, then the system should cater for that.
+                
             \subsubsection{Auditability/Monitorability}
             	\paragraph\indent
                 Logs of all actions and settings of the user should be maintained. When the user logs back in at a different time, the graph that was displayed before should be displayed again and updated with new things that had happened while the user was offline. Settings should remain the same between sessions.
+                
             \subsubsection{Integrability}
             	\paragraph\indent
                 The system should be integrable in terms of how well it integrates with other systems like Facebook and Google. This information should be easy to access and does not affect the functioning of the overall system.
 
-		
 		\subsection{Integration Requirements}
 			\begin{enumerate}
 		        \item \textbf{HTTP:}\\
@@ -198,9 +204,10 @@
 		We plan on using MongoDB as our database. This choice was made on the basis that a NoSQL database's graph structure would fit our application's needs better than a standard relational database. MongoDB is also the perfect tool to use when data mining and high write loads are bought into play.
 	
 	\section{Process Specification}
+		In this section we will address the manner in which the system will be implemented on a very abstract and overview manner.
 		\subsection{Server}
 			\paragraph\indent
-			In the back end, the system would have a polling service that polls the data sources for new information about the users. If a polling thread receives new data from the platform they add this new data to a queue to be processed. Several worker threads dequeue data from the queue and uses the natural language processing to determine the topic(s) of the data. This data is then added to a database and the corresponding topic(s) as well. Note that since hashtags are used so frequently, any hashtag in the text should be added as a topic of its own. When a user requests their bubble map, the system responds with all relevant topics of their life based on frequency and recency. These topics are then returned to the user in the form of JSON objects. Once a user expands one of the bubbles a request is sent to the server to retrieve all the relevant topic corresponding to the topic to the user. These new topic is then added to the bubble map in the form of bubbles. Relevant topics are found on the basis of your own events and the events of your friends.
+			In the back end, the system would have a polling service that polls the data sources for new information about the users. If a polling thread receives new data from the platform they add this new data to a queue to be processed. Several worker threads dequeue data from the queue and uses the natural language processing to determine the topic(s) of the data. This data is then added to a database and the corresponding topic(s) as well. Note that since hashtags are used so frequently, any hashtag in the text should be added as a topic of its own. When a user requests their bubble map, the system responds with all relevant topics of their life based on frequency and recency. The topics thus have a weight related to them that is calculated by the frequency and the temperal component. The weight is used to decide which topics should be selected. These topics are then returned to the user in the form of JSON objects. Once a user expands one of the bubbles a request is sent to the server to retrieve all the relevant topic corresponding to the topic to the user. These new topic is then added to the bubble map in the form of bubbles. Relevant topics are found on the basis of your own events and the events of your friends.
 		
 		\subsection{Front End}
 			\paragraph\indent
@@ -265,6 +272,7 @@
         			\item The user may log out of the system when they wish to.
         			\item The user may delete their account should they so wish.
     			\end{itemize}
+    			
     		\subsubsection{Choose Data Sources}
 				\textbf{Description:}  A user is required to select the various data sources they wish to be used when extracting data to build their BubbleMap.\\
     			\textbf{Prioritisation:} Critical\\
@@ -280,6 +288,7 @@
         			\item The selected data sources will be mined for data.
         			\item The unselected data sources will not be mined for data.
     			\end{itemize}
+    			
     		\subsubsection{Login to Data sources}
 				\textbf{Description:}  A user is required to provide us with their login credentials for their selected data sources.\\
     			\textbf{Prioritisation:} Critical\\
@@ -294,6 +303,7 @@
         			\item The data sources will be mined for data.
         			\item The login credentials for that data source for a specific user will be stored in our database.
     			\end{itemize}
+    			
     		\subsubsection{Logout}
 				\textbf{Description:}  A user can choose to log out of the system in a secure manner.\\
     			\textbf{Prioritisation:} Critical\\
@@ -306,6 +316,7 @@
         			\item The user will not have access to the main functionality provided by the system.
         			\item The user will need to log in again to access their BubbleMap.
     			\end{itemize}
+    			
     		\subsubsection{Delete Account}
 				\textbf{Description:}  A user can choose to permanently delete their account.\\
     			\textbf{Prioritisation:} Critical\\
@@ -318,6 +329,7 @@
         			\item The user will not have access to the main functionality provided by the system.
         			\item The user will need to sign up again to access the system functionality.
     			\end{itemize}
+    			
 		    \subsubsection{Expand Bubble}
 				\textbf{Description:}  A user can choose to expand a Bubble to reveal more topics related to the Bubble.\\
 			    \textbf{Prioritisation:} Important\\
@@ -330,6 +342,7 @@
 			     \begin{itemize}
 			        \item The system will expand the BubbleMap and introduce new topics.
 			    \end{itemize}
+			    
 			\subsubsection{View Bubble}
 				\textbf{Description:}  A user can choose to view a Bubble to reveal specific data and functionality surrounding a chosen Bubble.\\
 			    \textbf{Prioritisation:} Important\\
@@ -343,6 +356,7 @@
 					\item The system will reveal specific data regarding this topic in a side panel.
 					\item The system will provide certain functionality for certain types of data e.g. a Facebook post will have the functionality to be like, commented on or shared.
 				\end{itemize}
+				
    			\subsubsection{Hide Bubble}
 				\textbf{Description:}  A user can choose to hide a Bubble which will hide all Bubbles related to it.\\
 			    \textbf{Prioritisation:}Important\\
@@ -356,6 +370,7 @@
 			        \item The system will hide the specified Bubble.
 			        \item The system will hide all Bubbles related to the selected Bubble.
     			\end{itemize}
+    			
     		\subsubsection{Minimize Bubble}
 				\textbf{Description:}  A user can choose to minimize a Bubble which will shrink the BubbleMap and essentially hide all sub-Bubbles related to it 'behind' it.\\
     			\textbf{Prioritisation:}Important\\
@@ -369,6 +384,7 @@
 			        \item The system will hide the sub-Bubbles of a selected Bubble.
 			       \item The Bubble will provide the functionality to be expanded again.
 			    \end{itemize}
+			    
     		\subsubsection{Specify the initial depth}
 				\textbf{Description:}  A user can choose specify the extent to which the BubbleMap will bubble out i.e. the extent to which it will expand.\\
 			    \textbf{Prioritisation:} Nice-to-Have\\
@@ -381,6 +397,7 @@
      			\begin{itemize}
         			\item The user's BubbleMap will modify itself to adapt to the user's specifications.
     			\end{itemize}
+    			
     		\subsubsection{Specify the branch factor}
 				\textbf{Description:}  A user can choose specify how many branches the BubbleMap will initially have.\\
 			    \textbf{Prioritisation:} Nice-to-Have\\
@@ -393,6 +410,7 @@
 			    \begin{itemize}
 			    	\item The user's BubbleMap will modify itself to adapt to the user's specifications.
     			\end{itemize}
+    			
     		\subsubsection{Specify a filter}
 				\textbf{Description:}  A user can choose specify a filter to use on the BubbleMap.\\
 			    \textbf{Prioritisation:} Nice-to-Have\\
@@ -405,6 +423,7 @@
      			\begin{itemize}
         			\item The user's BubbleMap will modify itself to adapt to the user's specifications.
     			\end{itemize}
+    			
 		\subsection{Required Functionality}
 			Functionality that should be included in the system includes:
 			\begin{itemize}
@@ -450,7 +469,7 @@
 			WebSockets will be used to have a persistent client to server communication that will create a low latency, real time interaction, a requirement for our system. Some of the advantages of WebSockets is is its high scalability, high performance and protocol layering.
 			
 			\paragraph\indent
-			A hypothesis with WebSockets initially was that not all browsers could support this technology. This was however proven incorrect as tests run with all browsers showed that every browser except Opera mini (A mobile client for Opera) supported WebSockets.\sloppy\url{http://caniuse.com/\#feat=websockets}
+			A hypothesis with WebSockets initially was that not all browsers could support this technology. This was however proven incorrect as tests runs with all browsers showed that every browser except Opera mini (A mobile client for Opera) supported WebSockets. \sloppy\url{http://caniuse.com/\#feat=websockets}
 	
 	\section{Open Issues}
 		\begin{itemize}
@@ -460,5 +479,4 @@
 			\item Should removing bubbles remove data from the database or not?
 			\item Is a privacy policy required?
 		\end{itemize}
-
 \end{document}
