@@ -49,11 +49,11 @@
 	
 	\section{Vision}
 		\paragraph\indent
-		The vision of this project is to create a PIM which extracts data from various existing platforms such as Facebook, Gmail, Google Calendar etc. The application will make use of various means to extract data, determine the general topic of the data then either construct a new branch in the mind map or add the data as a sub branch in the diagram. The hope is that this will simplify the users life by only needing one application to 'monitor' all other platforms on which they might have an account and manage the information of those platforms from our application. The mind map will work in a similar fashion as our minds work. Where the exploration of one topic may lead to the exploration of another topic that is related to the user specifically. Hence the "mind" map, it is a map of your mind visualized by the topics that come up in your life.
+		The vision of this project is to create a PIM which extracts data from various existing platforms such as Facebook, Gmail, Google Calendar, etc. The application will make use of various means to extract data, determine the general topic of the data then integrate this new information into their mind map. The hope is that this will simplify the users life by only needing one application to 'monitor' all other platforms on which they might have an account and manage the information of those platforms from our application. The mind map will work in a similar fashion as our minds work. Where the exploration of one topic may lead to the exploration of another topic that is related to the user specifically. Hence the "mind" map, it is a map of your mind visualized by the topics that come up in your life.
 	
 	\section{Background}
 		\paragraph\indent
-		We got elected for this project by including it as one of our top 3 choices for the projects that we wanted to do most. Once this project was elected for us to do, we began to learn more about what the client expected from us..
+		We got elected for this project by including it as one of our top 3 choices for the projects that we wanted to do most. Once this project was elected for us to do, we began to learn more about what the client expected from us.
 
 		\subsection{Future business/research opportunities}
 			\paragraph\indent
@@ -61,7 +61,7 @@
 		
 		\subsection{The Client's Problem}
 			\paragraph\indent
-			The client wants to have a way of displaying all relevant information in one place in the form of a mind map. This will help to organize general life events such as meetings and current tasks that need to be completed. This information will come from different sources and enables the user to see all relevant information without having to go to each source individually
+			The client wants to have a way of displaying all relevant information in one place in the form of a mind map. This will help to organize general life events such as meetings and current tasks that need to be completed. This information will come from different sources and enables the user to see all relevant information without having to go to each source individually.
 		
 	\section{Important Terminology}
 		\begin{itemize}
@@ -75,15 +75,16 @@
 		\subsection{Access Channel Requirements}
     		\subsubsection{Human Access Channels}
     			\paragraph\indent
-                Users  will access the "Mind mapped PIM" system through a website. It should be available to anyone wishing to sign up  through any browser i.e. Chrome, Mozilla Firefox, Internet Explorer, Safari and Edge. When on the website, the user will have to log in, the option given to log in with their Facebook or Google user name and passwords.  The website will be under strict standards-compliance that is having the website comply with the World Wide Web Consortium (W3C) (W3C, 2016)  so that the website will run on every browser exactly the same. The website should be mobile friendly as to be able to scale down to a phone screen size and still be usable and interactive. Offline capabilities for users who have already used the service before should also be allowed.
+                Users  will access the "Mind Mapped PIM" system through a website. It should be available to anyone wishing to sign up  through any browser i.e. Chrome, Mozilla Firefox, Internet Explorer, Safari and Edge. When the user is on the website, they will have to log in, the option given to log in with their Facebook or Google accounts. The website will be under strict standards-compliance, that is, having the website comply with the World Wide Web Consortium (W3C) (W3C, 2016) so that the website will run on every browser exactly the same. The website should be mobile friendly as to be able to scale down to a phone screen size and still be usable and interactive. Offline capabilities for users who have already used the service before would be a nice-to-have feature.
                 
             \subsubsection{System Access Channels}
             	\paragraph\indent
-                RESTful web services will as the system access channel for its lightweightedness, maintainability, and scalability. It will use URI's to allow easy access from the client side web service to server side. 
+                RESTful web services will as the system access channel for its lightweight, maintainability, and scalability. It will use URI's to allow easy access from the client side web service to server side. 
 		
 		\subsection{Quality Requirements}
 			\paragraph\indent
-            The following quality requirements have been placed in order of priority.
+	        The following quality requirements have been placed in order of priority.
+	        
             \subsubsection{Performance}
             	\paragraph\indent
                 Performance has the highest priority since this system has to be real time. Any new information that is updated on the respective websites and email clients should, in the least amount of time possible, update the mind map too.
@@ -93,11 +94,11 @@
                 
             \subsubsection{Usability}
             	\paragraph\indent
-                Usability is the second highest priority as the system is fully graphic in terms of what the end user will use. The system needs to have a very good UX and must be completely user friendly so it is not difficult to use. The end goal is to let the system give benefit to it being graphic so the user can interpolate the data, and not make it more difficult.
+                Usability is the second highest priority as the system is fully graphic in terms of what the end user will use. The system needs to have a very good User Experience (UX) and must be completely user friendly so it is not difficult to use. The end goal is to let the system give benefit to it being graphic so the user can interpolate the data, and not make it more difficult.
                 
             \subsubsection{Reliability}
             	\paragraph\indent
-                The system needs to be reliable, since it has to provide information in real time. this cannot happen if the system is constantly down or can only cater for X amount of users before it starts slowing down. When, for example, a user clicks to expand a bubble the result should be almost instant and not break the graph or slow down the whole system because it is retrieving a few bubbles.
+                The system needs to be reliable, since it has to provide information in real time. this cannot happen if the system is constantly down or can only cater for a small amount of users before it starts slowing down. When, for example, a user clicks to expand a bubble the result should be almost instant and not break the graph or slow down the whole system because it is retrieving a few bubbles.
                 
                 \paragraph\indent
                 Reliability also refers to providing accuracy, and such needs to be implemented to provide the correct information to the right bubbles.
@@ -106,10 +107,11 @@
                 Implementation of reliability should be done in two parts, namely first prevention of faults, and secondly detection of faults.
                 
             \subsubsection{Scalability}
-                this system needs to be highly scalable both in terms in the non restriction on the amount of users that can use the system simultaneously and the amount of data stored of each user that needs to be both stored and displayed without hindering the rest of the system.
+                \paragraph\indent
+                This system needs to be highly scalable both in terms in the non restriction on the amount of users that can use the system simultaneously and the amount of data stored of each user that needs to be both stored and displayed without hindering the rest of the system.
                 
                 \paragraph\indent
-                The amount of users using the system could be large at any time, and the use of the system by one user should not impact the use of the system by another user. The actual Mind map should also not become slower or unresponsive if the amount of bubbles grow, which it will.
+                The amount of users using the system could be large at any time, and the use of the system by one user should not impact the use of the system by another user. The actual mind map should also not become slower or unresponsive if the amount of bubbles grow, which it will.
                 
                 \paragraph\indent
                 Polling of the respective social media and email should also be considered. The increase in the amount of threads used for this operation should not make the system unresponsive.
@@ -119,11 +121,13 @@
                 The system must be flexible in terms of plugablity of subsystems that are used namely our social media and emails. Since all of these system are different and use different API's and architectures. The system should be able to handle this, and any future systems that need to be added.
                 
                 \paragraph\indent
-                Some users will not have a Facebook account for example, and thus the system should still irrespective if the user has a certain social media.
+                Some users will not have a Facebook account, for example, and thus the system should still be functional, irrespective if the user has a certain social media.
 
             \subsubsection{Security}
             	\paragraph\indent
-                The system should be very secure since it is using private information that belongs solely to that user. Private information such as emails and photos isn't something that users would like other people seeing. Thus implementation of a secure log in process has to be implemented. Since Google and Facebook have both good log in systems, we will use that to log in to the system by using the OAUTH protocol.\\
+                The system should be very secure since it is using private information that belongs solely to that user. Private information such as emails and photos isn't something that users would like other people seeing. Thus a secure log in process has to be implemented. Since Google and Facebook have both good log in systems, we will use that to log in to the system by using the OAUTH protocol.
+                
+                \paragraph\indent
                 If a user prefers to not have certain features of social media, such as only look at posts and photos on Facebook but not post on their behalf, then the system should cater for that.
                 
             \subsubsection{Auditability/Monitorability}
@@ -139,17 +143,17 @@
 		        \item \textbf{HTTP:}\\
 		            This is the main protocol for all websites and will be the interface for the user to easily navigate the system.
 		        \item \textbf{SMTP and IMAP:}\\
-		            Sometimes a user does not want to connect their social media for safety concerns and so the system cannot use the APIs required and thus will need to manually get the information by making use of IMAP to retrieve and sort though the users mailbox and SMPT to still have the option for the system to send emails on behalf of the user. This allows the system to still have functionality without any specified API's for those users who do not wish to share that information or who do not own social media.
+		            Sometimes a user does not want to connect their PIMs for safety concerns and so the system cannot use the APIs required and thus will need to manually get the information by making use of IMAP to retrieve and sort though the users mailbox and SMPT to still have the option for the system to send emails on behalf of the user. This allows the system to still have functionality without any specified APIs for those users who do not wish to share that information or who do not own social media.
 		        \item \textbf{REST:}\\
-		            As mentioned before, REST will be implemented. It is simple to implement and integrates well with systems already operational. REST integrates will with HTTP and follows a client-server model which is something our system utilizes. REST is vital to the use of API's to gain access to information of social media of the user.
+		            As mentioned before, REST will be implemented. It is simple to implement and integrates well with systems already operational. REST integrates well with HTTP and follows a client-server model which is something our system utilizes. REST is vital to the use of APIs to gain access to information of social media of the user.
 		        \item \textbf{TCP:}\\
-		            This protocol will be needed to establish network connections between the users computers and the system servers. Theses data streams can then be exchanged between the connected hosts. TCP will allow for error detection and rectification of data transmission. This will be done at a high level and would typially be handled by libraries or the OS.
+		            This protocol will be needed to establish network connections between the user's computers and the system servers. These data streams can then be exchanged between the connected machines. TCP will allow for error detection and rectification of data transmission. This will be done at a high level and would typically be handled by libraries or the operating system.
 		        \item \textbf{API:}\\
-		            Since the system will gather its information through the consented use of the users social media, a vital part of the system is to use the already well developed infrastructure created by social media and access the information through API's or application programming interfaces. We will use API's from Google (\sloppy\url{https://developers.google.com/apis-explorer/\#p/}) to access contacts, email, calender, hangouts/sms, Facebooks API (\sloppy\url{https://developers.facebook.com/products}) for Facebook content and LinkedIn API(\sloppy\url{https://developer.linkedin.com/docs/rest-api}) for LinkedIn related information.
+		            Since the system will gather its information through the consented use of the users social media, a vital part of the system is to use the already well developed infrastructure created by PIMs and access the information through APIs or application programming interfaces. We will use APIs from Google (\sloppy\url{https://developers.google.com/apis-explorer/\#p/}) to access contacts, email, calender, hangouts/sms, Facebooks API (\sloppy\url{https://developers.facebook.com/products}) for Facebook content and LinkedIn API(\sloppy\url{https://developer.linkedin.com/docs/rest-api}) for LinkedIn related information.
 	    		\end{enumerate}
 		
 		\subsection{Architecture Constraints}
-			Technical constraints include:
+			Architecture constraints include:
 			\begin{itemize}
 				\item \textbf{Programming language} We will be developing the system in Java.
 				\item \textbf{Operating system} The server will be run off a Linux machine. 
@@ -204,22 +208,24 @@
 		We plan on using MongoDB as our database. This choice was made on the basis that a NoSQL database's graph structure would fit our application's needs better than a standard relational database. MongoDB is also the perfect tool to use when data mining and high write loads are bought into play.
 	
 	\section{Process Specification}
+		\paragraph\indent
 		In this section we will address the manner in which the system will be implemented on a very abstract and overview manner.
+		
 		\subsection{Server}
 			\paragraph\indent
-			In the back end, the system would have a polling service that polls the data sources for new information about the users. If a polling thread receives new data from the platform they add this new data to a queue to be processed. Several worker threads dequeue data from the queue and uses the natural language processing to determine the topic(s) of the data. This data is then added to a database and the corresponding topic(s) as well. Note that since hashtags are used so frequently, any hashtag in the text should be added as a topic of its own. When a user requests their bubble map, the system responds with all relevant topics of their life based on frequency and recency. The topics thus have a weight related to them that is calculated by the frequency and the temperal component. The weight is used to decide which topics should be selected. These topics are then returned to the user in the form of JSON objects. Once a user expands one of the bubbles a request is sent to the server to retrieve all the relevant topic corresponding to the topic to the user. These new topic is then added to the bubble map in the form of bubbles. Relevant topics are found on the basis of your own events and the events of your friends.
+			In the back end, the system would have a polling service that polls the data sources for new information about the users. If a polling thread receives new data from the platform they add this new data to a queue to be processed. Several worker threads dequeue data from the queue and uses natural language processing to determine the topic(s) of the data. This data is then added to a database and the corresponding topic(s) as well. Note that since hashtags are used so frequently, any hashtag in the text should be added as a topic of its own. When a user requests their bubble map, the system responds with all relevant topics of their life based on frequency and recency. The topics thus have a weight related to them that is calculated by the frequency and the temperal component. The weight is used to decide which topics should be selected. These topics are then returned to the user in the form of JSON objects. Once a user expands one of the bubbles a request is sent to the server to retrieve all the relevant topic corresponding to the topic to the user. These new topics is then added to the bubble map in the form of bubbles. Relevant topics are found on the basis of your own events and the events of your friends.
 		
 		\subsection{Front End}
 			\paragraph\indent
-			The user starts out with a root bubble that has relevant topics connected to it including a friends bubble. All these bubbles can be expanded and reveal information related to that topic. The "friends" bubble shows contacts you recently communicated with or might want to communicate with now. Expanding one of these contacts will show the different platforms you can interact with this contact, including viewing a profile and sending a message/email. Other topics will expand into related topics and those can be expanded again and so forth. Upon expanding a topic a user can then interact with a specific occurrence in that topic (comment/reply) in a side panel that will be presented on the right of the screen.
+			The user starts out with a root bubble that has relevant topics connected to it including a people bubble. All these bubbles can be expanded and reveal information related to that topic. The "people" bubble shows contacts you recently communicated with or might want to communicate with now. Expanding one of these contacts will show the different platforms you can interact with this contact, including viewing a profile and sending a message/email. Other topics will expand into related topics and those can be expanded again and so forth. Upon expanding a topic a user can then interact with a specific occurrence in that topic (comment/reply) in a side panel that will be presented on the right of the screen.
 	
 	\section{Functional Requirements}		
 		\subsection{Use Case Prioritisation}
 			\textbf{Critical} (See figure \ref{UseCaseUserManagement})
 			\begin{itemize}
 			    \item Sign up
-			    \item Choose Data Sources
-			    \item Login to Data Sources
+			    \item Choose PIMs
+			    \item Login to PIMs
 			    \item Logout
 			    \item Delete Account
 			\end{itemize}
@@ -228,7 +234,7 @@
 				\caption{Use Case: User Management}
 				\label{UseCaseUserManagement}
 			\end{figure}
-			\textbf{Important} (See figure \ref{UseCaseUserPreferences})
+			\textbf{Important} (See figure \ref{UseCaseBubbleMapInteraction})
 			\begin{itemize}
 			    \item Expand bubble
 			   	\item View bubble
@@ -236,72 +242,72 @@
 			    \item Minimize bubble
 			\end{itemize}
 			\begin{figure}[!h]
-				\includegraphics[width=\linewidth]{User Preferences.jpg}
-				\caption{Use Case: User Preferences}
-				\label{UseCaseUserPreferences}
+				\includegraphics[width=\linewidth]{BubbleMap Interaction.jpg}
+				\caption{Use Case: Bubble Map Interaction Functionality}
+				\label{UseCaseBubbleMapInteraction}
 			\end{figure}
-			\textbf{Nice-to-Have} (See figure \ref{UseCaseBubbleMapInteraction})
+			
+			\textbf{Nice-to-Have} (See figure \ref{UseCaseUserPreferences})
 			\begin{itemize}
 			    \item Minimize bubble
 			    \item Customize layout
-			    \item Dedicated Android App
 				\item Specify the initial depth
 			    \item Specify the branch factor
 			    \item Specify filter
 			\end{itemize}
 			\begin{figure}[!h]
-				\includegraphics[width=\linewidth]{BubbleMap Interaction.jpg}
-				\caption{Use Case: Bubble Map Interaction Functionality}
-				\label{UseCaseBubbleMapInteraction}
+				\includegraphics[width=\linewidth]{User Preferences.jpg}
+				\caption{Use Case: User Preferences}
+				\label{UseCaseUserPreferences}
 			\end{figure}
 		
 		\subsection{Use Case/Service Contracts}
 			\subsubsection{Sign up}
-				\textbf{Description:}  A user is required to sign up on our system. This entails using one's Google account.\\
+				\textbf{Description:}  A user is required to sign up on our system. This entails using one's Google or Facebook account.\\
     			\textbf{Prioritisation:} Critical\\
       			\textbf{Pre-conditions}
     			\begin{itemize}
-        			\item A user must have a Google account.
+        			\item A user must have a Google or Facebook account.
         			\item The user must enter the correct information in order for the validation to be successful.
     			\end{itemize}
     			\textbf{Post-conditions}
      			\begin{itemize}
         			\item The user will have access to the functionality provided by our system.
         			\item The user may set their preferences as they wish.
-        			\item The user may add or remove data sources.
+        			\item The user may add or remove PIMs.
         			\item The user may log out of the system when they wish to.
-        			\item The user may delete their account should they so wish.
+        			\item The user may deactivate/delete their account should they so wish.
     			\end{itemize}
     			
     		\subsubsection{Choose Data Sources}
-				\textbf{Description:}  A user is required to select the various data sources they wish to be used when extracting data to build their BubbleMap.\\
+				\textbf{Description:}  A user is required to select the various PIMs they wish to be used when extracting data to build their bubble map.\\
     			\textbf{Prioritisation:} Critical\\
       			\textbf{Pre-conditions}
     			\begin{itemize}
-        			\item A user must be registered
-        			\item A user must be logged in to the system
-        			\item The user must have an active and valid account for that data source
+        			\item A user must be registered.
+        			\item A user must be logged in to the system.
+        			\item The user must have an active and valid account for that specific PIM.
     			\end{itemize}
     			\textbf{Post-conditions}
      			\begin{itemize}
-        			\item The user may add or remove data sources.
-        			\item The selected data sources will be mined for data.
-        			\item The unselected data sources will not be mined for data.
+        			\item The user may add or remove PIMs.
+        			\item The selected PIMs will be mined for data.
+        			\item The unselected PIMs will not be mined for data.
     			\end{itemize}
     			
     		\subsubsection{Login to Data sources}
-				\textbf{Description:}  A user will login with their Google account. This will be done by using the OAUTH protocol which is compatible with the Google API.\\
+				\textbf{Description:}  A user will login with their Google account. This will be done by using the OAUTH protocol which is compatible with the Google and Facebook API.\\
     			\textbf{Prioritisation:} Critical\\
       			\textbf{Pre-conditions}
     			\begin{itemize}
         			\item A user must be logged in to the system.
-        			\item A user must have selected at least one data source.
-        			\item A user must have an active and valid account for that data source.
+        			\item A user must have selected at least one PIM.
+        			\item A user must have an active and valid account for that PIM.
     			\end{itemize}
     			\textbf{Post-conditions}
      			\begin{itemize}
-        			\item The data sources will be mined for data.
-        			\item The login credentials for that data source for a specific user will be stored in our database.
+        			\item The PIMs will be mined for data.
+        			\item The login credentials for that PIM for a specific user will be stored in our database.
     			\end{itemize}
     			
     		\subsubsection{Logout}
@@ -314,15 +320,15 @@
     			\textbf{Post-conditions}
      			\begin{itemize}
         			\item The user will not have access to the main functionality provided by the system.
-        			\item The user will need to log in again to access their BubbleMap.
+        			\item The user will need to log in again to access their bubble map.
     			\end{itemize}
     			
     		\subsubsection{Delete Account}
-				\textbf{Description:}  A user can choose to permanently delete their account.\\
+				\textbf{Description:}  A user can choose to permanently delete their account or deactivate it.\\
     			\textbf{Prioritisation:} Critical\\
       			\textbf{Pre-conditions}
     			\begin{itemize}
-        			\item A user must be registered on the system .
+        			\item A user must be registered on the system.
     			\end{itemize}
     			\textbf{Post-conditions}
      			\begin{itemize}
@@ -331,25 +337,25 @@
     			\end{itemize}
     			
 		    \subsubsection{Expand Bubble}
-				\textbf{Description:}  A user can choose to expand a Bubble to reveal more topics related to the Bubble.\\
+				\textbf{Description:}  A user can choose to expand a bubble to reveal more topics related to the bubble.\\
 			    \textbf{Prioritisation:} Important\\
       			\textbf{Pre-conditions}
 			    \begin{itemize}
 			        \item A user must be registered and logged in on the system.
-			        \item A user must have selected data sources to be mined.
+			        \item A user must have selected one or more PIMs to be mined.
 			    \end{itemize}
 			    \textbf{Post-conditions}
 			     \begin{itemize}
-			        \item The system will expand the BubbleMap and introduce new topics.
+			        \item The system will expand the bubble Map and introduce new topics.
 			    \end{itemize}
 			    
 			\subsubsection{View Bubble}
-				\textbf{Description:}  A user can choose to view a Bubble to reveal specific data and functionality surrounding a chosen Bubble.\\
+				\textbf{Description:}  A user can choose to view a bubble to reveal specific data and functionality surrounding a chosen bubble.\\
 			    \textbf{Prioritisation:} Important\\
 			    \textbf{Pre-conditions}
 			    \begin{itemize}
 			        \item A user must be registered and logged in on the system.
-			        \item A user must have selected data sources to be mined.
+			        \item A user must have selected PIMs to be mined.
 			    \end{itemize}
 				\textbf{Post-conditions}
 				\begin{itemize}
@@ -358,78 +364,78 @@
 				\end{itemize}
 				
    			\subsubsection{Hide Bubble}
-				\textbf{Description:}  A user can choose to hide a Bubble which will hide all Bubbles related to it.\\
+				\textbf{Description:}  A user can choose to hide a bubble which will hide all bubbles related to it.\\
 			    \textbf{Prioritisation:}Important\\
      			\textbf{Pre-conditions}
 				\begin{itemize}
 					\item A user must be registered and logged in on the system.
-					\item A user must have selected data sources to be mined.
+					\item A user must have selected PIMs to be mined.
 				\end{itemize}
     			\textbf{Post-conditions}
      			\begin{itemize}
-			        \item The system will hide the specified Bubble.
-			        \item The system will hide all Bubbles related to the selected Bubble.
+			        \item The system will hide the specified bubble.
+			        \item The system will hide all bubbles in the sub branch of the selected bubble.
     			\end{itemize}
     			
     		\subsubsection{Minimize Bubble}
-				\textbf{Description:}  A user can choose to minimize a Bubble which will shrink the BubbleMap and essentially hide all sub-Bubbles related to it 'behind' it.\\
+				\textbf{Description:}  A user can choose to minimize a bubble which will shrink the bubble map and essentially hide all sub-bubbles.\\
     			\textbf{Prioritisation:}Important\\
     			\textbf{Pre-conditions}
 			    \begin{itemize}
 			        \item A user must be registered and logged in on the system.
-			        \item A user must have selected data sources to be mined.
+			        \item A user must have selected PIMs to be mined.
 			    \end{itemize}
 			    \textbf{Post-conditions}
 			     \begin{itemize}
-			        \item The system will hide the sub-Bubbles of a selected Bubble.
-			       \item The Bubble will provide the functionality to be expanded again.
+			        \item The system will hide the sub-bubbles of a selected bubble.
+			       \item The bubble will provide the functionality to be expanded again.
 			    \end{itemize}
 			    
     		\subsubsection{Specify the initial depth}
-				\textbf{Description:}  A user can choose specify the extent to which the BubbleMap will bubble out i.e. the extent to which it will expand.\\
+				\textbf{Description:}  A user can choose the number of levels the bubble map should expand when they open the map for the first time during the current session.\\
 			    \textbf{Prioritisation:} Nice-to-Have\\
       			\textbf{Pre-conditions}
 			    \begin{itemize}
 			        \item A user must be registered and logged in on the system.
-			        \item A user must have selected data sources to be mined.
+			        \item A user must have selected PIMs to be mined.
 			    \end{itemize}
     			\textbf{Post-conditions}
      			\begin{itemize}
-        			\item The user's BubbleMap will modify itself to adapt to the user's specifications.
+        			\item The user's bubble map will modify itself to adapt to the user's specifications.
     			\end{itemize}
     			
     		\subsubsection{Specify the branch factor}
-				\textbf{Description:}  A user can choose specify how many branches the BubbleMap will initially have.\\
+				\textbf{Description:}  A user can choose specify how many branches the bubble map will initially have.\\
 			    \textbf{Prioritisation:} Nice-to-Have\\
       			\textbf{Pre-conditions}
 			    \begin{itemize}
 			        \item A user must be registered and logged in on the system.
-			        \item A user must have selected data sources to be mined.
+			        \item A user must have selected PIMs to be mined.
 			    \end{itemize}
     			\textbf{Post-conditions}
 			    \begin{itemize}
-			    	\item The user's BubbleMap will modify itself to adapt to the user's specifications.
+			    	\item The user's bubble map will modify itself to adapt to the user's specifications.
     			\end{itemize}
     			
     		\subsubsection{Specify a filter}
-				\textbf{Description:}  A user can choose specify a filter to use on the BubbleMap.\\
+				\textbf{Description:}  A user can choose specify a filter to use on the bubble map.\\
 			    \textbf{Prioritisation:} Nice-to-Have\\
     			\textbf{Pre-conditions}
 			    \begin{itemize}
 			        \item A user must be registered and logged in on the system.
-			        \item A user must have selected data sources to Fbe mined.
+			        \item A user must have selected PIMs to be mined.
 			    \end{itemize}
     			\textbf{Post-conditions}
      			\begin{itemize}
-        			\item The user's BubbleMap will modify itself to adapt to the user's specifications.
+        			\item The user's bubble map will modify itself to adapt to the user's specifications.
     			\end{itemize}
     			
 		\subsection{Required Functionality}
 			Functionality that should be included in the system includes:
 			\begin{itemize}
 				\item A login/sign up system. 
-				\item Adding various data sources to your account.
-				\item Interaction with data sources directly from the mind map itself (commenting, emailing, etc.).
+				\item Adding various PIMs to your account.
+				\item Interaction with PIMs directly from the bubble map itself (commenting, emailing, etc.).
 				\item Expanding bubbles in order to find articles related to that bubble.
 				\item Rapidly integrate new information into the system.
 				\item Logs will be used to track any unhandled exceptions or problems.
@@ -451,17 +457,17 @@
 			Spring is a well known framework with a large community of support. It is highly scalable and works towards being stateless. Spring also integrates well with technologies like Tomcat and build tools like Gradle. Spring Boot was chosen over Spring MVC for its simplicity.
 			
 			\paragraph\indent
-			Research on Googles framework "Google Guice" was also done as an alternative, and while a good architecture in terms of what it does and how it makes it simpler for the programmer by moving away from XML, it is still a relatively new framework and does not have much support yet. Spring has been tried and tested and the fault tolerance on Spring is the deciding factor over Google Guice
+			Research on Google's framework "Google Guice" was also done as an alternative, and while it is a good architecture in terms of what it does and how it makes it simpler for the programmer by moving away from XML, it is still a relatively new framework and does not have much support yet. Spring has been tried and tested and the fault tolerance on Spring is the deciding factor over Google Guice.
 			
 		\subsection{Web Container}
 			\paragraph\indent
-			The web container we have chosen to use is Tomcat. Since, as mentioned before, we have chosen to use Spring as our framework Tomcat would be the obvious choice, given it good integrability with Spring.
+			The web container we have chosen to use is Tomcat. Since, as mentioned before, we have chosen to use Spring as our framework Tomcat would be the obvious choice, given it has good integrability with Spring.
 			
 			\paragraph\indent
 			Jetty was also considered but due to the amount of documentation and experience that Tomcat has over Jetty, the choice was made to rather go with Tomcat. Benchmark tests were also run with Tomcat, Jetty, Glassfish and it was shown that Tomcat was the better contender.
 			
 			\paragraph\indent
-			We have decided to move away EJB containers and thus Java EE containers to use the much lighter web container server in response to the dynamics of our particular system which required a fast, light footprint system to run our framework on.
+			We have decided to move away EJB containers and thus JavaEE containers to use the much lighter web container server in response to the dynamics of our particular system which required a fast, light footprint system to run our framework on.
 		
 		\subsection{Natural Language Processor}
 			\paragraph\indent
@@ -473,7 +479,7 @@
 			
 		\subsection{Communication}
 			\paragraph\indent
-			WebSockets will be used to have a persistent client to server communication that will create a low latency, real time interaction, a requirement for our system. Some of the advantages of WebSockets is is its high scalability, high performance and protocol layering.
+			WebSockets will be used to have a persistent client to server communication that will create a low latency, real time interaction, a requirement for our system. Some of the advantages of WebSockets is its high scalability, high performance and protocol layering.
 			
 			\paragraph\indent
 			A hypothesis with WebSockets initially was that not all browsers could support this technology. This was however proven incorrect as tests runs with all browsers showed that every browser except Opera mini (A mobile client for Opera) supported WebSockets. \sloppy\url{http://caniuse.com/\#feat=websockets}
