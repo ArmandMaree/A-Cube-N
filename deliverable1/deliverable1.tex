@@ -64,11 +64,7 @@
 			\item \textbf{Bubble} A single node in the mind map.
 			\item \textbf{Bubble Map} The mind map that is presented to the user.
 			\item \textbf{PIM} Personal Information Manager such as Google Calendar and social media platforms like Facebook.
-		\end{itemize}
-	
-	
-	\section{Software Architecture Overview}
-	
+		\end{itemize}	
 	
 	\section{Architecture Requirements}
 		
@@ -95,7 +91,6 @@
             \subsubsection{Scalability}
                 this system needs to be highly scalable both in terms in the non restriction on the amount of users that can use the system simultaneously and the amount of data stored of each user that needs to be both stored and displayed without hindering the rest of the system.\\
             
-                
                 The amount of users using the system could be large at any time, and the use of the system by one user should not impact the use of the system by another user. The actual Mind map should also not become slower or unresponsive if the amount of bubbles grow, which it will.\\
                 
                 Polling of the respective social media and email should also be considered. The increase in the amount of threads used for this operation should not make the system unresponsive
@@ -145,7 +140,7 @@
 			\end{figure}
 		
 		\subsection{Infrastructure}
-			We will be using the layered system architecture. Figure \ref{LayeredAchitecture} shows the design at the first level of granularity. Starting from the top where the clients are located, the web interface and a possible Android interface. The web services will be implemented with the Spring MVC programming model. Spring will be the framework we use as the application server. Our data access layer will be done with Spring Data JPA. And finally MongoDB will lie on the bottom layer as the persistence database we will be using.
+			We will be using the layered system architecture. Figure \ref{LayeredAchitecture} shows the design at the first level of granularity. The layered approach with help us to develop different parts of the system concurrently with minimal dependency on other components because the layers are loosely coupled. And secondly it will control and encapsulate the complexity of the system, thus a simpler development process. Testing layers is also easier which would result in a higher quality system.
 			\begin{figure}[!h]
 				\includegraphics[width=\linewidth]{LayerSystem.jpg}
 				\caption{Layered System Architecture}
