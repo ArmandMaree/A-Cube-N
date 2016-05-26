@@ -1,0 +1,9 @@
+Survey questions:
+
+1. What platforms(social media or otherwise) would you want our system to harness data?
+2. Which name would you like for our system?
+UrBubbles MyBubbles
+
+3. Would you like the system to directly display information regarding your significant other or would you like that information to be displayed under the 'People' bubble?
+4. Would you like a colour scheme to be used on the bubbles or the links?
+5. Would you like functionality, from Facebook for example, to be provided by our website or would you prefer to be directed to the actual platform itself(Facebook in this example) 
