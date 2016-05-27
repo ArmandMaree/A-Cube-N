@@ -69,6 +69,7 @@
 			\item \textbf{Bubble} A single node in the mind map.
 			\item \textbf{Bubble Map} The mind map that is presented to the user.
 			\item \textbf{PIM} Personal Information Manager such as Google Calendar and social media platforms like Facebook.
+			\item \textbf{Data Source} This term will be used interchangeable with PIM. It refers to the source where user data is retrieved from.
 		\end{itemize}	
 	
 	\section{Architecture Requirements}
@@ -447,9 +448,10 @@
 			\begin{figure}[!h]
 				\includegraphics[width=\linewidth]{DomainModel.jpg}
 				\caption{Class Diagram: Domain Model}
+				\label{DomainModel}
 			\end{figure}
-			\paragraph \indent
-			The mind map for a user will portray information from PIMs requested by the user. The mind map will consist of a root node containing child nodes of relevant information (topics). Each topic will point to a source (Facebook, Google etc.) and will contain a map of information relative to the topic.
+			\paragraph\indent
+			The mind map for a user will portray information from PIMs requested by the user. The mind map will consist of a root node containing child nodes of relevant information (topics). Each topic will point to a PIM (Facebook, Google etc.) and will contain a list of information relative to the topic.
 	\section{Technologies}
 		\subsection{Framework}
 			\paragraph\indent
