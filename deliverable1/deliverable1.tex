@@ -162,23 +162,52 @@
 			\paragraph\indent
 			Further there are no constraints and the architects have free roam to implement an architecture that suits their needs.
 			
-	\section{Architecture Design}
-		\subsection{Architectural components addressing architectural responsibilities}
-			\paragraph\indent
-			See figure \ref{ResponsibilityAllocation} for the responsibilities and which abstract architectural component would be responsible for them.
-			\begin{figure}[!h]
-				\includegraphics[width=\linewidth]{ResponsibilityAllocation.jpg}
-				\caption{Responsibilities and Responsibility Allocation}
-				\label{ResponsibilityAllocation}
-			\end{figure}
-		
+	\section{Architecture Design}	
 		\subsection{Infrastructure}
 			\paragraph\indent
-			We will be using the layered system architecture. Figure \ref{LayeredAchitecture} shows the design at the first level of granularity. The layered approach with help us to develop different parts of the system concurrently with minimal dependency on other components because the layers are loosely coupled. And secondly it will control and encapsulate the complexity of the system, thus a simpler development process. Testing layers is also easier which would result in a higher quality system.
+			We will be using the micro services architecture. Figure \ref{MicroServicesAchitecture} shows the design at the first level of granularity. The micro services approach with help us to develop different parts of the system concurrently with minimal dependency on other components because the individual services are loosely coupled. And secondly it will control and encapsulate the complexity of the system, thus a simpler development process. Testing each service is also easier which would result in a higher quality system.
 			\begin{figure}[!h]
-				\includegraphics[width=\linewidth]{LayerSystem.jpg}
+				\includegraphics[width=\linewidth]{MicroServices.jpg}
 				\caption{Layered System Architecture}
-				\label{LayeredAchitecture}
+				\label{MicroServicesAchitecture}
+			\end{figure}
+			\paragraph\indent
+			The system is also well suited for this architecture since there are several modules that will have to interact with each other, but each serve a separate and specific purpose.
+			
+		\subsection{Services}
+			\subsubsection{Web Services}
+			
+			\subsubsection{Data Polling Service}\label{DataPollingSection}
+			\paragraph\indent
+			Figure \ref{PollingServiceModelFigure} shows the class diagram of the pollers. A specific poller will use long polling to request new data from a specific PIM. Once it receives this information it will parse this information into a RawData object and add it into a queue which will be further processed by worker threads (see section  \ref{DataProcessingServiceSection}).			
+						
+			\begin{figure}[!h]
+			\includegraphics[width=\linewidth]{PollingServiceModel.jpg}
+			\caption{Data polling service.}
+			\label{PollingServiceModelFigure}
+			\end{figure}
+			
+						
+			\subsubsection{Data Processing Service}\label{DataProcessingServiceSection}
+			\paragraph\indent
+			Figure \ref{DataProcessingModelFigure} shows the class diagram of the processing of new data. Once raw data has been added to a queue by the poller in section \ref{DataPollingSection}, one of several worker threads will dequeue this raw data and pass the data to a Natural Language Processor (NLP). Once the NLP has finished processing the data the worker thread will parse this data into a ProcessedData object which will be sent to the database for persistence (see section \ref{DatabaseServiceSection}).
+			
+			\begin{figure}[!h]
+			\includegraphics[width=\linewidth]{DataProcessingServiceModel.jpg}
+			\caption{Data processing service.}
+			\label{DataProcessingModelFigure}
+			\end{figure}
+						
+			\subsubsection{Business Logic Service}
+			
+			\subsubsection{Database Service} \label{DatabaseServiceSection}
+			\paragraph\indent
+			Figure \ref{DatabaseServiceModelFigure} shows the class diagram of the interface that will be used to communicate with the persistence API.			
+						
+			\begin{figure}[!h]
+			\includegraphics[width=\linewidth]{DatabaseServiceModel.jpg}
+			\caption{Database service.}
+			\label{DatabaseServiceModelFigure}
 			\end{figure}
 		
 		\subsection{Tactics}
@@ -475,7 +504,7 @@
 		
 		\subsection{Natural Language Processor}
 			\paragraph\indent
-			Google recently released their English natural language processor called Parsey McParseface. This will be used to analyse text to determine topics.
+			Due to the complexities involved in getting Google's Parsey McParseFace set up, the Stanford CoreNLP will be used to analyse the syntax and underlying topics of sentences.
 			
 		\subsection{Build Tool}
 			\paragraph\indent
@@ -486,16 +515,16 @@
 			WebSockets will be used to have a persistent client to server communication that will create a low latency, real time interaction, a requirement for our system. Some of the advantages of WebSockets is its high scalability, high performance and protocol layering.
 			
 			\paragraph\indent
-			A hypothesis with WebSockets initially was that not all browsers could support this technology. This was however proven incorrect as tests runs with all browsers showed that every browser except Opera mini (A mobile client for Opera) supported WebSockets. \sloppy\url{http://caniuse.com/\#feat=websockets}
+			A hypothesis with WebSockets initially was that not all browsers could support this technology. This was however proven incorrect as tests ran on all browsers showed that every browser except Opera mini (A mobile client for Opera) supported WebSockets. \sloppy\url{http://caniuse.com/\#feat=websockets}
 	\section{Initial Design}
 
     	\begin{figure}[!h]
-    				\includegraphics[width=\linewidth]{Main - Email Expanded.png}
-    				\caption{Main Interface- Email Expanded}
-    				\label{Main}
-    			\end{figure}
-    			\paragraph\indent
-    			An initial Idea for the main mind map interface, drawn with wire frames, with a sidebar that shown the currently active node "Prof Solms" with relevant information on why and what information is relevant. In this figure the Emails column is expanded, in the next figure the Calender will be expanded.
+			\includegraphics[width=\linewidth]{Main - Email Expanded.png}
+			\caption{Main Interface- Email Expanded}
+			\label{Main}
+		\end{figure}
+		\paragraph\indent
+		An initial Idea for the main mind map interface, drawn with wire frames, with a sidebar that shown the currently active node "Prof Solms" with relevant information on why and what information is relevant. In this figure the Emails column is expanded, in the next figure the Calender will be expanded.
     	\begin{figure}[!h]
     		\includegraphics[width=\linewidth]{Main - Calender Expanded.png}
     		\caption{Main Interface- Calender Expanded}
