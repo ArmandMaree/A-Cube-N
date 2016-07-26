@@ -18,7 +18,7 @@
 		\end{figure}
 		\vspace*{\stretch{1.0}}
 		\begin{center}
-			\huge{Software Requirements Specification and Technology Neutral Process Design\\}
+			\huge{Architectural and Functional Requirements\\}
 			\huge{Mindmap PIM}\\
 			\large{Client: IMINISYS}\\
 			\vspace{10mm}
@@ -42,12 +42,12 @@
 	
 	\section{Introduction} 
 		\paragraph\indent
-		People of this day and age often make use of many technologies and platforms for the purpose of staying in contact with people, sharing moments with friends, communicating with people and organising their day-to-day lives. Generally all the above tasks of a person in the 21st century are done on different platforms for example Facebook, Email and Google Calendar. This project serves to provide the people described above, with a single Personal Information Manager (PIM) platform with which they can interact to make use of the functionality from other platforms. A PIM as defined by \textit{TechTerms} is "a software application that serves as a planner, notebook, and address book all in one. It can also include things like a calculator, clock , and photo album." 
+		People of this day and age often make use of many technologies and platforms for the purpose of staying in contact with people, sharing moments with friends, communicating with people and organising their day-to-day lives. Generally all the above tasks of a person in the 21st century are done on different platforms for example Facebook, Email and Google Calendar. This project serves to provide the people described above, with a single Personal Information Manager (PIM) platform with which they can interact to make use of the functionality from other platforms. A PIM as defined by \textit{TechTerms} is "a software application that serves as a planner, notebook, and address book all in one." 
 	
 	
 	\section{Vision}
 		\paragraph\indent
-		The vision of this project is to create a PIM which extracts data from various existing platforms such as Facebook, Gmail, Google Calendar, etc. The application will make use of various means to extract data, determine the general topic of the data then integrate this new information into their mind map. The hope is that this will simplify the users life by only needing one application to 'monitor' all other platforms on which they might have an account and manage the information of those platforms from our application. The mind map will work in a similar fashion as our minds work. Where the exploration of one topic may lead to the exploration of another topic that is related to the user specifically. Hence the "mind" map, it is a map of your mind visualized by the topics that come up in your life.
+		The vision of this project is to create a PIM which extracts data from various existing platforms such as Gmail and Facebook. The application will make use of a natural language processor to extract data, determine the general topic of the data then integrate this new information into their mind map. The hope is that this will simplify the users life by only needing one application to 'monitor' all other platforms on which they might have an account and manage the information of those platforms from our application. The mind map will work in a similar fashion as our minds work. Where the exploration of one topic may lead to the exploration of another topic that is related to the user specifically. Hence the "mind" map, it is a map of your mind visualized by the topics that come up in your life.
 	
 	\section{Background}
 		\paragraph\indent
@@ -59,15 +59,16 @@
 		
 		\subsection{The Client's Problem}
 			\paragraph\indent
-			The client wants to have a way of displaying all relevant information in one place in the form of a mind map. This will help to organize general life events such as meetings and current tasks that need to be completed. This information will come from different sources and enables the user to see all relevant information without having to go to each source individually.
+			The client wants to have a way of displaying all relevant information in one place in the form of a mind map. This will help to organize general life events such as meetings and current tasks that need to be completed. This information will come from different sources and enables the user to see all relevant information without having to go to each source individually. A key aspect is that Mind Map PIM attempts to dig through the clutter contained in other PIMs and only display things they want to see.
 		
 	\section{Important Terminology}
 		\begin{itemize}
-			\item \textbf{MyBubbles} A potential commercial name for the application.
+			\item \textbf{Bubbles} Commercial name for the application.
 			\item \textbf{Bubble} A single node in the mind map.
 			\item \textbf{Bubble Map} The mind map that is presented to the user.
 			\item \textbf{PIM} Personal Information Manager such as Google Calendar and social media platforms like Facebook.
 			\item \textbf{Data Source} This term will be used interchangeable with PIM. It refers to the source where user data is retrieved from.
+			\item \textbf{Poller} The service which will constantly ask PIMs for new information and then send new informaton to the processing service.
 		\end{itemize}	
 	
 	\section{Architecture Requirements}
@@ -78,7 +79,7 @@
                 
             \subsubsection{System Access Channels}
             	\paragraph\indent
-                RESTful web services will as the system access channel for its lightweight, maintainability, and scalability. It will use URI's to allow easy access from the client side web service to server side. 
+                Websocket based web services will be used as the system access channel. This is due to the bi-directional communication that it offers.
 		
 		\subsection{Quality Requirements}
 			\paragraph\indent
@@ -86,76 +87,61 @@
 	        
             \subsubsection{Performance}
             	\paragraph\indent
-                Performance has the highest priority since this system has to be real time. Any new information that is updated on the respective websites and email clients should, in the least amount of time possible, update the mind map too.
+                Performance has the highest priority since this system has to be real time. Any new information that is updated on the respective websites and email clients should, in the least amount of time possible, update the mind map too. Thus the backend processing and persistence of new information should happen rapidly.
                 
                 \paragraph\indent
-                Performance in terms of front-end should also be addressed. The system is a fully graphic website and thus should give the user the most fluid and smooth experience. To implement a fast interactive system technologies such as SVG or HTML canvas can be used to render the graph with smooth user interaction.
+                Performance in terms of front-end should also be addressed. The system is a fully graphic website and thus should give the user the most fluid and smooth experience. To implement a fast interactive system technologies such as HTML canvas can be used to render the graph with smooth user interaction.
                 
             \subsubsection{Usability}
             	\paragraph\indent
-                Usability is the second highest priority as the system is fully graphic in terms of what the end user will use. The system needs to have a very good User Experience (UX) and must be completely user friendly so it is not difficult to use. The end goal is to let the system give benefit to it being graphic so the user can interpolate the data, and not make it more difficult.
+                Usability is the second highest priority as the system is fully graphic in terms of what the end user will use. The system needs to have a very good User Experience (UX) and must be completely user friendly so it is not difficult to use.
                 
             \subsubsection{Reliability}
             	\paragraph\indent
-                The system needs to be reliable, since it has to provide information in real time. this cannot happen if the system is constantly down or can only cater for a small amount of users before it starts slowing down. When, for example, a user clicks to expand a bubble the result should be almost instant and not break the graph or slow down the whole system because it is retrieving a few bubbles.
+                The system needs to be reliable, since it has to provide information in real time. This cannot happen if the system is constantly down. Thus hot swapping and hot reloading will be used to update the system without shutting down the service.
                 
                 \paragraph\indent
                 Reliability also refers to providing accuracy, and such needs to be implemented to provide the correct information to the right bubbles.
                 
-                \paragraph\indent
-                Implementation of reliability should be done in two parts, namely first prevention of faults, and secondly detection of faults.
-                
             \subsubsection{Scalability}
                 \paragraph\indent
-                This system needs to be highly scalable both in terms in the non restriction on the amount of users that can use the system simultaneously and the amount of data stored of each user that needs to be both stored and displayed without hindering the rest of the system.
-                
-                \paragraph\indent
-                The amount of users using the system could be large at any time, and the use of the system by one user should not impact the use of the system by another user. The actual mind map should also not become slower or unresponsive if the amount of bubbles grow, which it will.
-                
-                \paragraph\indent
-                Polling of the respective social media and email should also be considered. The increase in the amount of threads used for this operation should not make the system unresponsive.
+                This system needs to be highly scalable. The large number of users should not affect the system. Thus a queue messaging service (RabbitMQ) will be used to handle large number of requests. This will pervent backend processes responsible for data processing to be flooded with requests.
                 
             \subsubsection{Flexibility}
             	\paragraph\indent
-                The system must be flexible in terms of plugablity of subsystems that are used namely our social media and emails. Since all of these system are different and use different API's and architectures. The system should be able to handle this, and any future systems that need to be added.
-                
-                \paragraph\indent
-                Some users will not have a Facebook account, for example, and thus the system should still be functional, irrespective if the user has a certain social media.
+                The system must be flexible in terms of plugablity of polling services. A new polling service for a new PIM should be able to integrate with minor to no no change of the rest of the system. The system also should be able to function with any combination of PIMs that a user selects.
 
             \subsubsection{Security}
             	\paragraph\indent
-                The system should be very secure since it is using private information that belongs solely to that user. Private information such as emails and photos isn't something that users would like other people seeing. Thus a secure log in process has to be implemented. Since Google and Facebook have both good log in systems, we will use that to log in to the system by using the OAUTH protocol.
-                
-                \paragraph\indent
-                If a user prefers to not have certain features of social media, such as only look at posts and photos on Facebook but not post on their behalf, then the system should cater for that.
+                The system should be very secure since it is using private information that belongs solely to that user. Private information such as emails and photos isn't something that users would like other people seeing. Thus a secure login process has to be implemented. Since Google and Facebook have both good log in systems, we will use that to log in to the system by using the OAUTH protocol.
                 
             \subsubsection{Auditability/Monitorability}
             	\paragraph\indent
-                Logs of all actions and settings of the user should be maintained. When the user logs back in at a different time, the graph that was displayed before should be displayed again and updated with new things that had happened while the user was offline. Settings should remain the same between sessions.
+                Aspect orientated programming will be used to maintain a log of the internal functioning of the system. Any requests made by users will thus also be recorded.
                 
             \subsubsection{Integrability}
             	\paragraph\indent
-                The system should be integrable in terms of how well it integrates with other systems like Facebook and Google. This information should be easy to access and does not affect the functioning of the overall system.
+                The system should be developed in such a way that new polling services can easily integrate with the already implemented system.
 
 		\subsection{Integration Requirements}
 			\begin{enumerate}
 		        \item \textbf{HTTP:}\\
 		            This is the main protocol for all websites and will be the interface for the user to easily navigate the system.
-		        \item \textbf{SMTP and IMAP:}\\
-		            Sometimes a user does not want to connect their PIMs for safety concerns and so the system cannot use the APIs required and thus will need to manually get the information by making use of IMAP to retrieve and sort though the users mailbox and SMPT to still have the option for the system to send emails on behalf of the user. This allows the system to still have functionality without any specified APIs for those users who do not wish to share that information or who do not own social media.
+		        \item \textbf{IMAP:}\\
+		            In the case that a user uses an email service for which there is no API the system will make use of IMAP to send and receive emails.
 		        \item \textbf{REST:}\\
-		            As mentioned before, REST will be implemented. It is simple to implement and integrates well with systems already operational. REST integrates well with HTTP and follows a client-server model which is something our system utilizes. REST is vital to the use of APIs to gain access to information of social media of the user.
+		            REST will be implemented as the communication protocol between backend services. It is simple to implement and integrates well with systems already operational. REST will be useful in this case since the system does not care from which poller information comes from.
 		        \item \textbf{TCP:}\\
 		            This protocol will be needed to establish network connections between the user's computers and the system servers. These data streams can then be exchanged between the connected machines. TCP will allow for error detection and rectification of data transmission. This will be done at a high level and would typically be handled by libraries or the operating system.
 		        \item \textbf{API:}\\
-		            Since the system will gather its information through the consented use of the users social media, a vital part of the system is to use the already well developed infrastructure created by PIMs and access the information through APIs or application programming interfaces. We will use APIs from Google (\sloppy\url{https://developers.google.com/apis-explorer/\#p/}) to access contacts, email, calender, hangouts/sms, Facebooks API (\sloppy\url{https://developers.facebook.com/products}) for Facebook content and LinkedIn API(\sloppy\url{https://developer.linkedin.com/docs/rest-api}) for LinkedIn related information.
+		            Since the system will gather its information through the consented use of the users social media, a vital part of the system is to use the already well developed infrastructure created by PIMs and access the information through APIs or application programming interfaces. We will use APIs from Google (\sloppy\url{https://developers.google.com/apis-explorer/\#p/}) to access emails. Facebook's API (\sloppy\url{https://developers.facebook.com/products}) for Facebook content.
 	    		\end{enumerate}
 		
 		\subsection{Architecture Constraints}
 			Architecture constraints include:
 			\begin{itemize}
-				\item \textbf{Programming language} We will be developing the system in Java.
-				\item \textbf{Operating system} The server will be run off a Linux machine. 
+				\item \textbf{Programming language} We will be developing the system in Java suing the Spring Boot Framework.
+				\item \textbf{Operating system} The server will be run off a Linux (CentOS) machine. 
 			\end{itemize}
 			\paragraph\indent
 			Further there are no constraints and the architects have free roam to implement an architecture that suits their needs.
@@ -172,12 +158,10 @@
 			\paragraph\indent
 			The system is also well suited for this architecture since there are several modules that will have to interact with each other, but each serve a separate and specific purpose.
 			
-		\subsection{Services}
-			\subsubsection{Web Services}
-			
+		\subsection{Services}			
 			\subsubsection{Data Polling Service}\label{DataPollingSection}
 			\paragraph\indent
-			Figure \ref{PollingServiceModelFigure} shows the class diagram of the pollers. A specific poller will use long polling to request new data from a specific PIM. Once it receives this information it will parse this information into a RawData object and add it into a queue which will be further processed by worker threads (see section  \ref{DataProcessingServiceSection}).			
+			Figure \ref{PollingServiceModelFigure} shows the class diagram of the pollers. A poller will either use long polling or polling with a sleep period afterwards (depending on what the API allows) to request new data from a specific PIM. Once it receives this information it will parse this information into a RawData object and add it into a queue which will be further processed by worker threads (see section  \ref{DataProcessingServiceSection}).			
 						
 			\begin{figure}[!h]
 			\includegraphics[width=\linewidth]{PollingServiceModel.jpg}
@@ -196,7 +180,14 @@
 			\label{DataProcessingModelFigure}
 			\end{figure}
 						
-			\subsubsection{Business Logic Service}
+			\subsubsection{Business Service} \label{BusinessServiceSection}
+			This service will start and stop polling services as users sign up/deactivate their accounts. Its purpose is basically to manage the other services based on user actions.
+			
+			\begin{figure}[!h]
+				\includegraphics[width=\linewidth]{BusinessServiceModel.jpg}
+				\caption{Business service.}
+				\label{BsuinessServiceModelFigure}
+			\end{figure}
 			
 			\subsubsection{Database Service} \label{DatabaseServiceSection}
 			\paragraph\indent
@@ -211,7 +202,7 @@
 		\subsection{Tactics}
 			\subsubsection{Flexibility}
 				\begin{itemize}
-					\item Hot deployment
+					\item Hot reload and hot refresh.
 					\item Contract based programming, i.e. providing proper interfaces that allows future expansion.
 				\end{itemize}
 			
@@ -233,7 +224,7 @@
 		
 	\section{Database and Persistence}
 		\paragraph\indent
-		We plan on using MongoDB as our database. This choice was made on the basis that a NoSQL database's graph structure would fit our application's needs better than a standard relational database. MongoDB is also the perfect tool to use when data mining and high write loads are bought into play.
+		We plan on using MongoDB as our database. This choice was made on the basis that a NoSQL database's document structure would fit our application's needs better than a standard relational database. MongoDB is also the perfect tool to use when data mining and high write loads are bought into play.
 	
 	\section{Process Specification}
 		\paragraph\indent
@@ -241,14 +232,13 @@
 		
 		\subsection{Server}
 			\paragraph\indent
-			In the back end, the system would have a polling service that polls the PIMs for new information about the users. If a polling thread receives new data from the platform they add this new data to a queue to be processed. Several worker threads dequeue data from the queue and uses natural language processing to determine the topic(s) of the data. This data is then added to a database and the corresponding topic(s) as well. Note that since hashtags are used so frequently, any hashtag in the text should be added as a topic of its own. When a user requests their bubble map, the system responds with all relevant topics of their life based on frequency and recency. The topics thus have a weight related to them that is calculated by the frequency and the temperal component. The weight is used to decide which topics should be selected. These topics are then returned to the user in the form of JSON objects. Once a user expands one of the bubbles a request is sent to the server to retrieve all the relevant topic corresponding to the topic to the user. These new topics is then added to the bubble map in the form of bubbles. Relevant topics are found on the basis of your own events and the events of your friends.
+			In the back end, the system would have a polling service that polls the PIMs for new information about the users. If a polling thread receives new data from the platform, they add this new data to a queue to be processed. Several worker threads dequeue data from the queue and uses natural language processing to determine the topic(s) contained in the data. This data is then added to a database and the corresponding topic(s) as well. Note that since hashtags are used so frequently, any hashtag in the text should be added as a topic of its own. When a user requests their bubble map, the system responds with all relevant topics of their life based on frequency and recency. The topics thus have a weight related to them that is calculated by the frequency and the temperal component. The weight is used to decide which topics should be selected. These topics are then returned to the user in the form of JSON objects. Once a user expands one of the bubbles a request is sent to the server to retrieve all the relevant topic corresponding to the topic to the user. These new topics is then added to the bubble map in the form of bubbles. Relevant topics are found on the basis of your own events and the events of your friends.
 		
 		\subsection{Front End}
 			\paragraph\indent
 			The user starts out with a root bubble that has relevant topics connected to it including a people bubble. All these bubbles can be expanded and reveal information related to that topic. The "people" bubble shows contacts you recently communicated with or might want to communicate with now. Expanding one of these contacts will show the different platforms you can interact with this contact, including viewing a profile and sending a message/email. Other topics will expand into related topics and those can be expanded again and so forth. Upon expanding a topic a user can then interact with a specific occurrence in that topic (comment/reply) in a side panel that will be presented on the right of the screen.
 	
 	\section{Functional Requirements}		
-
 		The following sections contain a brief overview of some of the functionality that will be provided by our system. The sections will become more detailed as development progresses.
 		\subsection{Use Case Prioritisation}
 			\textbf{Critical} (See figure \ref{UseCaseUserManagement})
