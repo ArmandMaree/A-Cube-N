@@ -42,16 +42,16 @@
 	
 	\section{Introduction} 
 		\paragraph\indent
-		People of this day and age often make use of many technologies and platforms for the purpose of staying in contact with people, sharing moments with friends, communicating with people and organising their day-to-day lives. Generally all the above tasks of a person in the 21st century are done on different platforms for example Facebook, Email and Google Calendar. This project serves to provide the people described above, with a single Personal Information Manager (PIM) platform with which they can interact to make use of the functionality from other platforms. A PIM as defined by \textit{TechTerms} is "a software application that serves as a planner, notebook, and address book all in one." 
+		People of this day and age often make use of many technologies and platforms for the purpose of staying in contact with people, sharing moments with friends, communicating with people and organising their day-to-day lives. Generally all the above tasks of a person in the 21st century are done on different platforms for example Facebook, Email and Google Calendar. This project serves to provide the people described above, with a single platform with which they can interact to see their data organised according to topic and make use of some functionality the mined platforms.
 	
 	
 	\section{Vision}
 		\paragraph\indent
-		The vision of this project is to create a PIM which extracts data from various existing platforms such as Gmail and Facebook. The application will make use of a natural language processor to extract data, determine the general topic of the data then integrate this new information into their mind map. The hope is that this will simplify the users life by only needing one application to 'monitor' all other platforms on which they might have an account and manage the information of those platforms from our application. The mind map will work in a similar fashion as our minds work. Where the exploration of one topic may lead to the exploration of another topic that is related to the user specifically. Hence the "mind" map, it is a map of your mind visualized by the topics that come up in your life.
+		The vision of this project is to create an application which extracts data from various existing platforms such as Gmail and Facebook. The application will make use of a natural language processor to extract data, determine the general topic of the data then integrate this new information into the interactive mind map. The hope is that this will simplify the users life by only needing one application to 'monitor' all other platforms on which they might have an account and manage the information of those platforms from our application. The mind map will work in a similar fashion as our minds work. Where the exploration of one topic may lead to the exploration of another topic that is related to the user. Hence the "mind" map, it is a map of your mind visualized by the topics that come up in your life.
 	
 	\section{Background}
 		\paragraph\indent
-		We got elected for this project by including it as one of our top 3 choices for the projects that we wanted to do most. Once this project was elected for us to do, we began to learn more about what the client expected from us.
+		We got elected for this project by including it as one of our top 3 choices for the projects that we wanted to do most. Once we were chosen for this project, we began to learn more about what the client expected from us.
 
 		\subsection{Future business/research opportunities}
 			\paragraph\indent
@@ -59,7 +59,7 @@
 		
 		\subsection{The Client's Problem}
 			\paragraph\indent
-			The client wants to have a way of displaying all relevant information in one place in the form of a mind map. This will help to organize general life events such as meetings and current tasks that need to be completed. This information will come from different sources and enables the user to see all relevant information without having to go to each source individually. A key aspect is that Mind Map PIM attempts to dig through the clutter contained in other PIMs and only display things they want to see.
+			The client wants to have a way of displaying all relevant information in one place in the form of a mind map. This will help to organize general life events such as meetings and. This information will come from different sources and enables the user to see all relevant information without having to go to each source individually. A key aspect is that Mind Map PIM attempts to do is to dig through the clutter contained in other PIMs and only display things the user might want to see.
 		
 	\section{Important Terminology}
 		\begin{itemize}
@@ -67,19 +67,21 @@
 			\item \textbf{Bubble} A single node in the mind map.
 			\item \textbf{Bubble Map} The mind map that is presented to the user.
 			\item \textbf{PIM} Personal Information Manager such as Google Calendar and social media platforms like Facebook.
-			\item \textbf{Data Source} This term will be used interchangeable with PIM. It refers to the source where user data is retrieved from.
-			\item \textbf{Poller} The service which will constantly ask PIMs for new information and then send new informaton to the processing service.
+			\item \textbf{Data Source} It refers to the source where user data is retrieved from.
+			\item \textbf{Poller} The service which will constantly ask a data source for new information and then send new information to the processing service.
 		\end{itemize}	
 	
 	\section{Architecture Requirements}
 		\subsection{Access Channel Requirements}
     		\subsubsection{Human Access Channels}
     			\paragraph\indent
-                Users  will access the "Mind Mapped PIM" system through a website. It should be available to anyone wishing to sign up  through any browser i.e. Chrome, Mozilla Firefox, Internet Explorer, Safari and Edge. When the user is on the website, they will have to log in, the option given to log in with their Facebook or Google accounts. The website will be under strict standards-compliance, that is, having the website comply with the World Wide Web Consortium (W3C) (W3C, 2016) so that the website will run on every browser exactly the same. The website should be mobile friendly as to be able to scale down to a phone screen size and still be usable and interactive. Offline capabilities for users who have already used the service before would be a nice-to-have feature.
+                Users  will access the this system through a website. It should be available to anyone wishing to sign up  through any browser i.e. Chrome, Mozilla Firefox, Internet Explorer, Safari and Edge provided the user has a Gmail or Facebook account with which to sign up. It is our intention to ensure that the website will be under strict standards-compliance, that is, having the website comply with the World Wide Web Consortium (W3C) (W3C, 2016) so that the website will run on every browser exactly the same. The website should be mobile friendly as to be able to scale down to a phone screen size and still be usable and interactive. Offline capabilities for users who have already used the service before would be a nice-to-have feature.
                 
             \subsubsection{System Access Channels}
             	\paragraph\indent
-                Websocket based web services will be used as the system access channel. This is due to the bi-directional communication that it offers.
+                Websocket based web services will be used as the primary means of communication between the interface and the front end application. This is due to the bi-directional communication that it offers.
+                
+                A technology known as RabbitMQ will be used to allow communication between our multiple back end applications such as the polling application, business logic application and the database application.
 		
 		\subsection{Quality Requirements}
 			\paragraph\indent
@@ -247,39 +249,30 @@
 			    \item Choose PIMs
 			    \item Login to PIMs
 			    \item Logout
-			    \item Delete Account
-			\end{itemize}
-			\begin{figure}[!h]
-				\includegraphics[width=\linewidth]{UserManagement.jpg}
-				\caption{Use Case: User Management}
-				\label{UseCaseUserManagement}
-			\end{figure}
-			\textbf{Important} (See figure \ref{UseCaseBubbleMapInteraction})
-			\begin{itemize}
 			    \item Expand bubble
-			   	\item View bubble
-			    \item Hide bubble
-			    \item Minimize bubble
+			   	\item Display Data
+			    \item Remove bubble
 			\end{itemize}
-			\begin{figure}[!h]
-				\includegraphics[width=\linewidth]{BubbleMap Interaction.jpg}
-				\caption{Use Case: Bubble Map Interaction Functionality}
-				\label{UseCaseBubbleMapInteraction}
-			\end{figure}
-			
-			\textbf{Nice-to-Have} (See figure \ref{UseCaseUserPreferences})
+		    
+		    \textbf{Important} 
 			\begin{itemize}
-			    \item Minimize bubble
-			    \item Customize layout
-				\item Specify the initial depth
-			    \item Specify the branch factor
-			    \item Specify filter
+			    \item Deactivate Account
+			    \item Reply to an email
+			    \item Gain access to Gmail via our application
+			    \item Set default depth factor
+			    \item Set default branch factor
 			\end{itemize}
-			\begin{figure}[!h]
-				\includegraphics[width=\linewidth]{User Preferences.jpg}
-				\caption{Use Case: User Preferences}
-				\label{UseCaseUserPreferences}
-			\end{figure}
+		    
+			
+			\textbf{Nice-to-Have}
+			\begin{itemize}
+			    \item Set quick access depth factor
+			    \item Set quick access branch factor
+				\item Reset graph
+				\item Customise colour scheme of interface
+			    \item Help centre
+			\end{itemize}
+			
 		
 		\subsection{Use Case/Service Contracts}
 			\subsubsection{Sign up}
@@ -299,6 +292,18 @@
         			\item The user may deactivate/delete their account should they so wish.
     			\end{itemize}
     			
+    			\begin{figure}[!h]
+    			\includegraphics[width=\linewidth]{functionalRequirementSignUp.jpg}
+    			\caption{Use case diagram for Signing up}
+    			\label{UseCaseSignUp}
+    			\end{figure}
+    			
+    			\begin{figure}[!h]
+    			\includegraphics[width=\linewidth]{serviceContractSignUp.jpg}
+    			\caption{Service contract diagram for Signing up}
+    			\label{ServiceContractSignUp}
+    			\end{figure}
+    			
     		\subsubsection{Choose PIMs}
 				\textbf{Description:}  A user is required to select the various PIMs they wish to be used when extracting data to build their bubble map.\\
     			\textbf{Prioritisation:} Critical\\
@@ -315,6 +320,8 @@
         			\item The unselected PIMs will not be mined for data.
     			\end{itemize}
     			
+    			
+    			
     		\subsubsection{Login to PIMs}
 				\textbf{Description:}  A user will login with their Google account. This will be done by using the OAUTH protocol which is compatible with the Google and Facebook API.\\
     			\textbf{Prioritisation:} Critical\\
@@ -330,6 +337,18 @@
         			\item The login credentials for that PIM for a specific user will be stored in our database.
     			\end{itemize}
     			
+    			\begin{figure}[!h]
+    			\includegraphics[width=\linewidth]{functionalRequirementLogin.jpg}
+    			\caption{Use case diagram for Logging in}
+    			\label{UseCaseLogin}
+    			\end{figure}
+    			
+    			\begin{figure}[!h]
+    			\includegraphics[width=\linewidth]{serviceContractLogin.jpg}
+    			\caption{Service contract diagram for Logging in}
+    			\label{ServiceContractLogin}
+    			\end{figure}
+    			
     		\subsubsection{Logout}
 				\textbf{Description:}  A user can choose to log out of the system in a secure manner.\\
     			\textbf{Prioritisation:} Critical\\
@@ -343,22 +362,9 @@
         			\item The user will need to log in again to access their bubble map.
     			\end{itemize}
     			
-    		\subsubsection{Delete Account}
-				\textbf{Description:}  A user can choose to permanently delete their account or deactivate it.\\
-    			\textbf{Prioritisation:} Critical\\
-      			\textbf{Pre-conditions}
-    			\begin{itemize}
-        			\item A user must be registered on the system.
-    			\end{itemize}
-    			\textbf{Post-conditions}
-     			\begin{itemize}
-        			\item The user will not have access to the main functionality provided by the system.
-        			\item The user will need to sign up again to access the system functionality.
-    			\end{itemize}
-    			
-		    \subsubsection{Expand Bubble}
+    		\subsubsection{Expand Bubble}
 				\textbf{Description:}  A user can choose to expand a bubble to reveal more topics related to the bubble.\\
-			    \textbf{Prioritisation:} Important\\
+			    \textbf{Prioritisation:} Critical\\
       			\textbf{Pre-conditions}
 			    \begin{itemize}
 			        \item A user must be registered and logged in on the system.
@@ -369,9 +375,21 @@
 			        \item The system will expand the bubble Map and introduce new topics.
 			    \end{itemize}
 			    
-			\subsubsection{View Bubble}
+			    \begin{figure}[!h]
+    			\includegraphics[width=\linewidth]{functionalRequirementExpandBubble.jpg}
+    			\caption{Use case diagram for Expanding a Bubble}
+    			\label{UseCaseExpandBubble}
+    			\end{figure}
+    			
+    			\begin{figure}[!h]
+    			\includegraphics[width=\linewidth]{serviceContractExpandBubble.jpg}
+    			\caption{Service contract diagram for Expanding a Bubble}
+    			\label{ServiceContractExpandBubble}
+    			\end{figure}
+			    
+    		\subsubsection{Display Data}
 				\textbf{Description:}  A user can choose to view a bubble to reveal specific data and functionality surrounding a chosen bubble.\\
-			    \textbf{Prioritisation:} Important\\
+			    \textbf{Prioritisation:} Critical\\
 			    \textbf{Pre-conditions}
 			    \begin{itemize}
 			        \item A user must be registered and logged in on the system.
@@ -383,9 +401,21 @@
 					\item The system will provide certain functionality for certain types of data e.g. a Facebook post will have the functionality to be like, commented on or shared.
 				\end{itemize}
 				
-   			\subsubsection{Hide Bubble}
-				\textbf{Description:}  A user can choose to hide a bubble which will hide all bubbles related to it.\\
-			    \textbf{Prioritisation:}Important\\
+			\begin{figure}[!h]
+    			\includegraphics[width=\linewidth]{functionalRequirementDisplayData.jpg}
+    			\caption{Use case diagram for Displaying data}
+    			\label{UseCaseDisplayData}
+    			\end{figure}
+    			
+    			\begin{figure}[!h]
+    			\includegraphics[width=\linewidth]{serviceContractDisplayData.jpg}
+    			\caption{Service contract diagram for Displaying data}
+    			\label{ServiceContractDisplayData}
+    			\end{figure}
+				
+    		\subsubsection{Remove Bubble}
+				\textbf{Description:}  A user can choose to remove a bubble which will remove all bubbles related to it.\\
+			    \textbf{Prioritisation:}Critical\\
      			\textbf{Pre-conditions}
 				\begin{itemize}
 					\item A user must be registered and logged in on the system.
@@ -393,27 +423,41 @@
 				\end{itemize}
     			\textbf{Post-conditions}
      			\begin{itemize}
-			        \item The system will hide the specified bubble.
-			        \item The system will hide all bubbles in the sub branch of the selected bubble.
+			        \item The system will remove the specified bubble.
+			        \item The system will remove all bubbles in the sub branch of the selected bubble.
     			\end{itemize}
     			
-    		\subsubsection{Minimize Bubble}
-				\textbf{Description:}  A user can choose to minimize a bubble which will shrink the bubble map and essentially hide all sub-bubbles.\\
-    			\textbf{Prioritisation:}Important\\
-    			\textbf{Pre-conditions}
-			    \begin{itemize}
-			        \item A user must be registered and logged in on the system.
-			        \item A user must have selected PIMs to be mined.
-			    \end{itemize}
-			    \textbf{Post-conditions}
-			     \begin{itemize}
-			        \item The system will hide the sub-bubbles of a selected bubble.
-			       \item The bubble will provide the functionality to be expanded again.
-			    \end{itemize}
+    			\begin{figure}[!h]
+    			\includegraphics[width=\linewidth]{functionalRequirementRemoveBubble.jpg}
+    			\caption{Use case diagram for removing a bubble}
+    			\label{UseCaseRmoveBubble}
+    			\end{figure}
+    			
+    			\begin{figure}[!h]
+    			\includegraphics[width=\linewidth]{serviceContractRemoveBubble.jpg}
+    			\caption{Service contract diagram for removing a bubble}
+    			\label{ServiceContractRemoveBubble}
+    			\end{figure}
+    		
+    		%___________________IMPORTANT_____________________
+    		
+    		\subsubsection{Deactivate Account}
+				\textbf{Description:}  A user can choose to permanently delete their account or deactivate it.\\
+    			\textbf{Prioritisation:} Important\\
+      			\textbf{Pre-conditions}
+    			\begin{itemize}
+        			\item A user must be registered on the system.
+    			\end{itemize}
+    			\textbf{Post-conditions}
+     			\begin{itemize}
+        			\item The user will not have access to the main functionality provided by the system.
+        			\item The user will need to sign up again to access the system functionality.
+    			\end{itemize}
+    			
 			    
-    		\subsubsection{Specify the initial depth}
+    		\subsubsection{Specify the default depth factor}
 				\textbf{Description:}  A user can choose the number of levels the bubble map should expand when they open the map for the first time during the current session.\\
-			    \textbf{Prioritisation:} Nice-to-Have\\
+			    \textbf{Prioritisation:} Important\\
       			\textbf{Pre-conditions}
 			    \begin{itemize}
 			        \item A user must be registered and logged in on the system.
@@ -424,9 +468,21 @@
         			\item The user's bubble map will modify itself to adapt to the user's specifications.
     			\end{itemize}
     			
-    		\subsubsection{Specify the branch factor}
+    			\begin{figure}[!h]
+    			\includegraphics[width=\linewidth]{functionalRequirementSetDepth.jpg}
+    			\caption{Use case diagram for setting default depth}
+    			\label{UseCaseSetDepth}
+    			\end{figure}
+    			
+    			\begin{figure}[!h]
+    			\includegraphics[width=\linewidth]{serviceContractSetDepth.jpg}
+    			\caption{Service contract diagram for setting default depth}
+    			\label{ServiceContractSetDepth}
+    			\end{figure}
+    			
+    		\subsubsection{Specify the default branch factor}
 				\textbf{Description:}  A user can choose specify how many branches the bubble map will initially have.\\
-			    \textbf{Prioritisation:} Nice-to-Have\\
+			    \textbf{Prioritisation:} Important\\
       			\textbf{Pre-conditions}
 			    \begin{itemize}
 			        \item A user must be registered and logged in on the system.
@@ -437,17 +493,106 @@
 			    	\item The user's bubble map will modify itself to adapt to the user's specifications.
     			\end{itemize}
     			
-    		\subsubsection{Specify a filter}
-				\textbf{Description:}  A user can choose specify a filter to use on the bubble map.\\
-			    \textbf{Prioritisation:} Nice-to-Have\\
-    			\textbf{Pre-conditions}
+    			\begin{figure}[!h]
+    			\includegraphics[width=\linewidth]{functionalRequirementSetBranchFactor.jpg}
+    			\caption{Use case diagram for setting default branch factor}
+    			\label{UseCaseDisplayData}
+    			\end{figure}
+    			
+    			\begin{figure}[!h]
+    			\includegraphics[width=\linewidth]{serviceContractSetBranchFactor.jpg}
+    			\caption{Service contract diagram for setting default branch factor}
+    			\label{ServiceContractDisplayData}
+    			\end{figure}
+    			
+    		\subsubsection{Reply to an email}
+				\textbf{Description:}  A user can respond to an email directly from our application\\
+			    \textbf{Prioritisation:} Important\\
+      			\textbf{Pre-conditions}
 			    \begin{itemize}
 			        \item A user must be registered and logged in on the system.
-			        \item A user must have selected PIMs to be mined.
+			        \item A user must have selected an email source.
 			    \end{itemize}
     			\textbf{Post-conditions}
-     			\begin{itemize}
-        			\item The user's bubble map will modify itself to adapt to the user's specifications.
+			    \begin{itemize}
+			    	\item The user will be able to reply to a message that has been displayed by our system
+    			\end{itemize}
+    			
+    		\subsubsection{Redirect to Gmail application from our application}
+				\textbf{Description:}  A user can respond to an email directly from our application\\
+			    \textbf{Prioritisation:} Important\\
+      			\textbf{Pre-conditions}
+			    \begin{itemize}
+			        \item A user must be registered and logged in on the system.
+			        \item A user must have selected an email source.
+			    \end{itemize}
+    			\textbf{Post-conditions}
+			    \begin{itemize}
+			    	\item The user will be able to navigate to Gmail from our application
+    			\end{itemize}
+    			
+    		%_________________________Nice-to-Have____________________
+    	    
+    	    \subsubsection{Set quick access depth factor}
+				\textbf{Description:}  Manipulate the BubbleMap quickly but not affect its state permanently\\
+			    \textbf{Prioritisation:} Nice-to-Have\\
+      			\textbf{Pre-conditions}
+			    \begin{itemize}
+			        \item A user must be registered and logged in on the system.
+			    \end{itemize}
+    			\textbf{Post-conditions}
+			    \begin{itemize}
+			    	\item The user will be able to change BubbleMap depth factor for instant manipulation
+    			\end{itemize}
+    		
+    		\subsubsection{Set quick access branch factor}
+				\textbf{Description:}  Manipulate the BubbleMap quickly but not affect its state permanently\\
+			    \textbf{Prioritisation:} Nice-to-Have\\
+      			\textbf{Pre-conditions}
+			    \begin{itemize}
+			        \item A user must be registered and logged in on the system.
+			    \end{itemize}
+    			\textbf{Post-conditions}
+			    \begin{itemize}
+			    	\item The user will be able to change BubbleMap branch factor for instant manipulation
+    			\end{itemize}
+    		
+    		\subsubsection{Reset graph}
+				\textbf{Description:} Reset the graph to the state it was in when it loaded that session\\
+			    \textbf{Prioritisation:} Nice-to-Have\\
+      			\textbf{Pre-conditions}
+			    \begin{itemize}
+			        \item A user must be registered and logged in on the system.
+			    \end{itemize}
+    			\textbf{Post-conditions}
+			    \begin{itemize}
+			    	\item The user will be able to revert all changes to the BubbleMap settings
+    			\end{itemize}
+    			
+    	    \subsubsection{Customise colour scheme}
+				\textbf{Description:} Change the colour scheme of the interface\\
+			    \textbf{Prioritisation:} Nice-to-Have\\
+      			\textbf{Pre-conditions}
+			    \begin{itemize}
+			        \item A user must be registered and logged in on the system.
+			    \end{itemize}
+    			\textbf{Post-conditions}
+			    \begin{itemize}
+			    	\item The user will be able to change the BubbleMap background colour
+			    	\item The user will be able to change the Navigation bar colour
+			    	\item The user will be able to change the sidepanel colour
+    			\end{itemize}
+    			
+    		\subsubsection{Help Centre}
+				\textbf{Description:} A means of communication between users and the developers\\
+			    \textbf{Prioritisation:} Nice-to-Have\\
+      			\textbf{Pre-conditions}
+			    \begin{itemize}
+			        \item A user must be registered and logged in on the system.
+			    \end{itemize}
+    			\textbf{Post-conditions}
+			    \begin{itemize}
+			    	\item The user will be able to contact the developers and report issues or ask for assistance if the Help/FAQ page did not suffice 
     			\end{itemize}
     			
 		\subsection{Required Functionality}
