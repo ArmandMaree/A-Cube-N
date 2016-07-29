@@ -149,7 +149,7 @@
 			Further there are no constraints and the architects have free roam to implement an architecture that suits their needs.
 			
 	\section{Architecture Design}	
-		\subsection{Infrastructure}
+	\subsection{Infrastructure}
 			\paragraph\indent
 			We will be using the micro services architecture. Figure \ref{MicroServicesAchitecture} shows the design at the first level of granularity. The micro services approach with help us to develop different parts of the system concurrently with minimal dependency on other components because the individual services are loosely coupled. And secondly it will control and encapsulate the complexity of the system, thus a simpler development process. Testing each service is also easier which would result in a higher quality system.
 			\begin{figure}[!h]
@@ -637,13 +637,14 @@
 			\end{itemize}
 		\newpage
 		\subsection{Domain Model}
-			\begin{figure}[!h]
-				\includegraphics[width=\linewidth]{Model-updated.jpg}
-				\caption{Class Diagram: Domain Model}
-				\label{DomainModel}
-			\end{figure}
-			\paragraph\indent
-			The mind map for a user will portray information from PIMs requested by the user. The mind map will consist of a root node containing child nodes of relevant information (topics). Each topic will point to a PIM (Facebook, Google etc.) and will contain a list of information relative to the topic.
+		\begin{figure}[!h]
+			\includegraphics[width=\linewidth]{DomainModel.jpg}
+			\caption{Class Diagram: Domain Model}
+			\label{DomainModel}
+		\end{figure}
+		\paragraph\indent
+		The mind map for a user will portray information from PIMs requested by the user. The mind map will consist of a root node containing child nodes of relevant information (topics). Each topic will point to a PIM (Facebook, Google etc.) and will contain a list of information relative to the topic.
+			
 	\section{Technologies}
 		\subsection{Framework}
 			\paragraph\indent
