@@ -1,0 +1,268 @@
+\documentclass[hidelinks,english]{article}
+
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{wrapfig}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\geometry{
+	a4paper,
+	total={170mm,257mm},
+	left=20mm,
+	top=20mm,
+}
+
+\date{\today}
+
+\graphicspath{{Pictures/}}
+\begin{document}	
+	\begin{titlepage}
+		\pagenumbering{gobble}
+		\begin{figure}[!t]
+			\includegraphics[width=\linewidth]{up_logo.png}
+		\end{figure}
+		\vspace*{\stretch{1.0}}
+		\begin{center}
+			\huge{Test Document\\}
+			\huge{Mindmap PIM}\\
+			\large{Client: IMINISYS}\\
+			\vspace{10mm}
+			\huge{Team: A-Cube-N}\\
+		\end{center}
+		\begin{center}
+			\begin{tabular}{ c c c }
+				Grobler, Arno & Lochner, Amy & Maree, Armand \\
+				\texttt{14011396} & \texttt{14038600}& \texttt{12017800} \\				
+			\end{tabular}
+		\end{center}
+		\begin{center}
+			Department of Computer Science, University of Pretoria
+		\end{center}
+		\vspace*{\stretch{2.0}}
+	\end{titlepage}
+	\newpage
+	\tableofcontents
+	\newpage
+	\pagenumbering{arabic}
+	
+	\section{Introduction} 
+		\paragraph\indent
+		This document provides details on the tests that were conducted on the system to increase stability, integity and scalability. The tests detailed in this document will be continuously updated as more tests are completed and more testing phases are entered.
+		
+	\section{Unit Tests}
+		\subsection{Processing Service}
+			\paragraph\indent
+			This section provides details on the unit tests that were conducted on the NaturalLanguageProcessor (NLP) service.
+			
+			\subsubsection{data.ProcessedData}
+				\paragraph\indent
+				The processed data class provides a class in which topics extracted by the NLP can be contained.
+				
+				\begin{center}
+					\begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+					\hline
+					\multicolumn{1}{L{4cm}}{\textbf{Test Name:} testConstructor} & \multicolumn{1}{L{4cm}}{\textbf{Test Date:} 20/07/2016} & \multicolumn{1}{L{4cm}}{\textbf{Type:} Automatic} & \multicolumn{1}{L{4cm}}{\textbf{Tester:} Armand Maree} \\ \hline \hline
+					\multicolumn{4}{L{16cm}}{\textbf{Description:} Ensure the conversion between RawData and ProcessedData occurs correctly.} \\
+					\multicolumn{2}{L{8cm}}{\textbf{Expected result:} Conversion occurred successfully.} & \multicolumn{2}{L{8cm}}{\textbf{Actual Result:} Conversion occurred successfully.} \\ \multicolumn{4}{L{16cm}}{\textbf{Steps:} Copy member variables that occur in both RawData and ProcessedData and assign the given topics.} \\ 
+					\multicolumn{4}{L{16cm}}{Null as a topic array or userId should throw NullPointerException.}\\
+					\multicolumn{4}{L{16cm}}{\textbf{Status:} Pass}\\ \hline
+					\end{tabular}
+				\end{center}
+	
+			\subsubsection{listeners.RawDataListener}
+				\paragraph\indent
+				A class that istended to dequeue RawData from RabbitMQ abd send it to the NLP. Afterwards it should produce ProcessedData and add it to RabbitMQ for persistence.
+				
+				\begin{center}
+					\begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+					\hline
+					\multicolumn{1}{L{4cm}}{\textbf{Test Name:} testRawDataListenerBean} & \multicolumn{1}{L{4cm}}{\textbf{Test Date:} 25/07/2016} & \multicolumn{1}{L{4cm}}{\textbf{Type:} Automatic} & \multicolumn{1}{L{4cm}}{\textbf{Tester:} Armand Maree} \\ \hline \hline
+					\multicolumn{4}{L{16cm}}{\textbf{Description:} Ensure rawDataListener bean is initialized successfully.} \\
+					\multicolumn{2}{L{8cm}}{\textbf{Expected result:} RawDataListener is not null and no queue length.} & \multicolumn{2}{L{8cm}}{\textbf{Actual Result:} RawDataListener is not null and no exception is thrown.} \\ \multicolumn{4}{L{16cm}}{\textbf{Steps:} Assert that rawDataListener is not null.} \\
+					\multicolumn{4}{L{16cm}}{\textbf{Status:} Pass}\\ \hline
+					\end{tabular}
+				\end{center}
+				
+				\begin{center}
+					\begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+					\hline
+					\multicolumn{1}{L{4cm}}{\textbf{Test Name:} receiveRawData} & \multicolumn{1}{L{4cm}}{\textbf{Test Date:} 25/07/2016} & \multicolumn{1}{L{4cm}}{\textbf{Type:} Automatic} & \multicolumn{1}{L{4cm}}{\textbf{Tester:} Armand Maree} \\ \hline \hline
+					\multicolumn{4}{L{16cm}}{\textbf{Description:}Ensure RawData is dequeued from RabbitMQ.} \\
+					\multicolumn{2}{L{8cm}}{\textbf{Expected result:} RawData dequeued successfully.} & \multicolumn{2}{L{8cm}}{\textbf{Actual Result:} RawData dequeued successfully.} \\ \multicolumn{4}{L{16cm}}{\textbf{Steps:} Add RawData to RabbitMQ and check the queue to make sure it gets dequeued by monitoring the queue length.} \\
+					\multicolumn{4}{L{16cm}}{\textbf{Status:} Pass}\\ \hline
+					\end{tabular}
+				\end{center}
+				
+				\begin{center}
+					\begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+					\hline
+					\multicolumn{1}{L{4cm}}{\textbf{Test Name:} testProcess} & \multicolumn{1}{L{4cm}}{\textbf{Test Date:} 25/07/2016} & \multicolumn{1}{L{4cm}}{\textbf{Type:} Automatic} & \multicolumn{1}{L{4cm}}{\textbf{Tester:} Armand Maree} \\ \hline \hline
+					\multicolumn{4}{L{16cm}}{\textbf{Description:}Pass the raw data to the NLP and make sure the expected topics is extracted.} \\
+					\multicolumn{2}{L{8cm}}{\textbf{Expected result:} Expected topics are returned from NLP.} & \multicolumn{2}{L{8cm}}{\textbf{Actual Result:} Expected topics are returned from NLP.} \\ \multicolumn{4}{L{16cm}}{\textbf{Steps:} Construct a RawData object and give it to the processor and evaluate the returned topics.} \\
+					\multicolumn{4}{L{16cm}}{\textbf{Status:} Pass}\\ \hline
+					\end{tabular}
+				\end{center}
+				
+			\subsubsection{main.Application}
+				\paragraph\indent
+				The main Spring Boot class that starts up the application.
+				
+				\begin{center}
+					\begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+					\hline
+					\multicolumn{1}{L{4cm}}{\textbf{Test Name:} testBeans} & \multicolumn{1}{L{4cm}}{\textbf{Test Date:} 14/07/2016} & \multicolumn{1}{L{4cm}}{\textbf{Type:} Automatic} & \multicolumn{1}{L{4cm}}{\textbf{Tester:} Armand Maree} \\ \hline \hline
+					\multicolumn{4}{L{16cm}}{\textbf{Description:}Make sure RabbitTemplate and NaturalLanguageProcessor beans are instantiated correctly.} \\
+					\multicolumn{2}{L{8cm}}{\textbf{Expected result:} Both beans are not null and no exception is thrown.} & \multicolumn{2}{L{8cm}}{\textbf{Actual Result:} Both beans are not null and no exception is thrown.} \\ \multicolumn{4}{L{16cm}}{\textbf{Steps:} Assert the bean is not null.} \\
+					\multicolumn{4}{L{16cm}}{\textbf{Status:} Pass}\\ \hline
+					\end{tabular}
+				\end{center}
+				
+		\subsection{Database Service}
+			\paragraph\indent
+			This is the service responsible for database interaction.
+			
+			\subsubsection{data.Topic}
+				\paragraph\indent
+				A single topic in the database.
+				
+				\begin{center}
+					\begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+					\hline
+					\multicolumn{1}{L{4cm}}{\textbf{Test Name:} testGetWeight} & \multicolumn{1}{L{4cm}}{\textbf{Test Date:} 28/07/2016} & \multicolumn{1}{L{4cm}}{\textbf{Type:} Manual} & \multicolumn{1}{L{4cm}}{\textbf{Tester:} Armand Maree} \\ \hline \hline
+					\multicolumn{4}{L{16cm}}{\textbf{Description:}Method uses avaliability heuristic to calculate the weight a topic should have.} \\
+					\multicolumn{2}{L{8cm}}{\textbf{Expected result:} Test the weight of various topics and make sure the weight of each is correct compared to other topics based on temperal and fequency components.} & \multicolumn{2}{L{8cm}}{\textbf{Actual result:} Most topics were placed in the correct position.} \\ \multicolumn{4}{L{16cm}}{\textbf{Steps:} Create a few topics and calculate their weight. Use the weight to sort the topics and then check if the topics are in the correct order.} \\ \multicolumn{4}{L{16cm}}{\textbf{Comments:} The accuracy for this component is what is measured rather than its ability perfectly order topics.}\\ \hline
+					\multicolumn{4}{L{16cm}}{\textbf{Status:} Pass}\\ \hline
+					\end{tabular}
+				\end{center}
+				
+			\subsubsection{listeners.ProcessedDataListener}
+				\paragraph\indent
+				This class dequeues ProcessedData from RabbitMQ and persists it in the database. It also creates a topic object for each topic and persists that.
+				
+				\begin{center}
+					\begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+					\hline
+					\multicolumn{1}{L{4cm}}{\textbf{Test Name:} testReceiveProcessedData} & \multicolumn{1}{L{4cm}}{\textbf{Test Date:} 24/07/2016} & \multicolumn{1}{L{4cm}}{\textbf{Type:} Automatic} & \multicolumn{1}{L{4cm}}{\textbf{Tester:} Armand Maree} \\ \hline \hline
+					\multicolumn{4}{L{16cm}}{\textbf{Description:} Make sure the processedData is dequeued, correctly persisted and the corresponding topics are correctly extracted and persisted.} \\
+					\multicolumn{2}{L{8cm}}{\textbf{Expected result:} No duplicated topics in topic database. ProcessedData stored correctly.} & \multicolumn{2}{L{8cm}}{\textbf{Actual result:} If two threads concurrently try to store the same topic then a duplicate topic is found in database.} \\ \multicolumn{4}{L{16cm}}{\textbf{Steps:} Create a processedData object and send it to RabbitMQ. Check the processedData repository for the correct data. Check the topic repository for no duplicates and correct content.} \\
+					\multicolumn{4}{L{16cm}}{\textbf{Status:} Fail}\\ \hline
+					\end{tabular}
+				\end{center}
+				
+			\subsubsection{main.Application}
+				\paragraph\indent
+				The main application that starts Spring Boot.
+				
+				\begin{center}
+					\begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+					\hline
+					\multicolumn{1}{L{4cm}}{\textbf{Test Name:} testBeans} & \multicolumn{1}{L{4cm}}{\textbf{Test Date:} 25/07/2016} & \multicolumn{1}{L{4cm}}{\textbf{Type:} Automatic} & \multicolumn{1}{L{4cm}}{\textbf{Tester:} Armand Maree} \\ \hline \hline
+					\multicolumn{4}{L{16cm}}{\textbf{Description:} Make sure the beans for all the repositories are correctly set up and the RabbitTemplate bean is correct.} \\
+					\multicolumn{2}{L{8cm}}{\textbf{Expected result:} No bean must be null and no exception mut be thrown.} & \multicolumn{2}{L{8cm}}{\textbf{Actual result:} No bean must be null and no exception mut be thrown.} \\ \multicolumn{4}{L{16cm}}{\textbf{Steps:} Assert that the repositories and rabbitTemplate is not null.} \\
+					\multicolumn{4}{L{16cm}}{\textbf{Status:} Pass}\\ \hline
+					\end{tabular}
+				\end{center}
+				
+		\subsection{Business Service}
+			\paragraph\indent
+			This service serves as a middle man between the frontend and the backend.
+			
+			\subsubsection{listeners.FrontendListener}
+				\paragraph\indent
+				This class receives all messages from the frontend by dequeuing from RabbitMQ.
+				
+				\begin{center}
+					\begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+					\hline
+					\multicolumn{1}{L{4cm}}{\textbf{Test Name:} testReceiveTopicRequest} & \multicolumn{1}{L{4cm}}{\textbf{Test Date:} 28/07/2016} & \multicolumn{1}{L{4cm}}{\textbf{Type:} Automatic} & \multicolumn{1}{L{4cm}}{\textbf{Tester:} Armand Maree} \\ \hline \hline
+					\multicolumn{4}{L{16cm}}{\textbf{Description:}Method receives a TopicRequeuest from a RabbitMQ queue and sends it to the database.} \\
+					\multicolumn{2}{L{8cm}}{\textbf{Expected result:} One queue is dequeued and another is enqueued.} & \multicolumn{2}{L{8cm}}{\textbf{Actual result:} One queue is dequeued and another is enqueued.} \\ \multicolumn{4}{L{16cm}}{\textbf{Steps:} Create a TopicRequest and send it to RabbitMQ and monitor both queues.} \\
+					\multicolumn{4}{L{16cm}}{\textbf{Status:} Pass}\\ \hline
+					\end{tabular}
+				\end{center}
+				
+				\begin{center}
+					\begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+					\hline
+					\multicolumn{1}{L{4cm}}{\textbf{Test Name:} testReceiveRegistration} & \multicolumn{1}{L{4cm}}{\textbf{Test Date:} 25/07/2016} & \multicolumn{1}{L{4cm}}{\textbf{Type:} Automatic} & \multicolumn{1}{L{4cm}}{\textbf{Tester:} Armand Maree} \\ \hline \hline
+					\multicolumn{4}{L{16cm}}{\textbf{Description:}Receives a user registration and extracts a user to be sent to the database and an auth token to be sent to the pollers.} \\
+					\multicolumn{2}{L{8cm}}{\textbf{Expected result:} Correct user and auth token information is extracted and sent to RabbitMQ.} & \multicolumn{2}{L{8cm}}{\textbf{Actual result:} Correct user and auth token information is extracted and sent to RabbitMQ.} \\ \multicolumn{4}{L{16cm}}{\textbf{Steps:} Create a UserRegistration object and send it to RabbitMQ. Monitor Database queue and polling queue to make sure correct information is extracted.} \\
+					\multicolumn{4}{L{16cm}}{\textbf{Status:} Pass}\\ \hline
+					\end{tabular}
+				\end{center}
+				
+				\begin{center}
+					\begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+					\hline
+					\multicolumn{1}{L{4cm}}{\textbf{Test Name:} testBeans} & \multicolumn{1}{L{4cm}}{\textbf{Test Date:} 25/07/2016} & \multicolumn{1}{L{4cm}}{\textbf{Type:} Automatic} & \multicolumn{1}{L{4cm}}{\textbf{Tester:} Armand Maree} \\ \hline \hline
+					\multicolumn{4}{L{16cm}}{\textbf{Description:} Make sure all beans are instantiated correctly.} \\
+					\multicolumn{2}{L{8cm}}{\textbf{Expected result:} No bean is null and no exception is thrown.} & \multicolumn{2}{L{8cm}}{\textbf{Actual result:} No bean is null and no exception is thrown.} \\ \multicolumn{4}{L{16cm}}{\textbf{Steps:} Assert that no bean is null.} \\
+					\multicolumn{4}{L{16cm}}{\textbf{Status:} Pass}\\ \hline
+					\end{tabular}
+				\end{center}
+				
+		\subsection{Gmail Polling Service}
+			\paragraph\indent
+			This service retrieves emails from Gmail and sends them for processing by the NLP.
+			
+			\subsubsection{poller.GmailPoller}
+				\paragraph\indent
+				This class exchanges auth tokens for access codes and polls Gmail for emails of the user.
+				
+				\begin{center}
+					\begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+					\hline
+					\multicolumn{1}{L{4cm}}{\textbf{Test Name:} testOldEmails} & \multicolumn{1}{L{4cm}}{\textbf{Test Date:} 21/07/2016} & \multicolumn{1}{L{4cm}}{\textbf{Type:} Manual} & \multicolumn{1}{L{4cm}}{\textbf{Tester:} Armand Maree} \\ \hline \hline
+					\multicolumn{4}{L{16cm}}{\textbf{Description:} A loop iterates through all of the emails already present a user's mail box. After it received these emails it parses them into RawData and sends them to RabbitMQ.} \\
+					\multicolumn{2}{L{8cm}}{\textbf{Expected result:} All emails should be processed and all text should be extracted from emails.} & \multicolumn{2}{L{8cm}}{\textbf{Actual result:} After one page of processing the server encounters a NullPointerException.} \\ \multicolumn{4}{L{16cm}}{\textbf{Steps:} Provide the poller with a valid auth token and monitor the raw data it produces.} \\
+					\multicolumn{4}{L{16cm}}{\textbf{Status:} Fail}\\ \hline
+					\end{tabular}
+				\end{center}
+				
+			\begin{center}
+				\begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+				\hline
+				\multicolumn{1}{L{4cm}}{\textbf{Test Name:} testNewEmails} & \multicolumn{1}{L{4cm}}{\textbf{Test Date:} 21/07/2016} & \multicolumn{1}{L{4cm}}{\textbf{Type:} Manual} & \multicolumn{1}{L{4cm}}{\textbf{Tester:} Armand Maree} \\ \hline \hline
+				\multicolumn{4}{L{16cm}}{\textbf{Description:} After old emails has been processed the poller most wait for new emails and process them into raw data.} \\
+				\multicolumn{2}{L{8cm}}{\textbf{Expected result:} All new emails should be processed and all text should be extracted from emails.} & \multicolumn{2}{L{8cm}}{\textbf{Actual result:} All new emails should be processed and all text should be extracted from emails.} \\ \multicolumn{4}{L{16cm}}{\textbf{Steps:} Provide the poller with a valid auth token, send a new email to the email address and monitor the raw data it produces.} \\
+				\multicolumn{4}{L{16cm}}{\textbf{Status:} Pass}\\ \hline
+				\end{tabular}
+			\end{center}
+			
+		\subsection{Frontend Service}
+			\paragraph\indent
+			This is the Spring MVC that provides the web clients with the content and server interaction they need.
+			
+			\subsubsection{pim.LoginController}
+				\paragraph\indent
+				This class handles all the login/sign up request from web clients via websockets.
+				
+				\begin{center}
+					\begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+					\hline
+					\multicolumn{1}{L{4cm}}{\textbf{Test Name:} testReceiveUserRegistration} & \multicolumn{1}{L{4cm}}{\textbf{Test Date:} 27/07/2016} & \multicolumn{1}{L{4cm}}{\textbf{Type:} Automatic} & \multicolumn{1}{L{4cm}}{\textbf{Tester:} Arno Grobler} \\ \hline \hline
+					\multicolumn{4}{L{16cm}}{\textbf{Description:} When a user signs up the a user registration is sent to the app and this must be sent to the business. It then has to wait and reply with an ID the client can use to later rquest topics.} \\
+					\multicolumn{2}{L{8cm}}{\textbf{Expected result:} Successfully receive and parse the incoming JSON object and send it to Business. The service must wait until it receives an ID and then return that.} & \multicolumn{2}{L{8cm}}{\textbf{Actual result:} Successfully received and parsed the incoming JSON object and sent it to Business. The service waited until it received an ID and then returned that.} \\ \multicolumn{4}{L{16cm}}{\textbf{Steps:} Provide it with a UserRegistration object and make sure it is sent to RabbitMQ, then return an ID and make sure that is returned to the web client.} \\
+					\multicolumn{4}{L{16cm}}{\textbf{Status:} Pass}\\ \hline
+					\end{tabular}
+				\end{center}
+				
+			\subsubsection{pim.TopicController}
+				\paragraph\indent
+				This class handles all the requests for new topics
+				
+				\begin{center}
+					\begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+					\hline
+					\multicolumn{1}{L{4cm}}{\textbf{Test Name:} testReceiveTopicRequest} & \multicolumn{1}{L{4cm}}{\textbf{Test Date:} 27/07/2016} & \multicolumn{1}{L{4cm}}{\textbf{Type:} Automatic} & \multicolumn{1}{L{4cm}}{\textbf{Tester:} Arno Grobler} \\ \hline \hline
+					\multicolumn{4}{L{16cm}}{\textbf{Description:} When a user sends a topic request this method must send it to the business and wait for the toics to be returned. It must then return the topics to the web client.} \\
+					\multicolumn{2}{L{8cm}}{\textbf{Expected result:} Successfully receive and parse the incoming JSON object and send it to Business. The service must wait until it receives the topics and then return that.} & \multicolumn{2}{L{8cm}}{\textbf{Actual result:} Successfully received and parsed the incoming JSON object and sent it to Business. The service waited until it received the topics and then returned that.} \\ \multicolumn{4}{L{16cm}}{\textbf{Steps:} Provide it with a TopicRequest object and make sure it is sent to RabbitMQ, then return an array of Topics and make sure that is returned to the web client.} \\
+					\multicolumn{4}{L{16cm}}{\textbf{Status:} Pass}\\ \hline
+					\end{tabular}
+				\end{center}
+	
+\end{document}
