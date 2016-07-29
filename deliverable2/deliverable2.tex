@@ -153,52 +153,58 @@
 			\paragraph\indent
 			We will be using the micro services architecture. Figure \ref{MicroServicesAchitecture} shows the design at the first level of granularity. The micro services approach with help us to develop different parts of the system concurrently with minimal dependency on other components because the individual services are loosely coupled. And secondly it will control and encapsulate the complexity of the system, thus a simpler development process. Testing each service is also easier which would result in a higher quality system.
 			\begin{figure}[!h]
-				\includegraphics[width=\linewidth]{MicroServices.jpg}
-				\caption{Layered System Architecture}
+				\includegraphics[width=\linewidth]{MicroServicesModel.jpg}
+				\caption{Micro Services System Architecture}
 				\label{MicroServicesAchitecture}
 			\end{figure}
 			\paragraph\indent
 			The system is also well suited for this architecture since there are several modules that will have to interact with each other, but each serve a separate and specific purpose.
 			
 		\subsection{Services}			
-			\subsubsection{Data Polling Service}\label{DataPollingSection}
+			\subsubsection{Polling Service}\label{PollingSection}
 			\paragraph\indent
-			Figure \ref{PollingServiceModelFigure} shows the class diagram of the pollers. A poller will either use long polling or polling with a sleep period afterwards (depending on what the API allows) to request new data from a specific PIM. Once it receives this information it will parse this information into a RawData object and add it into a queue which will be further processed by worker threads (see section  \ref{DataProcessingServiceSection}).			
+			Figure \ref{GmailPollingServiceModelFigure} shows the class diagram of the Gmail poller. A poller will either use long polling or polling with a sleep period afterwards (depending on what the API allows) to request new data from a specific PIM. Once it receives this information it will parse this information into a RawData object and add it into a queue which will be further processed by worker threads (see section  \ref{ProcessingServiceSection}).			
 						
 			\begin{figure}[!h]
-			\includegraphics[width=\linewidth]{PollingServiceModel.jpg}
-			\caption{Data polling service.}
-			\label{PollingServiceModelFigure}
+			\includegraphics[width=\linewidth]{GmailPollingServiceModel.jpg}
+			\caption{Gmail Polling service.}
+			\label{GmailPollingServiceModelFigure}
 			\end{figure}
 			
 						
-			\subsubsection{Data Processing Service}\label{DataProcessingServiceSection}
+			\subsubsection{Processing Service}\label{ProcessingServiceSection}
 			\paragraph\indent
-			Figure \ref{DataProcessingModelFigure} shows the class diagram of the processing of new data. Once raw data has been added to a queue by the poller in section \ref{DataPollingSection}, one of several worker threads will dequeue this raw data and pass the data to a Natural Language Processor (NLP). Once the NLP has finished processing the data the worker thread will parse this data into a ProcessedData object which will be sent to the database for persistence (see section \ref{DatabaseServiceSection}).
+			Figure \ref{ProcessingModelFigure} shows the class diagram of the processing of raw data. Once raw data has been added to a queue by the poller in section \ref{PollingSection}, one of several worker threads will dequeue this raw data and pass the data to a Natural Language Processor (NLP). Once the NLP has finished processing the data the worker thread will parse this data into a ProcessedData object which will be sent to the database for persistence (see section \ref{DatabaseServiceSection}).
 			
 			\begin{figure}[!h]
 			\includegraphics[width=\linewidth]{DataProcessingServiceModel.jpg}
-			\caption{Data processing service.}
-			\label{DataProcessingModelFigure}
+			\caption{Processing service.}
+			\label{ProcessingModelFigure}
 			\end{figure}
 						
 			\subsubsection{Business Service} \label{BusinessServiceSection}
-			This service will start and stop polling services as users sign up/deactivate their accounts. Its purpose is basically to manage the other services based on user actions.
-			
+			Figure \ref{BsuinessServiceModelFigure} shows the class diagram of the business service. This service will start and stop polling services as users sign up/deactivate their accounts. Its purpose is basically to manage the other services based on user actions.
+
 			\begin{figure}[!h]
 				\includegraphics[width=\linewidth]{BusinessServiceModel.jpg}
 				\caption{Business service.}
 				\label{BsuinessServiceModelFigure}
 			\end{figure}
-			
+
 			\subsubsection{Database Service} \label{DatabaseServiceSection}
 			\paragraph\indent
 			Figure \ref{DatabaseServiceModelFigure} shows the class diagram of the interface that will be used to communicate with the persistence API.			
 						
 			\begin{figure}[!h]
-			\includegraphics[width=\linewidth]{DatabaseServiceModel.jpg}
-			\caption{Database service.}
-			\label{DatabaseServiceModelFigure}
+				\includegraphics[width=\linewidth]{DatabaseServiceModel.jpg}
+				\caption{Database service.}
+				\label{DatabaseServiceModelFigure}
+			\end{figure}
+			
+			\begin{figure}[!h]
+				\includegraphics[width=\linewidth]{RepositoryModel.jpg}
+				\caption{Repository Model.}
+				\label{RepositoryModelFigure}
 			\end{figure}
 		
 		\subsection{Tactics}
