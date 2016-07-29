@@ -1,0 +1,117 @@
+\documentclass[hidelinks,english]{article}
+
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{wrapfig}
+\usepackage{hyperref}
+
+\date{\today}
+
+\graphicspath{{Pictures/}}
+\begin{document}	
+	\begin{titlepage}
+		\pagenumbering{gobble}
+		\begin{figure}[!t]
+			\includegraphics[width=\linewidth]{up_logo.png}
+		\end{figure}
+		\begin{figure}[!t]
+			\includegraphics[width=\linewidth]{acuben.jpg}
+		\end{figure}
+		\vspace*{\stretch{1.0}}
+		\begin{center}
+			\huge{User Manual\\}
+			\huge{Mindmap PIM}\\
+			\large{Client: IMINISYS}\\
+			\vspace{10mm}
+			\huge{Team: A-Cube-N}\\
+		\end{center}
+		\begin{center}
+			\begin{tabular}{ c c c }
+				Grobler, Arno & Lochner, Amy & Maree, Armand \\
+				\texttt{14011396} & \texttt{14038600}& \texttt{12017800} \\				
+			\end{tabular}
+		\end{center}
+		\begin{center}
+			Department of Computer Science, University of Pretoria
+		\end{center}
+		\vspace*{\stretch{2.0}}
+	\end{titlepage}
+	\newpage
+	\tableofcontents
+	\newpage
+	\pagenumbering{arabic}
+	
+	\section{Introduction} 
+		\paragraph\indent
+		People of this day and age often make use of many technologies and platforms for the purpose of staying in contact with people, sharing moments with friends, communicating with people and organising their day-to-day lives. Generally all the above tasks of a person in the 21st century are done on different platforms for example Facebook, Email and Google Calendar. This project serves to provide the people described above, with a single platform with which they can interact to see their data organised according to topic and make use of some functionality the mined platforms.
+		
+    \section{Vision}
+		\paragraph\indent
+		The vision of this project is to create an application which extracts data from various existing platforms such as Gmail and Facebook. The application will make use of a natural language processor to extract data, determine the general topic of the data then integrate this new information into the interactive mind map. The hope is that this will simplify the users life by only needing one application to 'monitor' all other platforms on which they might have an account and manage the information of those platforms from our application. The mind map will work in a similar fashion as our minds work. Where the exploration of one topic may lead to the exploration of another 
+	
+	\section{Interface}
+	    \paragraph\indent
+	    Since this is an application that heavily relies on the user interface and the user experience, we have put much emphasis on how our application looks, feels and response to the user. We tried to keep in mind that not all users have good computer skills and thus our approach was to make the interface as user friendly as possible, with clear buttons and directions on how to use the system while they are using it.
+    	\subsection{Mobile}
+    	    \paragraph\indent
+    	    PIM was developed for desktop browsers, but is mobile compatible, resizing components and interfaces to fit any screen. Any interface shown in this manual can be applied to both desktop and mobile platforms and a mobile representation will often be shown in this document as to show the usability of the systems interface on any platform or screen size.
+    	    \newpage 
+	   \subsection{Log In}
+
+    	    First navigate to the link \url{https://bubbles.iminsys.com/}. Here the log in page will load, looking like this:
+            \begin{center}
+              \makebox[\textwidth]{\includegraphics[width=\textwidth]{login.PNG}}
+        	  \caption{Figure 1: Initial log in screen.}
+        	  \label{Log In}
+        	\end{center}
+    	\begin{enumerate}  
+            \item If the user tries and access the main page any other way than logging in the will be redirected back here to the log in page. 
+            \item The user may log in either through clicking and signing in with the Facebook button or the Google button using the respective user credentials of either system. We do not store any user credentials on our system.
+            \item Before logging in the user may view our privacy policy or terms of service by click on the respective links 
+        \end{enumerate}
+        
+        After a successful log in a successful message will be shown and a continue button which will show the "Choose Sources" page shown below.
+        \begin{center}
+          \makebox[\textwidth]{\includegraphics[width=\textwidth]{login2.PNG}}
+    	  \caption{Figure 2: Success log in screen.}
+    	  \label{Log In Success}
+    	\end{center}
+    	
+    	Next, after the user selected continue and the "Choose Data Sources" page has loaded, we will see a screen that contains multiple buttons each with labels of social media or "data sources" where the system will extract data from to build a mind map on the next page for the user. More than one data source can be selected. Data sources include social media such as Google and Facebook.
+    	\begin{center}
+          \makebox[\textwidth]{\includegraphics[width=\textwidth]{selectdata2.PNG}}
+    	  \caption{Figure 3: Selecting data sources to display on mindmap.}
+    	  \label{Select Data}
+    	\end{center}
+
+    	\begin{enumerate}  
+            \item First the user should select what data source they would like to retrieve data from. Currently only Google is supported. As soon as the user selects the Google button then Google will ask you permission to grant the application access.
+            \item After Google has granted the system access, a tick will show next to the respective data source to show we have successfully processed the request. The user may now choose another data source, however choosing another data source is currently not supported.
+            \item When the user is satisfied with the data sources they would like to use, they can proceed to click on the "Done" button. This will request the server to start the building of the mind map and to create the main page for the user. While this is happening a "Loading..." message will show on the bottom left hand side. Please be patient here as this step relies on your Internet connection. After a successful request, the user will be redirected to the next page.
+        \end{enumerate}
+	\subsection{Home Page}
+	When the user is redirected they will be greeted with a lonely "ME" bubble, a navigation bar that has "Help", "Settings","Log out" buttons and a message on the bottom left saying "loading...". This is the part where the back end is processing the new data and sending it the the mind map. Please be patient as this step is reliant on your internet connection. After everything has been successfully initialised and processed, the first few bubbles with topics most relevant to the user will pop up around the me bubble. The graph is highly interactable, with each bubble having the ability to be moved, selected, double tapped and right clicked on, each of which give you a different action, all explained below. 
+    \begin{center}
+      \makebox[\textwidth]{\includegraphics[width=\textwidth]{main.PNG}}
+	  \caption{Figure 4: Main Page with loaded nodes, right click menu active and side bar open with Gmail option expanded.}
+	  \label{Main page}
+	\end{center}
+	\begin{enumerate}  
+        \item Here we see the logo of the product PIM. It doubles as a home button to easily get back to the home page and a back button shown later in the mobile view when the side bar is activated.
+        \item This is what in system is refers to as a "Bubble". It is a node of the mind map showing a particular topic of relevance to the user. The system chooses the particular topics from your actual data you specified when you selected the data sources. The further down the path the particular bubble is from the "ME" bubble, the less relevant it is. When you expand a bubble, all the bubbles around it will be relevant to both the selected bubble and the path it follows from the "ME" bubble, where the path is shown in number 4 below. A bubble can be right clicked to bring up a context menu(3), left clicked to be selected and moved and double clicked to bring up a side bar.
+        \item This is the context menu, created when the user right clicks a bubble. There is two options present to the user at the moment: "Expand Bubble" and "Delete Bubble". When you expand a bubble, all the bubbles around it will be relevant to both the selected bubble and the path it follows from the "ME" bubble, where the path is shown in number 4 below. When you delete a bubble, the currently selected bubble will be deleted and all the connected bubbles around it.
+        \item This is the breadcrumb path of the currently selected bubble from the "ME" bubble. It is shown when a user activates the side bar by double clicking on the node they want more info about. The side bar will also contain the actual data about that topic that was selected in (5) shown below.
+        \item This is the actual data about that topic that was selected. This includes the actual Gmail emails and Facebook posts the server used to process to get the relevance of the selected node. Later functionality will be added to be able to reply to these emails directly from the side bar.
+        \item This button is the "Help" button and will redirect the user to a help and FAQ page where they can get more information on how the system works and try to answer some questions they may have in the Frequently Asked Questions. The user will also find an "About Us" section, telling them a little more about the system and the people who developed it. This section is not currently developed.
+        \item This is the Settings button. It expands to a drop down that gives a few options (not currently developed) and a "Settings" option where the user will be redirected to a settings page where they can change user preferences(not currently developed).
+        \item This is the Log out button. It will log the user out of its current session and redirect the user to the log in page
+        \item This is the view of the Home Screen viewed on a mobile device. Below three screens are shown, first a default screen with nothing selected, then a screen where the options hamburger button is clicked on the top right hand corner in the navigation bar, and lastly the view if the user double clicks on the holiday bubble, giving the user an option to go back on  the left top hand corner
+    \end{enumerate}
+    \begin{center}
+      \makebox[\textwidth]{\includegraphics[width=\textwidth]{mobile1.PNG}}
+	  \caption{Figure 5: Main Page viewed with mobile device with a default unselected bubble screen, a opened options menu screen and a selected bubble screen}
+	  \label{mobile page}
+	\end{center}
+\end{document}
