@@ -1,0 +1,58 @@
+body{
+    background-color : #2d415c;
+    background-repeat: no-repeat;
+    background-size:cover;
+    overflow:hidden;
+  }
+  #centerText1 {
+  	position:fixed;
+  	left:50%;
+  }
+
+  p{
+  	color:white;
+  }
+
+  #logo1{
+  	position:absolute;
+  } 
+  #logo2{
+  	position:absolute;
+  }
+  #logo3{
+  	position:absolute;
+  }
+  #logo4{
+  	position:absolute;
+  }
+
+  #logo5{
+  	position:fixed;
+  	left:50%;
+  	top:50%;
+  	transform: translate(-50%, -50%);
+  }
+
+ #logo6{
+  	position:fixed;
+  	left:50%;
+  	top:50%;
+  	transform: translate(-50%, -50%);
+  }
+
+
+ #logo7{
+    position:fixed;
+    height:70%;
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+  }
+
+   #logo8{
+    position:fixed;
+    height:70%;
+    left:50%;
+    top:55%;
+    transform: translate(-50%, -50%);
+  }

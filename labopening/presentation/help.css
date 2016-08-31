@@ -1,0 +1,10 @@
+body{
+    background-color : #2d415c !important;
+    background-repeat: no-repeat;
+    background-size:cover;
+
+  }
+  #centerText >p{
+  	color: white;
+  	font-size: 70px;
+  }
