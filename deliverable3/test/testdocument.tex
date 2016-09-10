@@ -230,7 +230,82 @@
 				\begin{itemize}
 					\item The user is persisted.
 					\item No user is returned to the frontend.
-					\item Any of the fields in the database or the returned user differ.
+					\item No changes were made to the database.
+				\end{itemize}
+				
+				\subsubsection{BsuinessListener User Update Test 1}\label{databasebusinesslistenerupdatetest1}
+				\paragraph{Objective} Make sure the Database service can receive a request to update a user who removed a PIM.
+				\paragraph{Input} A UserIdentified object that contains all the neccesary information to update any detail about a user including the PIM that has to be removed.
+				\paragraph{Output} A single UserUpdateResponseIdentified object that will be retrieved from the RabbitMQ queue that leads to the frontend.
+				\paragraph{Pass Criteria}
+				\begin{itemize}
+					\item Updated values must be reflected in the user that was updated in the database.
+					\item UserUpdateResponseIdentified must be sent to the frontend.
+				\end{itemize}
+				\paragraph{Fail Criteria}
+				\begin{itemize}
+					\item There is no UserUpdateResponseIdentified object sent to the frontend.
+					\item No changes were made to the database.
+				\end{itemize}
+				
+				\subsubsection{BusinessListener User Update Test 2}\label{databasebusinesslistenerupdatetest2}
+				\paragraph{Objective} Make sure the Database service can receive a request to update a user who adds a PIM.
+				\paragraph{Input} A UserIdentified object that contains all the neccesary information to update any detail about a user including the PIM that has to be removed.
+				\paragraph{Output} A single UserUpdateResponseIdentified object that will be retrieved from the RabbitMQ queue that leads to the frontend.
+				\paragraph{Pass Criteria}
+				\begin{itemize}
+					\item Updated values must be reflected in the user that was updated in the database.
+					\item UserUpdateResponseIdentified must be sent to the frontend.
+				\end{itemize}
+				\paragraph{Fail Criteria}
+				\begin{itemize}
+					\item There is no UserUpdateResponseIdentified object sent to the frontend.
+					\item No changes were made to the database.
+				\end{itemize}
+				
+			\subsubsection{BusinessListener User Update Test 3}\label{databasebusinesslistenerupdatetest3}
+				\paragraph{Objective} Make sure the Database service can receive a request to update a user who changed no PIM source.
+				\paragraph{Input} A UserUpdateRequestIdentified object that contains all the neccesary information to update any detail about a user.
+				\paragraph{Output} A single UserUpdateResponseIdentified object that will be retrieved from the RabbitMQ queue that leads to the database.
+				\paragraph{Pass Criteria}
+				\begin{itemize}
+					\item Updated values must be reflected in the user that was updated in the database.
+					\item UserUpdateResponseIdentified must be sent to the frontend.
+				\end{itemize}
+				\paragraph{Fail Criteria}
+				\begin{itemize}
+					\item There is no UserUpdateResponseIdentified object sent to the frontend.
+					\item No changes were made to the database.
+				\end{itemize}
+			
+			\subsubsection{BusinessListener User Update Test 3}\label{databasebusinesslistenerupdatetest4}
+				\paragraph{Objective} Make sure the Database service can receive a request to update a user who does not exist.
+				\paragraph{Input} A UserIdentified object that contains all the neccesary information to update any detail about a user.
+				\paragraph{Output} A single UserUpdateResponseIdentified object that will be retrieved from the RabbitMQ queue that leads to the frontend.
+				\paragraph{Pass Criteria}
+				\begin{itemize}
+					\item No changes must be made to the database.
+					\item Updated UserIdentified must be sent to the frontend.
+				\end{itemize}
+				\paragraph{Fail Criteria}
+				\begin{itemize}
+					\item There is no UserUpdateResponseIdentified object sent to the frontend.
+					\item Any changes were made to the database.
+				\end{itemize}
+				
+			\subsubsection{BusinessListener User Update Test 3}\label{databasebusinesslistenerupdatetest5}
+				\paragraph{Objective} Make sure the Database service can receive a request to update a user who requires no changes.
+				\paragraph{Input} A UserIdentified object that contains all the neccesary information to update any detail about a user.
+				\paragraph{Output} A single UserUpdateResponseIdentified object that will be retrieved from the RabbitMQ queue that leads to the frontend.
+				\paragraph{Pass Criteria}
+				\begin{itemize}
+					\item No changes must be made to the database.
+					\item Updated UserIdentified must be sent to the frontend.
+				\end{itemize}
+				\paragraph{Fail Criteria}
+				\begin{itemize}
+					\item There is no UserUpdateResponseIdentified object sent to the frontend.
+					\item Any changes were made to the database.
 				\end{itemize}
 				
 			\subsubsection{ProcessedDataListener Test Case 1}\label{databaseprocesseddatalistenertest1}
