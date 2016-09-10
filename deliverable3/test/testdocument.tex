@@ -185,7 +185,7 @@
 				\paragraph{Pass Criteria} All the beans set up with the \emph{\@Bean} annotation needs to have a non-null value when autowired (injected).
 				\paragraph{Fail Criteria} Any of the beans have a null value.
 		
-			\subsubsection{FrontendListener Register Request Test 1}\label{databasebusinesslistenerregistertest1}
+			\subsubsection{BusinessListener Register Request Test 1}\label{databasebusinesslistenerregistertest1}
 				\paragraph{Objective} Make sure the Database service can register a user where none of the PIMs occur in any of the other users in the database.
 				\paragraph{Input} A UserIdentified object that contains all the neccesary information to register a user.
 				\paragraph{Output} A new user in the database plus the registered UserIdentified must be sent to the frontend RabbitMQ queue.
@@ -201,7 +201,7 @@
 					\item Any of the fields in the database or the returned user differ.
 				\end{itemize}
 				
-			\subsubsection{FrontendListener Register Request Test 2}\label{databasebusinesslistenerregistertest2}
+			\subsubsection{BusinessListener Register Request Test 2}\label{databasebusinesslistenerregistertest2}
 				\paragraph{Objective} Make sure the Database service can register a user where one of the PIMs occur in any of the other users in the database.
 				\paragraph{Input} A UserIdentified object that contains all the neccesary information to register a user.
 				\paragraph{Output} Update user in the database to contain the new PIMs plus the registered UserIdentified must be sent to the frontend RabbitMQ queue.
@@ -217,7 +217,7 @@
 					\item Any of the fields in the database or the returned user differ.
 				\end{itemize}
 				
-			\subsubsection{FrontendListener Register Request Test 3}\label{databasebusinesslistenerregistertest3}
+			\subsubsection{BusinessListener Register Request Test 3}\label{databasebusinesslistenerregistertest3}
 				\paragraph{Objective} Make sure the Database service can register a user where the user that needs to be registered does not contain any PIMs.
 				\paragraph{Input} A UserIdentified object that contains all the neccesary information to register a user excluding any PimIds.
 				\paragraph{Output} No new user in the database the original request should be sent back to the frontend RabbitMQ queue.
@@ -233,113 +233,235 @@
 					\item Any of the fields in the database or the returned user differ.
 				\end{itemize}
 				
-		\subsubsection{ProcessedDataListener Test Case 1}\label{databaseprocesseddatalistenertest1}
-			\paragraph{Objective} Make sure the Database service can receive ProcessedData, persist it and persist the corresponding topics.
-			\paragraph{Input} A ProcessedData object with no involved contacts.
-			\paragraph{Output} A ProcessedData object in the database and a corresponding Topic in the topic database.
-			\paragraph{Pass Criteria}
-			\begin{itemize}
-				\item New ProcessedData object in the processed data repository.
-				\item For each topic in the processed data there should be a topic in the topic repository.
-			\end{itemize}
-			\paragraph{Fail Criteria}
-			\begin{itemize}
-				\item ProcessedData object is not stored in the repository.
-				\item Some but not all topics are persisted.
-				\item No topics are persisted.
-			\end{itemize}
+			\subsubsection{ProcessedDataListener Test Case 1}\label{databaseprocesseddatalistenertest1}
+				\paragraph{Objective} Make sure the Database service can receive ProcessedData, persist it and persist the corresponding topics.
+				\paragraph{Input} A ProcessedData object with no involved contacts.
+				\paragraph{Output} A ProcessedData object in the database and a corresponding Topic in the topic database.
+				\paragraph{Pass Criteria}
+				\begin{itemize}
+					\item New ProcessedData object in the processed data repository.
+					\item For each topic in the processed data there should be a topic in the topic repository.
+				\end{itemize}
+				\paragraph{Fail Criteria}
+				\begin{itemize}
+					\item ProcessedData object is not stored in the repository.
+					\item Some but not all topics are persisted.
+					\item No topics are persisted.
+				\end{itemize}
+				
+			\subsubsection{ProcessedDataListener Test Case 2}\label{databaseprocesseddatalistenertest2}
+				\paragraph{Objective} Make sure the Database service can receive ProcessedData, persist it and persist the corresponding topics.
+				\paragraph{Input} A ProcessedData object with involved contacts.
+				\paragraph{Output} A ProcessedData object in the database and a corresponding Topic in the topic database and corresponding contacts.
+				\paragraph{Pass Criteria}
+				\begin{itemize}
+					\item New ProcessedData object in the processed data repository.
+					\item For each topic and involvedContact in the processed data there should be a topic in the topic repository.
+				\end{itemize}
+				\paragraph{Fail Criteria}
+				\begin{itemize}
+					\item ProcessedData object is not stored in the repository.
+					\item Some but not all topics/contacts are persisted.
+					\item No topics/contacts are persisted.
+				\end{itemize}
+				
+			\subsubsection{TopicListener Test Case 1}\label{databasetopiclistenertest1}
+				\paragraph{Objective} Make sure the Database service can retrieve persisted topics based on various paths and exclude lists.
+				\paragraph{Input} A TopicRequest object.
+				\paragraph{Output} A TopicResponse object retrieved from the RabbitMQ queue that leads to the Business Service.
+				\paragraph{Pass Criteria}
+				\begin{itemize}
+					\item The TopicResponse must be sent and contain unique topics.
+				\end{itemize}
+				\paragraph{Fail Criteria}
+				\begin{itemize}
+					\item No TopicResponse is sent back.
+					\item TopicResponse objects does not contain any topics.
+					\item TopicResponse object does not contain unique topics.
+				\end{itemize}
+				
+			\subsubsection{TopicListener Test Case 2}\label{databasetopiclistenertest2}
+				\paragraph{Objective} Make sure the Database service can retrieve contacts when topics are requested.
+				\paragraph{Input} A TopicRequest object.
+				\paragraph{Output} A TopicResponse object retrieved from the RabbitMQ queue that leads to the Business Service.
+				\paragraph{Pass Criteria}
+				\begin{itemize}
+					\item The TopicResponse must be sent and contain unique topics and contacts.
+				\end{itemize}
+				\paragraph{Fail Criteria}
+				\begin{itemize}
+					\item No TopicResponse is sent back.
+					\item TopicResponse objects does not contain any topics or contacts.
+					\item TopicResponse object does not contain unique topics or contacts.
+				\end{itemize}
+				
+		\subsection{FacebookPoller Service Test Cases}
+			\subsubsection{Main Application Bean Test}\label{facebookapplicationbeanstest}
+				\paragraph{Objective} Make sure all the Spring beans are created and can be injected. This will at least indicate on a high level of grandularity that the Spring Framework did detect the bean declaration and can inject an appropriote object.
+				\paragraph{Pass Criteria} All the beans set up with the \emph{\@Bean} annotation needs to have a non-null value when autowired (injected).
+				\paragraph{Fail Criteria} Any of the beans have a null value.
+				
+			\subsubsection{ItemRequestListener Test Case 1}\label{facebookitemlistenertest1}
+				\paragraph{Objective} Make sure an array of Facebook posts can be retrieved and sent to the frontend.
+				\paragraph{Input} An ItemRequest object.
+				\paragraph{Output} A ItemResponse object retrieved from the RabbitMQ queue that leads to the Business Service.
+				\paragraph{Pass Criteria}
+				\begin{itemize}
+					\item The ItemResponse object must have an array of facebook posts in the form of HTML iframe elements that will be rendered by the browser in the frontend.
+				\end{itemize}
+				\paragraph{Fail Criteria}
+				\begin{itemize}
+					\item No ItemResponse is sent back.
+					\item The items in the ItemResponse is not the correct format (HTML iframe format).
+				\end{itemize}
+				
+		\subsection{GmailPoller Service Test Cases}
+			\subsubsection{Main Application Bean Test}\label{gmailapplicationbeanstest}
+				\paragraph{Objective} Make sure all the Spring beans are created and can be injected. This will at least indicate on a high level of grandularity that the Spring Framework did detect the bean declaration and can inject an appropriote object.
+				\paragraph{Pass Criteria} All the beans set up with the \emph{\@Bean} annotation needs to have a non-null value when autowired (injected).
+				\paragraph{Fail Criteria} Any of the beans have a null value.
+				
+		\subsection{Processor Service Test Cases}
+			\subsubsection{Main Application Bean Test}\label{processorapplicationbeanstest}
+				\paragraph{Objective} Make sure all the Spring beans are created and can be injected. This will at least indicate on a high level of grandularity that the Spring Framework did detect the bean declaration and can inject an appropriote object.
+				\paragraph{Pass Criteria} All the beans set up with the \emph{\@Bean} annotation needs to have a non-null value when autowired (injected).
+				\paragraph{Fail Criteria} Any of the beans have a null value.
+				
+			\subsubsection{NaturalLanguageProcessor Test Case 1}\label{pprocessortopictest1}
+				\paragraph{Objective} Given a set of strings the NLP has to show that it can extract specific topics.
+				\paragraph{Input} A RawData object.
+				\paragraph{Output} A ProcessedData object retrieved from the RabbitMQ queue that leads to the Database Service.
+				\paragraph{Pass Criteria}
+				\begin{itemize}
+					\item The ProcessedData object has to consist of only a predefined set of topics.
+				\end{itemize}
+				\paragraph{Fail Criteria}
+				\begin{itemize}
+					\item Any additional topics were extracted.
+					\item Not all predefined topics were extracted.
+					\item No topics were extracted.
+				\end{itemize}
+				
+	\section{Test Results}
+		\subsection{BusinessLogic Service Test Cases}
+			\paragraph\indent
+			All the tests for this service can be found on Github at \sloppy\url{https://github.com/ArmandMaree/MindMapPIM/tree/master/BusinessLogic/src/test/java/testers}.
 			
-		\subsubsection{ProcessedDataListener Test Case 2}\label{databaseprocesseddatalistenertest2}
-			\paragraph{Objective} Make sure the Database service can receive ProcessedData, persist it and persist the corresponding topics.
-			\paragraph{Input} A ProcessedData object with involved contacts.
-			\paragraph{Output} A ProcessedData object in the database and a corresponding Topic in the topic database and corresponding contacts.
-			\paragraph{Pass Criteria}
-			\begin{itemize}
-				\item New ProcessedData object in the processed data repository.
-				\item For each topic and involvedContact in the processed data there should be a topic in the topic repository.
-			\end{itemize}
-			\paragraph{Fail Criteria}
-			\begin{itemize}
-				\item ProcessedData object is not stored in the repository.
-				\item Some but not all topics/contacts are persisted.
-				\item No topics/contacts are persisted.
-			\end{itemize}
+			\subsubsection{Main Application Bean Test (TC \ref{businessapplicationbeanstest})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
+				
+			\subsubsection{FrontendListener Register Request Test 1 (TC \ref{businessfrontendlistenerregistertest1})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
+				
+			\subsubsection{FrontendListener Register Request Test (TC \ref{businessfrontendlistenerregistertest2})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
+				
+			\subsubsection{FrontendListener Register Request Test (TC \ref{businessfrontendlistenerregistertest3})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
+				
+			\subsubsection{FrontendListener User Update Test (TC \ref{businessfrontendlistenerupdatetest1})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
+				
+			\subsubsection{FrontendListener User Update Test (TC \ref{businessfrontendlistenerupdatetest2})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
+				
+			\subsubsection{FrontendListener User Update Test (TC \ref{businessfrontendlistenerupdatetest3})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
+				
+		
+		\subsection{Database Service Test Cases}
+			\paragraph\indent
+			All the tests for this service can be found on Github at \sloppy\url{https://github.com/ArmandMaree/MindMapPIM/tree/master/Database/src/test/java/testers}.
 			
-		\subsubsection{TopicListener Test Case 1}\label{databasetopiclistenertest1}
-			\paragraph{Objective} Make sure the Database service can retrieve persisted topics based on various paths and exclude lists.
-			\paragraph{Input} A TopicRequest object.
-			\paragraph{Output} A TopicResponse object retrieved from the RabbitMQ queue that leads to the Business Service.
-			\paragraph{Pass Criteria}
-			\begin{itemize}
-				\item The TopicResponse must be sent and contain unique topics.
-			\end{itemize}
-			\paragraph{Fail Criteria}
-			\begin{itemize}
-				\item No TopicResponse is sent back.
-				\item TopicResponse objects does not contain any topics.
-				\item TopicResponse object does not contain unique topics.
-			\end{itemize}
+			\subsubsection{Main Application Bean Test (TC \ref{databaseapplicationbeanstest})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
+				
+			\subsubsection{BusinessListener Register Request Test 1 (TC \ref{databasebusinesslistenerregistertest1})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
+				
+			\subsubsection{BusinessListener Register Request Test 2 (TC \ref{databasebusinesslistenerregistertest2})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
+				
+			\subsubsection{BusinessListener Register Request Test 3 (TC \ref{databasebusinesslistenerregistertest3})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
+				
+			\subsubsection{BusinessListener User Update Test 1 (TC \ref{databasebusinesslistenerupdatetest1})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
+				
+			\subsubsection{BusinessListener User Update Test 2 (TC \ref{databasebusinesslistenerupdatetest2})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
+				
+			\subsubsection{BusinessListener User Update Test 3 (TC \ref{databasebusinesslistenerupdatetest3})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
 			
-		\subsubsection{TopicListener Test Case 2}\label{databasetopiclistenertest2}
-			\paragraph{Objective} Make sure the Database service can retrieve contacts when topics are requested.
-			\paragraph{Input} A TopicRequest object.
-			\paragraph{Output} A TopicResponse object retrieved from the RabbitMQ queue that leads to the Business Service.
-			\paragraph{Pass Criteria}
-			\begin{itemize}
-				\item The TopicResponse must be sent and contain unique topics and contacts.
-			\end{itemize}
-			\paragraph{Fail Criteria}
-			\begin{itemize}
-				\item No TopicResponse is sent back.
-				\item TopicResponse objects does not contain any topics or contacts.
-				\item TopicResponse object does not contain unique topics or contacts.
-			\end{itemize}
+			\subsubsection{ProcessedDataListener Test 1 (TC \ref{databaseprocesseddatalistenertest1})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
 			
-	\subsection{FacebookPoller Service Test Cases}
-		\subsubsection{Main Application Bean Test}\label{facebookapplicationbeanstest}
-			\paragraph{Objective} Make sure all the Spring beans are created and can be injected. This will at least indicate on a high level of grandularity that the Spring Framework did detect the bean declaration and can inject an appropriote object.
-			\paragraph{Pass Criteria} All the beans set up with the \emph{\@Bean} annotation needs to have a non-null value when autowired (injected).
-			\paragraph{Fail Criteria} Any of the beans have a null value.
+			\subsubsection{ProcessedDataListener Test 2 (TC \ref{databaseprocesseddatalistenertest2})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
 			
-		\subsubsection{ItemRequestListener Test Case 1}\label{facebookitemlistenertest1}
-			\paragraph{Objective} Make sure an array of Facebook posts can be retrieved and sent to the frontend.
-			\paragraph{Input} An ItemRequest object.
-			\paragraph{Output} A ItemResponse object retrieved from the RabbitMQ queue that leads to the Business Service.
-			\paragraph{Pass Criteria}
-			\begin{itemize}
-				\item The ItemResponse object must have an array of facebook posts in the form of HTML iframe elements that will be rendered by the browser in the frontend.
-			\end{itemize}
-			\paragraph{Fail Criteria}
-			\begin{itemize}
-				\item No ItemResponse is sent back.
-				\item The items in the ItemResponse is not the correct format (HTML iframe format).
-			\end{itemize}
+			\subsubsection{TopicListener Test 1 (TC \ref{databasetopiclistenertest1})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
 			
-	\subsection{GmailPoller Service Test Cases}
-		\subsubsection{Main Application Bean Test}\label{gmailapplicationbeanstest}
-			\paragraph{Objective} Make sure all the Spring beans are created and can be injected. This will at least indicate on a high level of grandularity that the Spring Framework did detect the bean declaration and can inject an appropriote object.
-			\paragraph{Pass Criteria} All the beans set up with the \emph{\@Bean} annotation needs to have a non-null value when autowired (injected).
-			\paragraph{Fail Criteria} Any of the beans have a null value.
+			\subsubsection{TopicListener Test 2 (TC \ref{databasetopiclistenertest2})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
+				
+				
+		\subsection{FacebookPolling Service Test Cases}
+			\paragraph\indent
+			All the tests for this service can be found on Github at \sloppy\url{https://github.com/ArmandMaree/MindMapPIM/tree/master/FacebookPolling/src/test/java/testers}.
 			
-	\subsection{Processor Service Test Cases}
-		\subsubsection{Main Application Bean Test}\label{processorapplicationbeanstest}
-			\paragraph{Objective} Make sure all the Spring beans are created and can be injected. This will at least indicate on a high level of grandularity that the Spring Framework did detect the bean declaration and can inject an appropriote object.
-			\paragraph{Pass Criteria} All the beans set up with the \emph{\@Bean} annotation needs to have a non-null value when autowired (injected).
-			\paragraph{Fail Criteria} Any of the beans have a null value.
+			\subsubsection{Main Application Bean Test (TC \ref{facebookapplicationbeanstest})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
+				
+			\subsubsection{ItemRequestListener Test Case 1 (TC \ref{facebookitemlistenertest1})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
+				
+		\subsection{GmailPolling Service Test Cases}
+			\paragraph\indent
+			All the tests for this service can be found on Github at \sloppy\url{https://github.com/ArmandMaree/MindMapPIM/tree/master/GmailPolling/src/test/java/testers}.
 			
-		\subsubsection{NaturalLanguageProcessor Test Case 1}\label{pprocessortopictest1}
-			\paragraph{Objective} Given a set of strings the NLP has to show that it can extract specific topics.
-			\paragraph{Input} A RawData object.
-			\paragraph{Output} A ProcessedData object retrieved from the RabbitMQ queue that leads to the Database Service.
-			\paragraph{Pass Criteria}
-			\begin{itemize}
-				\item The ProcessedData object has to consist of only a predefined set of topics.
-			\end{itemize}
-			\paragraph{Fail Criteria}
-			\begin{itemize}
-				\item Any additional topics were extracted.
-				\item Not all predefined topics were extracted.
-				\item No topics were extracted.
-			\end{itemize}
-	
+			\subsubsection{Main Application Bean Test (TC \ref{gmailapplicationbeanstest})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
+				
+		\subsection{Processor Service Test Cases}
+			\paragraph\indent
+			All the tests for this service can be found on Github at \sloppy\url{https://github.com/ArmandMaree/MindMapPIM/tree/master/Processing/src/test/java/testers}.
+			
+			\subsubsection{Main Application Bean Test (TC \ref{processorapplicationbeanstest})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
+				
+	\section{Additional Comments}
+		\paragraph\indent
+		All the objects that will be used in the input section of each test will be mocked in order to force certain criteria to be tested. Any RabbitMQ queues that lead out of the service that is being tested will have a dequeuer setup that only runs in the test environment.
+		
+		\paragraph\indent
+		Also note that the pollers is not tested during the unit tests due to the need for them to receive authentication codes as it is outlined in the OAUTH2 protocol. In order to gain these authentication codes a manual sign in has to occur by a user. Large parts of these services will thus be tested during the integration tests.
+		
+	\section{Conclusion}
+		\paragraph\indent
+		All unit tests passed which is an idication that the application is ready to be deployed on the server. 
+		
 \end{document}
