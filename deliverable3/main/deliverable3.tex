@@ -59,7 +59,7 @@
 		
 		\subsection{The Client's Problem}
 			\paragraph\indent
-			The client wants to have a way of displaying all relevant information in one place in the form of a mind map. This will help to organize general life events such as meetings. This information will come from different sources and enables the user to see all relevant information without having to go to each source individually. A key aspect is that Mind Map PIM attempts to dig through the clutter contained in other PIMs and only display things the user might want to see.
+			The client wants to have a way of displaying all relevant information in one place in the form of a mind map. This will help to organize general life events such as meetings. This information will come from different sources and enables the user to see all relevant information without having to go to each source individually. A key aspect is that Mind Map PIM attempts to dig through the clutter contained in other data sources and only display things the user might want to see.
 		
 	\section{Important Terminology}
 		\begin{itemize}
@@ -111,7 +111,7 @@
                 
             \subsubsection{Flexibility}
             	\paragraph\indent
-                The system must be flexible in terms of the plugablity of polling services. A new polling service for a new PIM should be able to integrate with no change of the rest to the system. The system also should be able to function with any combination of PIMs that a user selects.
+                The system must be flexible in terms of the plugablity of polling services. A new polling service for a new PIM should be able to integrate with no change of the rest to the system. The system also should be able to function with any combination of data sources that a user selects.
 
             \subsubsection{Security}
             	\paragraph\indent
@@ -130,7 +130,7 @@
 		        \item \textbf{TCP:}\\
 		            This protocol will be needed to establish network connections between the user's computers and the system servers. These data streams can then be exchanged between the connected machines. TCP will allow for error detection and rectification of data transmission.
 		        \item \textbf{API:}\\
-		            Since the system will gather its information through the consented use of the users social media, a vital part of the system is to use the already well developed infrastructure created by PIMs and access the information through APIs.  
+		            Since the system will gather its information through the consented use of the users social media, a vital part of the system is to use the already well developed infrastructure created by data sources and access the information through APIs.  
 	    		\end{enumerate}
 		
 		\subsection{Architecture Constraints}
@@ -230,7 +230,7 @@
 		
 		\subsection{Server}
 			\paragraph\indent
-			In the back end, the system would have a polling service that polls the PIMs for new information about the users. If a polling thread receives new data from the platform, they add this new data to a queue to be processed. Several worker threads dequeue data from the queue and uses natural language processing to determine the topic(s) contained in the data. This data is then added to a database and the corresponding topic(s) as well. When a user requests their bubble map, the system responds with all relevant topics of their life based on frequency and recency. The topics thus have a weight related to them that is calculated by the frequency and the temperal component. The weight is used to decide which topics should be selected. These topics are then returned to the user in the form of JSON objects. Once a user expands one of the bubbles a request is sent to the server to retrieve all the relevant topic corresponding to the topic to the user. These new topics is then added to the bubble map in the form of bubbles. Relevant topics are found on the basis of your own events and the events of your friends.
+			In the back end, the system would have a polling service that polls the data sources for new information about the users. If a polling thread receives new data from the platform, they add this new data to a queue to be processed. Several worker threads dequeue data from the queue and uses natural language processing to determine the topic(s) contained in the data. This data is then added to a database and the corresponding topic(s) as well. When a user requests their bubble map, the system responds with all relevant topics of their life based on frequency and recency. The topics thus have a weight related to them that is calculated by the frequency and the temperal component. The weight is used to decide which topics should be selected. These topics are then returned to the user in the form of JSON objects. Once a user expands one of the bubbles a request is sent to the server to retrieve all the relevant topic corresponding to the topic to the user. These new topics is then added to the bubble map in the form of bubbles. Relevant topics are found on the basis of your own events and the events of your friends.
 		
 		\subsection{Front End}
 			\paragraph\indent
@@ -242,8 +242,8 @@
 			\textbf{Critical} (See figure \ref{UseCaseUserManagement})
 			\begin{itemize}
 			    \item Sign up
-			    \item Choose PIMs
-			    \item Login to PIMs
+			    \item Choose data sources
+			    \item Login to data sources
 			    \item Logout
 			    \item Expand bubble
 			   	\item Display Data
@@ -253,8 +253,9 @@
 		    \textbf{Important} 
 			\begin{itemize}
 			    \item Deactivate Account
-			    \item Reply to an email
-			    \item Gain access to Gmail via our application
+			    \item Set quick access branch factor
+				\item Reset graph
+				\item Customise colour scheme of interface
 			    \item Set default depth factor
 			    \item Set default branch factor
 			\end{itemize}
@@ -262,10 +263,9 @@
 			
 			\textbf{Nice-to-Have}
 			\begin{itemize}
+			    \item Reply to an email
+			    \item Gain access to Gmail via our application
 			    \item Set quick access depth factor
-			    \item Set quick access branch factor
-				\item Reset graph
-				\item Customise colour scheme of interface
 			    \item Help centre
 			\end{itemize}
 			
@@ -283,79 +283,68 @@
      			\begin{itemize}
         			\item The user will have access to the functionality provided by our system.
         			\item The user may set their preferences as they wish.
-        			\item The user may add or remove PIMs.
+        			\item The user may add or remove data sources.
         			\item The user may log out of the system when they wish to.
         			\item The user may deactivate/delete their account should they so wish.
     			\end{itemize}
     			
     			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{functionalRequirementsSignUp.jpg}
+    			\includegraphics[width=\linewidth]{login_RegistrationFunctionalRequirements.jpg}
     			\caption{Use case diagram for Signing up}
     			\label{UseCaseSignUp}
     			\end{figure}
     			
     			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{serviceContractSignUp.jpg}
+    			\includegraphics[width=\linewidth]{login_RegistrationServiceContract.jpg}
     			\caption{Service contract diagram for Signing up}
     			\label{ServiceContractSignUp}
     			\end{figure}
     			
-    		\subsubsection{Choose PIMs}
-				\textbf{Description:}  A user is required to select the various PIMs they wish to be used when extracting data to build their bubble map.\\
+    		\subsubsection{Select Data Sources}
+				\textbf{Description:}  A user is required to select the various data sources they wish to be used when extracting data to build their bubble map.\\
     			\textbf{Prioritisation:} Critical\\
       			\textbf{Pre-conditions}
     			\begin{itemize}
         			\item A user must be registered.
         			\item A user must be logged in to the system.
-        			\item The user must have an active and valid account for that specific PIM.
+        			\item The user must have an active and valid account for that specific data sources.
     			\end{itemize}
     			\textbf{Post-conditions}
      			\begin{itemize}
-        			\item The user may add or remove PIMs.
-        			\item The selected PIMs will be mined for data.
-        			\item The unselected PIMs will not be mined for data.
+        			\item The user may add or remove data sources.
+        			\item The selected data sources will be mined for data.
+        			\item The unselected data sources will not be mined for data.
     			\end{itemize}
 
     			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{functionalRequirementsSelectDataSources.jpg}
+    			\includegraphics[width=\linewidth]{selectDataSourcesFunctionalRequirements.jpg}
     			\caption{Use case diagram for selecting data sources}
     			\label{UseCaseSelectDataSources}
     			\end{figure}
     			
     			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{serviceContractSelectDataSources.jpg}
+    			\includegraphics[width=\linewidth]{selectDataSourcesServiceContract.jpg}
     			\caption{Service contract diagram for selecting data sources}
     			\label{ServiceContractSelectDataSources}
     			\end{figure}
     			
     			
     			
-    		\subsubsection{Login to PIMs}
-				\textbf{Description:}  A user will login with their Google account. This will be done by using the OAUTH protocol which is compatible with the Google and Facebook API.\\
+    		\subsubsection{Login to data sources}
+				\textbf{Description:}  A user will login with their Google or Facebook account.\\
     			\textbf{Prioritisation:} Critical\\
       			\textbf{Pre-conditions}
     			\begin{itemize}
         			\item A user must be logged in to the system.
-        			\item A user must have selected at least one PIM.
-        			\item A user must have an active and valid account for that PIM.
+        			\item A user must have selected at least one data sources.
+        			\item A user must have an active and valid account for that data sources.
     			\end{itemize}
     			\textbf{Post-conditions}
      			\begin{itemize}
-        			\item The PIMs will be mined for data.
-        			\item The login credentials for that PIM for a specific user will be stored in our database.
+        			\item The data sources will be mined for data.
+        			\item The user id and access token for the selected data sources will be stored in our database.
     			\end{itemize}
     			
-    			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{functionalRequirementsLogin.jpg}
-    			\caption{Use case diagram for Logging in}
-    			\label{UseCaseLogin}
-    			\end{figure}
-    			
-    			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{serviceContractLogin.jpg}
-    			\caption{Service contract diagram for Logging in}
-    			\label{ServiceContractLogin}
-    			\end{figure}
     			
     		\subsubsection{Logout}
 				\textbf{Description:}  A user can choose to log out of the system in a secure manner.\\
@@ -371,16 +360,12 @@
     			\end{itemize}
 
     		\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{functionalRequirementsLogout.jpg}
+    			\includegraphics[width=\linewidth]{logoutFunctionalRequirements.jpg}
     			\caption{Use case diagram for Logging out}
     			\label{UseCaseLogout}
     			\end{figure}
     			
-    			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{serviceContractLogout.jpg}
-    			\caption{Service contract diagram for Logging out}
-    			\label{ServiceContractLogout}
-    			\end{figure}
+    		
     			
     		\subsubsection{Expand Bubble}
 				\textbf{Description:}  A user can choose to expand a bubble to reveal more topics related to the bubble.\\
@@ -388,7 +373,7 @@
       			\textbf{Pre-conditions}
 			    \begin{itemize}
 			        \item A user must be registered and logged in on the system.
-			        \item A user must have selected one or more PIMs to be mined.
+			        \item A user must have selected one or more data sources to be mined.
 			    \end{itemize}
 			    \textbf{Post-conditions}
 			     \begin{itemize}
@@ -396,13 +381,13 @@
 			    \end{itemize}
 			    
 			    \begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{functionalRequirementsExpandBubble.jpg}
+    			\includegraphics[width=\linewidth]{expandBubbleFunctionalRequirements.jpg}
     			\caption{Use case diagram for Expanding a Bubble}
     			\label{UseCaseExpandBubble}
     			\end{figure}
     			
     			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{serviceContractExpandBubble.jpg}
+    			\includegraphics[width=\linewidth]{expandBubbleServiceContract.jpg}
     			\caption{Service contract diagram for Expanding a Bubble}
     			\label{ServiceContractExpandBubble}
     			\end{figure}
@@ -413,7 +398,7 @@
 			    \textbf{Pre-conditions}
 			    \begin{itemize}
 			        \item A user must be registered and logged in on the system.
-			        \item A user must have selected PIMs to be mined.
+			        \item A user must have selected data sources to be mined.
 			    \end{itemize}
 				\textbf{Post-conditions}
 				\begin{itemize}
@@ -422,24 +407,24 @@
 				\end{itemize}
 				
 			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{functionalRequirementsDisplayData.jpg}
+    			\includegraphics[width=\linewidth]{displayDataFunctionalRequirements.jpg}
     			\caption{Use case diagram for Displaying data}
     			\label{UseCaseDisplayData}
     			\end{figure}
     			
     			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{serviceContractDisplayData.jpg}
+    			\includegraphics[width=\linewidth]{displayDataServiceContract.jpg}
     			\caption{Service contract diagram for Displaying data}
     			\label{ServiceContractDisplayData}
     			\end{figure}
 				
     		\subsubsection{Remove Bubble}
 				\textbf{Description:}  A user can choose to remove a bubble which will remove all bubbles related to it.\\
-			    \textbf{Prioritisation:}Critical\\
+			    \textbf{Prioritisation:} Critical\\
      			\textbf{Pre-conditions}
 				\begin{itemize}
 					\item A user must be registered and logged in on the system.
-					\item A user must have selected PIMs to be mined.
+					\item A user must have selected data sources to be mined.
 				\end{itemize}
     			\textbf{Post-conditions}
      			\begin{itemize}
@@ -448,16 +433,12 @@
     			\end{itemize}
     			
     			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{functionalRequirementsRemoveBubble.jpg}
+    			\includegraphics[width=\linewidth]{removeBubbleFunctionalRequirements.jpg}
     			\caption{Use case diagram for removing a bubble}
     			\label{UseCaseRmoveBubble}
     			\end{figure}
     			
-    			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{serviceContractRemoveBubble.jpg}
-    			\caption{Service contract diagram for removing a bubble}
-    			\label{ServiceContractRemoveBubble}
-    			\end{figure}
+    		
     		
     		%___________________IMPORTANT_____________________
     		
@@ -474,14 +455,20 @@
         			\item The user will need to sign up again to access the system functionality.
     			\end{itemize}
     			
+    			\begin{figure}[!h]
+    			\includegraphics[width=\linewidth]{deactivateAccountServiceContract.jpg}
+    			\caption{Service contract for Deactivating your Account}
+    			\label{UseCaseDeactivateAccount}
+    			\end{figure}
+    			
 			    
-    		\subsubsection{Specify the default depth factor}
-				\textbf{Description:}  A user can choose the number of levels the bubble map should expand when they open the map for the first time during the current session.\\
+    		\subsubsection{Specify the default depth and branching factor}
+				\textbf{Description:}  A user can choose the number of levels the bubble map should expand to and the number of branches per node when they open the map for the first time during the current session.\\
 			    \textbf{Prioritisation:} Important\\
       			\textbf{Pre-conditions}
 			    \begin{itemize}
 			        \item A user must be registered and logged in on the system.
-			        \item A user must have selected PIMs to be mined.
+			        \item A user must have selected data sources to be mined.
 			    \end{itemize}
     			\textbf{Post-conditions}
      			\begin{itemize}
@@ -489,45 +476,81 @@
     			\end{itemize}
     			
     			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{functionalRequirementsSetDepth.jpg}
-    			\caption{Use case diagram for setting default depth}
-    			\label{UseCaseSetDepth}
+    			\includegraphics[width=\linewidth]{setUserPreferencesFunctionalRequirements.jpg}
+    			\caption{Use case diagram for setting default depth and branch factor}
+    			\label{UseCaseDefaultFactors}
     			\end{figure}
     			
     			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{serviceContractSetDepth.jpg}
-    			\caption{Service contract diagram for setting default depth}
-    			\label{ServiceContractSetDepth}
+    			\includegraphics[width=\linewidth]{setUserPreferencesServiceContract.jpg}
+    			\caption{Service contract diagram for setting default depth and branch factor}
+    			\label{ServiceContractDefaultFactors}
     			\end{figure}
     			
-    		\subsubsection{Specify the default branch factor}
-				\textbf{Description:}  A user can choose specify how many branches the bubble map will initially have.\\
+    		
+    			
+    		
+    		\subsubsection{Set quick access depth factor}
+				\textbf{Description:}  Manipulate the BubbleMap quickly but not affect its state permanently\\
 			    \textbf{Prioritisation:} Important\\
       			\textbf{Pre-conditions}
 			    \begin{itemize}
 			        \item A user must be registered and logged in on the system.
-			        \item A user must have selected PIMs to be mined.
 			    \end{itemize}
     			\textbf{Post-conditions}
 			    \begin{itemize}
-			    	\item The user's bubble map will modify itself to adapt to the user's specifications.
+			    	\item The user will be able to change BubbleMap depth factor for instant manipulation
+    			\end{itemize}
+    		
+    		\subsubsection{Set quick access branch factor}
+				\textbf{Description:}  Manipulate the BubbleMap quickly but not affect its state permanently\\
+			    \textbf{Prioritisation:} Important\\
+      			\textbf{Pre-conditions}
+			    \begin{itemize}
+			        \item A user must be registered and logged in on the system.
+			    \end{itemize}
+    			\textbf{Post-conditions}
+			    \begin{itemize}
+			    	\item The user will be able to change BubbleMap branch factor for instant manipulation
+    			\end{itemize}
+    		
+    		\subsubsection{Reset graph}
+				\textbf{Description:} Reset the graph to the state it was in when it loaded that session\\
+			    \textbf{Prioritisation:} Important\\
+      			\textbf{Pre-conditions}
+			    \begin{itemize}
+			        \item A user must be registered and logged in on the system.
+			    \end{itemize}
+    			\textbf{Post-conditions}
+			    \begin{itemize}
+			    	\item The user will be able to revert all changes to the BubbleMap settings
     			\end{itemize}
     			
+    	    \subsubsection{Customise Theme}
+				\textbf{Description:} Change the theme of the interface\\
+			    \textbf{Prioritisation:} Important\\
+      			\textbf{Pre-conditions}
+			    \begin{itemize}
+			        \item A user must be registered and logged in on the system.
+			    \end{itemize}
+    			\textbf{Post-conditions}
+			    \begin{itemize}
+			    	\item The user will be able to change the BubbleMap background colour
+			    	\item The user will be able to change the Navigation bar colour
+			    	\item The user will be able to change the side panel colour
+    			\end{itemize}
+    	
     			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{functionalRequirementsSetBranchFactor.jpg}
-    			\caption{Use case diagram for setting default branch factor}
-    			\label{UseCaseDisplayData}
+    			\includegraphics[width=\linewidth]{setThemeServiceContract.jpg}
+    			\caption{Service contract diagram for setting the theme}
+    			\label{ServiceContractSeTheme}
     			\end{figure}
-    			
-    			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{serviceContractSetBranchFactor.jpg}
-    			\caption{Service contract diagram for setting default branch factor}
-    			\label{ServiceContractDisplayData}
-    			\end{figure}
-    			
+    		%_________________________Nice-to-Have____________________
+    	    
+    	    
     		\subsubsection{Reply to an email}
 				\textbf{Description:}  A user can respond to an email directly from our application\\
-			    \textbf{Prioritisation:} Important\\
+			    \textbf{Prioritisation:} Nice-to-Have\\
       			\textbf{Pre-conditions}
 			    \begin{itemize}
 			        \item A user must be registered and logged in on the system.
@@ -540,7 +563,7 @@
     			
     		\subsubsection{Redirect to Gmail application from our application}
 				\textbf{Description:}  A user can respond to an email directly from our application\\
-			    \textbf{Prioritisation:} Important\\
+			    \textbf{Prioritisation:} Nice-to-Have\\
       			\textbf{Pre-conditions}
 			    \begin{itemize}
 			        \item A user must be registered and logged in on the system.
@@ -550,59 +573,7 @@
 			    \begin{itemize}
 			    	\item The user will be able to navigate to Gmail from our application
     			\end{itemize}
-    			
-    		%_________________________Nice-to-Have____________________
-    	    
-    	    \subsubsection{Set quick access depth factor}
-				\textbf{Description:}  Manipulate the BubbleMap quickly but not affect its state permanently\\
-			    \textbf{Prioritisation:} Nice-to-Have\\
-      			\textbf{Pre-conditions}
-			    \begin{itemize}
-			        \item A user must be registered and logged in on the system.
-			    \end{itemize}
-    			\textbf{Post-conditions}
-			    \begin{itemize}
-			    	\item The user will be able to change BubbleMap depth factor for instant manipulation
-    			\end{itemize}
     		
-    		\subsubsection{Set quick access branch factor}
-				\textbf{Description:}  Manipulate the BubbleMap quickly but not affect its state permanently\\
-			    \textbf{Prioritisation:} Nice-to-Have\\
-      			\textbf{Pre-conditions}
-			    \begin{itemize}
-			        \item A user must be registered and logged in on the system.
-			    \end{itemize}
-    			\textbf{Post-conditions}
-			    \begin{itemize}
-			    	\item The user will be able to change BubbleMap branch factor for instant manipulation
-    			\end{itemize}
-    		
-    		\subsubsection{Reset graph}
-				\textbf{Description:} Reset the graph to the state it was in when it loaded that session\\
-			    \textbf{Prioritisation:} Nice-to-Have\\
-      			\textbf{Pre-conditions}
-			    \begin{itemize}
-			        \item A user must be registered and logged in on the system.
-			    \end{itemize}
-    			\textbf{Post-conditions}
-			    \begin{itemize}
-			    	\item The user will be able to revert all changes to the BubbleMap settings
-    			\end{itemize}
-    			
-    	    \subsubsection{Customise colour scheme}
-				\textbf{Description:} Change the colour scheme of the interface\\
-			    \textbf{Prioritisation:} Nice-to-Have\\
-      			\textbf{Pre-conditions}
-			    \begin{itemize}
-			        \item A user must be registered and logged in on the system.
-			    \end{itemize}
-    			\textbf{Post-conditions}
-			    \begin{itemize}
-			    	\item The user will be able to change the BubbleMap background colour
-			    	\item The user will be able to change the Navigation bar colour
-			    	\item The user will be able to change the sidepanel colour
-    			\end{itemize}
-    			
     		\subsubsection{Help Centre}
 				\textbf{Description:} A means of communication between users and the developers\\
 			    \textbf{Prioritisation:} Nice-to-Have\\
@@ -619,8 +590,8 @@
 			Functionality that should be included in the system includes:
 			\begin{itemize}
 				\item A login/sign up system. 
-				\item Adding various PIMs to your account.
-				\item Interaction with PIMs directly from the bubble map itself (commenting, emailing, etc.).
+				\item Adding various data sources to your account.
+				\item Interaction with data sources directly from the bubble map itself (commenting, emailing, etc.).
 				\item Expanding bubbles in order to find articles related to that bubble.
 				\item Rapidly integrate new information into the system.
 				\item Logs will be used to track any unhandled exceptions or problems.
@@ -632,8 +603,9 @@
 			\caption{Class Diagram: Domain Model}
 			\label{DomainModel}
 		\end{figure}
+		
 		\paragraph\indent
-		The mind map for a user will portray information from PIMs requested by the user. The mind map will consist of a root node containing child nodes of relevant information (topics). Each topic will point to a PIM (Facebook, Google etc.) and will contain a list of information relative to the topic.
+		The mind map for a user will portray information from data sources requested by the user. The mind map will consist of a root node containing child nodes of relevant information (topics). Each topic will point to a PIM (Facebook, Google etc.) and will contain a list of information relative to the topic.
 			
 	\section{Technologies}
 		\subsection{Framework}
