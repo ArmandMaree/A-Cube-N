@@ -460,7 +460,65 @@
 					\item No topics were extracted.
 				\end{itemize}
 				
-				
+        \subsection{Frontend Service Test Cases}
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			%
+			%
+			%                 FRONTEND TEST CASES
+			%
+			%
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\subsubsection{Login Dalekjs Test}\label{frontendlogindalekjstest}
+    			\paragraph{Objective} Test if the a user can login successfully with the Google sign in button.
+    			\paragraph{Input} Username and password of Acuben Cos(test account).
+    			\paragraph{Output} GAPI object returned from a successful login containing Acuben Cos's information.
+			    \paragraph{Pass Criteria}
+				\begin{itemize}
+				    \item GAPI object returned is not null
+				    \item GAPI object is that of Acuben Cos's
+				    \item Text of the login box must change to say "Welcome Acuben Cos"
+				    \item Must redirect to home page.
+				\end{itemize}
+				\paragraph{Fail Criteria}
+				\begin{itemize}
+				    \item GAPI object is null
+				    \item User is redirected to login page again.
+				    \item Text of the login box stays empty.
+				\end{itemize}
+			
+			\subsubsection{Retrieve Topics Dalekjs Test}\label{frontendretrievetopicsdalekjstest}
+    			\paragraph{Objective} Test if the a user can ask for topics and successfully retrieve and update the mind map.
+    			\paragraph{Input} TopicRequest object.
+    			\paragraph{Output} TopicResponse object containing both topic names and PIM data lists for all topics(This is the corresponding data items from emails and posts).
+			    \paragraph{Pass Criteria}
+			    \begin{itemize}
+			        \item TopicResponse is not null.
+			        \item Topic names list is empty or has topics.
+			        \item Topic PIM data lists for all topics are empty or has data.
+			        \item Loading div disappears.
+			    \end{itemize}
+			     \paragraph{Fail Criteria}
+			    \begin{itemize}
+			        \item Topic names list is null.
+			        \item Topic PIM data lists are null.
+			        \item Error div appears
+			        \item No response is returned after x amount of seconds.
+			    \end{itemize}
+			\subsubsection{Logout Dalekjs Test}\label{frontendlogoutdalekjstest}
+    			\paragraph{Objective} Test if the a user can logout successfully.
+    			\paragraph{Input} User input to logout.
+    			\paragraph{Output} None.
+			    \paragraph{Pass Criteria}
+				\begin{itemize}
+				    \item User successfully navigated to login page.
+				    \item All cookies are deleted.
+				    \item User cannot get back to the home page again without logging in again.
+				\end{itemize}
+				\paragraph{Fail Criteria}
+				\begin{itemize}
+				    \item User stays on home page.
+				    \item Cookies are not deleted.
+				\end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
@@ -611,6 +669,27 @@
 			All the tests for this service can be found on Github at \sloppy\url{https://github.com/ArmandMaree/MindMapPIM/tree/master/Processing/src/test/java/testers}.
 			
 			\subsubsection{Main Application Bean Test (TC \ref{processorapplicationbeanstest})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
+		
+		\subsection{Frontend Service Test Cases}
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			%
+			%
+			%                 FRONTEND TEST RESULTS
+			%
+			%
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\paragraph\indent
+			All the tests for this service can be found on Github at \sloppy\url{https://github.com/ArmandMaree/MindMapPIM/tree/master/Processing/src/test/javascript/loginTester.js}.
+			
+			\subsubsection{Frontend Login Dalekjs Test (TC \ref{frontendlogindalekjstest})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
+			\subsubsection{Frontend Topic Recieve Dalekjs Test (TC \ref{frontendretrievetopicsdalekjstest})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
+			\subsubsection{Frontend Logout Dalekjs Test (TC \ref{frontendlogoutdalekjstest})}
 				\paragraph{Result} Pass
 				\paragraph{Comment} All conditions tested in this test case executed successfully.
 				
