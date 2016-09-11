@@ -157,12 +157,12 @@
 		\subsection{Services}			
 			\subsubsection{Polling Service}\label{PollingSection}
 			\paragraph\indent
-			Figure \ref{GmailPollingServiceModelFigure} shows the class diagram of the Gmail poller. A poller will either use long polling or polling with a sleep period afterwards (depending on what the API allows) to request new data from a specific PIM. Once it receives this information it will parse this information into a RawData object and add it into a queue which will be further processed by worker threads (see section  \ref{ProcessingServiceSection}).			
+			Figure \ref{PollingServiceModelFigure} shows the class diagram of the poller. A poller will either use long polling or polling with a sleep period afterwards (depending on what the API allows) to request new data from a specific PIM. Once it receives this information it will parse this information into a RawData object and add it into a queue which will be further processed by worker threads (see section  \ref{ProcessingServiceSection}).			
 						
 			\begin{figure}[!h]
-			\includegraphics[width=\linewidth]{GmailPollingServiceModel.jpg}
-			\caption{Gmail Polling service.}
-			\label{GmailPollingServiceModelFigure}
+			\includegraphics[width=\linewidth]{PollingServiceModel.jpg}
+			\caption{Polling service.}
+			\label{PollingServiceModelFigure}
 			\end{figure}
 			
 						
