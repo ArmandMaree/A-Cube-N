@@ -67,7 +67,7 @@
 			\item \textbf{Bubble} A single node in the mind map.
 			\item \textbf{Bubble Map} The mind map that is presented to the user.
 			\item \textbf{PIM} Personal Information Manager such as Google Calendar and social media platforms like Facebook.
-			\item \textbf{Data Source} It refers to the source where user data is retrieved from.
+			\item \textbf{Data Source} It refers to the source (third party PIM) where user data is retrieved from.
 			\item \textbf{Poller} The service which will constantly ask a data source for new information and then send new information to the processing service.
 		\end{itemize}	
 	
@@ -143,7 +143,7 @@
 			Further there are no constraints and the architects have free roam to implement an architecture that suits their needs.
 			
 	\section{Architecture Design}	
-	\subsection{Infrastructure}
+		\subsection{Infrastructure}
 			\paragraph\indent
 			We will be using the micro services architecture. Figure \ref{MicroServicesAchitecture} shows the design at the first level of granularity. The micro services approach with help us to develop different parts of the system concurrently with minimal dependency on other components because the individual services are loosely coupled. And secondly it will control and encapsulate the complexity of the system, thus a simpler development process. Testing each service is also easier which would result in a higher quality system.
 			\begin{figure}[!h]
@@ -253,8 +253,9 @@
 		    \textbf{Important} 
 			\begin{itemize}
 			    \item Deactivate Account
-			    \item Reply to an email
-			    \item Gain access to Gmail via our application
+				\item Set quick access branch factor
+				\item Reset graph
+				\item Customise colour scheme of interfac
 			    \item Set default depth factor
 			    \item Set default branch factor
 			\end{itemize}
@@ -262,10 +263,8 @@
 			
 			\textbf{Nice-to-Have}
 			\begin{itemize}
-			    \item Set quick access depth factor
-			    \item Set quick access branch factor
-				\item Reset graph
-				\item Customise colour scheme of interface
+			    \item Reply to an email
+			    \item Gain access to Gmail via our application
 			    \item Help centre
 			\end{itemize}
 			
@@ -289,13 +288,13 @@
     			\end{itemize}
     			
     			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{functionalRequirementsSignUp.jpg}
+    			\includegraphics[width=\linewidth]{login_RegistrationFunctionalRequirements.jpg}
     			\caption{Use case diagram for Signing up}
     			\label{UseCaseSignUp}
     			\end{figure}
     			
     			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{serviceContractSignUp.jpg}
+    			\includegraphics[width=\linewidth]{login_RegistrationServiceContract.jpg}
     			\caption{Service contract diagram for Signing up}
     			\label{ServiceContractSignUp}
     			\end{figure}
@@ -317,13 +316,13 @@
     			\end{itemize}
 
     			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{functionalRequirementsSelectDataSources.jpg}
+    			\includegraphics[width=\linewidth]{selectDataSourcesFunctionalRequirements.jpg}
     			\caption{Use case diagram for selecting data sources}
     			\label{UseCaseSelectDataSources}
     			\end{figure}
     			
     			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{serviceContractSelectDataSources.jpg}
+    			\includegraphics[width=\linewidth]{selectDataSourcesServiceContract.jpg}
     			\caption{Service contract diagram for selecting data sources}
     			\label{ServiceContractSelectDataSources}
     			\end{figure}
@@ -331,7 +330,7 @@
     			
     			
     		\subsubsection{Login to PIMs}
-				\textbf{Description:}  A user will login with their Google account. This will be done by using the OAUTH protocol which is compatible with the Google and Facebook API.\\
+				\textbf{Description:}  A user will login with their Google or Facebook account\\
     			\textbf{Prioritisation:} Critical\\
       			\textbf{Pre-conditions}
     			\begin{itemize}
@@ -342,20 +341,8 @@
     			\textbf{Post-conditions}
      			\begin{itemize}
         			\item The PIMs will be mined for data.
-        			\item The login credentials for that PIM for a specific user will be stored in our database.
+        			\item The user id and access token for the selected data sources will be stored in our database.
     			\end{itemize}
-    			
-    			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{functionalRequirementsLogin.jpg}
-    			\caption{Use case diagram for Logging in}
-    			\label{UseCaseLogin}
-    			\end{figure}
-    			
-    			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{serviceContractLogin.jpg}
-    			\caption{Service contract diagram for Logging in}
-    			\label{ServiceContractLogin}
-    			\end{figure}
     			
     		\subsubsection{Logout}
 				\textbf{Description:}  A user can choose to log out of the system in a secure manner.\\
@@ -370,17 +357,11 @@
         			\item The user will need to log in again to access their bubble map.
     			\end{itemize}
 
-    		\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{functionalRequirementsLogout.jpg}
-    			\caption{Use case diagram for Logging out}
-    			\label{UseCaseLogout}
-    			\end{figure}
-    			
-    			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{serviceContractLogout.jpg}
-    			\caption{Service contract diagram for Logging out}
-    			\label{ServiceContractLogout}
-    			\end{figure}
+	    		\begin{figure}[!h]
+	    			\includegraphics[width=\linewidth]{logoutFunctionalRequirements.jpg}
+	    			\caption{Use case diagram for Logging out}
+	    			\label{UseCaseLogout}
+	    		\end{figure}
     			
     		\subsubsection{Expand Bubble}
 				\textbf{Description:}  A user can choose to expand a bubble to reveal more topics related to the bubble.\\
@@ -396,13 +377,13 @@
 			    \end{itemize}
 			    
 			    \begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{functionalRequirementsExpandBubble.jpg}
+    			\includegraphics[width=\linewidth]{expandBubbleFunctionalRequirements.jpg}
     			\caption{Use case diagram for Expanding a Bubble}
     			\label{UseCaseExpandBubble}
     			\end{figure}
     			
     			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{serviceContractExpandBubble.jpg}
+    			\includegraphics[width=\linewidth]{expandBubbleServiceContract.jpg}
     			\caption{Service contract diagram for Expanding a Bubble}
     			\label{ServiceContractExpandBubble}
     			\end{figure}
@@ -422,13 +403,13 @@
 				\end{itemize}
 				
 			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{functionalRequirementsDisplayData.jpg}
+    			\includegraphics[width=\linewidth]{displayDataFunctionalRequirements.jpg}
     			\caption{Use case diagram for Displaying data}
     			\label{UseCaseDisplayData}
     			\end{figure}
     			
     			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{serviceContractDisplayData.jpg}
+    			\includegraphics[width=\linewidth]{displayDataServiceContract.jpg}
     			\caption{Service contract diagram for Displaying data}
     			\label{ServiceContractDisplayData}
     			\end{figure}
@@ -448,15 +429,9 @@
     			\end{itemize}
     			
     			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{functionalRequirementsRemoveBubble.jpg}
+    			\includegraphics[width=\linewidth]{removeBubbleFunctionalRequirements.jpg}
     			\caption{Use case diagram for removing a bubble}
     			\label{UseCaseRmoveBubble}
-    			\end{figure}
-    			
-    			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{serviceContractRemoveBubble.jpg}
-    			\caption{Service contract diagram for removing a bubble}
-    			\label{ServiceContractRemoveBubble}
     			\end{figure}
     		
     		%___________________IMPORTANT_____________________
@@ -475,8 +450,8 @@
     			\end{itemize}
     			
 			    
-    		\subsubsection{Specify the default depth factor}
-				\textbf{Description:}  A user can choose the number of levels the bubble map should expand when they open the map for the first time during the current session.\\
+    		\subsubsection{Specify the default depth and branching factor}
+				\textbf{Description:}  A user can choose the number of levels the bubble map should expand to and the number of branches per node when they open the map for the first time during the current session.\\
 			    \textbf{Prioritisation:} Important\\
       			\textbf{Pre-conditions}
 			    \begin{itemize}
@@ -489,45 +464,81 @@
     			\end{itemize}
     			
     			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{functionalRequirementsSetDepth.jpg}
-    			\caption{Use case diagram for setting default depth}
-    			\label{UseCaseSetDepth}
-    			\end{figure}
+					\includegraphics[width=\linewidth]{setUserPreferencesFunctionalRequirements.jpg}
+					\caption{Use case diagram for setting default depth and branch factor}
+					\label{UseCaseDefaultFactors}
+				\end{figure}
     			
     			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{serviceContractSetDepth.jpg}
-    			\caption{Service contract diagram for setting default depth}
-    			\label{ServiceContractSetDepth}
-    			\end{figure}
+	    			\includegraphics[width=\linewidth]{setUserPreferencesServiceContract.jpg}
+		    		\caption{Service contract diagram for setting default depth and branch factor}
+	    			\label{ServiceContractDefaultFactors}
+	    		\end{figure}
     			
-    		\subsubsection{Specify the default branch factor}
-				\textbf{Description:}  A user can choose specify how many branches the bubble map will initially have.\\
+			\subsubsection{Set quick access depth factor}
+				\textbf{Description:}  Manipulate the BubbleMap quickly but not affect its state permanently\\
 			    \textbf{Prioritisation:} Important\\
       			\textbf{Pre-conditions}
 			    \begin{itemize}
 			        \item A user must be registered and logged in on the system.
-			        \item A user must have selected PIMs to be mined.
 			    \end{itemize}
     			\textbf{Post-conditions}
 			    \begin{itemize}
-			    	\item The user's bubble map will modify itself to adapt to the user's specifications.
+			    	\item The user will be able to change BubbleMap depth factor for instant manipulation
     			\end{itemize}
     			
-    			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{functionalRequirementsSetBranchFactor.jpg}
-    			\caption{Use case diagram for setting default branch factor}
-    			\label{UseCaseDisplayData}
-    			\end{figure}
+			\subsubsection{Set quick access branch factor}
+				\textbf{Description:}  Manipulate the BubbleMap quickly but not affect its state permanently\\
+			    \textbf{Prioritisation:} Important\\
+      			\textbf{Pre-conditions}
+			    \begin{itemize}
+			        \item A user must be registered and logged in on the system.
+			    \end{itemize}
+    			\textbf{Post-conditions}
+			    \begin{itemize}
+			    	\item The user will be able to change BubbleMap branch factor for instant manipulation.
+    			\end{itemize}
+    			
+			\subsubsection{Reset graph}
+				\textbf{Description:} Reset the graph to the state it was in when it loaded that session\\
+			    \textbf{Prioritisation:} Important\\
+      			\textbf{Pre-conditions}
+			    \begin{itemize}
+			        \item A user must be registered and logged in on the system.
+			    \end{itemize}
+    			\textbf{Post-conditions}
+			    \begin{itemize}
+			    	\item The user will be able to revert all changes to the BubbleMap settings
+    			\end{itemize}
+    			
+    		%_________________________Nice-to-Have____________________
+    	    
+			\subsubsection{Customise Theme}
+				\textbf{Description:} Change the theme of the interface\\
+			    \textbf{Prioritisation:} Important\\
+      			\textbf{Pre-conditions}
+			    \begin{itemize}
+			        \item A user must be registered and logged in on the system.
+			    \end{itemize}
+    			\textbf{Post-conditions}
+			    \begin{itemize}
+			    	\item The user will be able to change the BubbleMap background colour
+			    	\item The user will be able to change the Navigation bar colour
+			    	\item The user will be able to change the side panel colour
+    			\end{itemize}+    			
     			
     			\begin{figure}[!h]
-    			\includegraphics[width=\linewidth]{serviceContractSetBranchFactor.jpg}
-    			\caption{Service contract diagram for setting default branch factor}
-    			\label{ServiceContractDisplayData}
+	    			\includegraphics[width=\linewidth]{setThemeServiceContract.jpg}
+	    			\caption{Service contract diagram for setting the theme}
+	    			\label{ServiceContractSeTheme}
     			\end{figure}
-    			
+
+%_________________________Nice-to-Have____________________
+    	    
+    	    
     		\subsubsection{Reply to an email}
 				\textbf{Description:}  A user can respond to an email directly from our application\\
-			    \textbf{Prioritisation:} Important\\
+			    \textbf{Prioritisation:} Nice-to-Have\\
       			\textbf{Pre-conditions}
 			    \begin{itemize}
 			        \item A user must be registered and logged in on the system.
@@ -538,9 +549,9 @@
 			    	\item The user will be able to reply to a message that has been displayed by our system
     			\end{itemize}
     			
-    		\subsubsection{Redirect to Gmail application from our application}
+			\subsubsection{Redirect to Gmail application from our application}
 				\textbf{Description:}  A user can respond to an email directly from our application\\
-			    \textbf{Prioritisation:} Important\\
+			    \textbf{Prioritisation:} Nice-to-Have\\
       			\textbf{Pre-conditions}
 			    \begin{itemize}
 			        \item A user must be registered and logged in on the system.
@@ -548,59 +559,7 @@
 			    \end{itemize}
     			\textbf{Post-conditions}
 			    \begin{itemize}
-			    	\item The user will be able to navigate to Gmail from our application
-    			\end{itemize}
-    			
-    		%_________________________Nice-to-Have____________________
-    	    
-    	    \subsubsection{Set quick access depth factor}
-				\textbf{Description:}  Manipulate the BubbleMap quickly but not affect its state permanently\\
-			    \textbf{Prioritisation:} Nice-to-Have\\
-      			\textbf{Pre-conditions}
-			    \begin{itemize}
-			        \item A user must be registered and logged in on the system.
-			    \end{itemize}
-    			\textbf{Post-conditions}
-			    \begin{itemize}
-			    	\item The user will be able to change BubbleMap depth factor for instant manipulation
-    			\end{itemize}
-    		
-    		\subsubsection{Set quick access branch factor}
-				\textbf{Description:}  Manipulate the BubbleMap quickly but not affect its state permanently\\
-			    \textbf{Prioritisation:} Nice-to-Have\\
-      			\textbf{Pre-conditions}
-			    \begin{itemize}
-			        \item A user must be registered and logged in on the system.
-			    \end{itemize}
-    			\textbf{Post-conditions}
-			    \begin{itemize}
-			    	\item The user will be able to change BubbleMap branch factor for instant manipulation
-    			\end{itemize}
-    		
-    		\subsubsection{Reset graph}
-				\textbf{Description:} Reset the graph to the state it was in when it loaded that session\\
-			    \textbf{Prioritisation:} Nice-to-Have\\
-      			\textbf{Pre-conditions}
-			    \begin{itemize}
-			        \item A user must be registered and logged in on the system.
-			    \end{itemize}
-    			\textbf{Post-conditions}
-			    \begin{itemize}
-			    	\item The user will be able to revert all changes to the BubbleMap settings
-    			\end{itemize}
-    			
-    	    \subsubsection{Customise colour scheme}
-				\textbf{Description:} Change the colour scheme of the interface\\
-			    \textbf{Prioritisation:} Nice-to-Have\\
-      			\textbf{Pre-conditions}
-			    \begin{itemize}
-			        \item A user must be registered and logged in on the system.
-			    \end{itemize}
-    			\textbf{Post-conditions}
-			    \begin{itemize}
-			    	\item The user will be able to change the BubbleMap background colour
-			    	\item The user will be able to change the Navigation bar colour
-			    	\item The user will be able to change the sidepanel colour
+			    \item The user will be able to navigate to Gmail from our application.
     			\end{itemize}
     			
     		\subsubsection{Help Centre}
