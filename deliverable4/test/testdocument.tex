@@ -469,7 +469,7 @@
 			%
 			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			\subsubsection{Login Dalekjs Test}\label{frontendlogindalekjstest}
-    			\paragraph{Objective} Test if the a user can login successfully with the Google sign in button.
+    			\paragraph{Objective} Test if the a user can login successfully with the Google sign in button and move on to the home page.
     			\paragraph{Input} Username and password of Acuben Cos(test account).
     			\paragraph{Output} GAPI object returned from a successful login containing Acuben Cos's information.
 			    \paragraph{Pass Criteria}
@@ -487,15 +487,20 @@
 				\end{itemize}
 			
 			\subsubsection{Retrieve Topics Dalekjs Test}\label{frontendretrievetopicsdalekjstest}
-    			\paragraph{Objective} Test if the a user can ask for topics and successfully retrieve and update the mind map.
+    			\paragraph{Objective} Test if the a user can ask for topics and successfully retrieve and update the mind map. A second test is done to see if the user can expand the sidebar to see more information on a topic.
     			\paragraph{Input} TopicRequest object.
-    			\paragraph{Output} TopicResponse object containing both topic names and PIM data lists for all topics(This is the corresponding data items from emails and posts).
+    			\paragraph{Output} TopicResponse object containing both topic names and PIM data lists for all topics(This is the corresponding data items from emails and posts). A second response will be the sidebar data.
 			    \paragraph{Pass Criteria}
 			    \begin{itemize}
 			        \item TopicResponse is not null.
 			        \item Topic names list is empty or has topics.
 			        \item Topic PIM data lists for all topics are empty or has data.
 			        \item Loading div disappears.
+			        \item The sidebar shows.
+			        \item The sidebar has the correct title.
+			        \item The sidebar has the correct breadcrumb.
+			        \item The sidebar has the correct data.
+			        
 			    \end{itemize}
 			     \paragraph{Fail Criteria}
 			    \begin{itemize}
@@ -503,7 +508,39 @@
 			        \item Topic PIM data lists are null.
 			        \item Error div appears
 			        \item No response is returned after x amount of seconds.
+			        \item Sidebar doesn't show after x amount of time.
+			        \item Data in sidebar is not correct.
 			    \end{itemize}
+			
+			\subsubsection{Load Graph from storage}
+			\label{frontendloadstoragetopicsdalekjstest}
+    			\paragraph{Objective} Test if the graph can successfully reload itself if it has been previously saved in local storage.
+    			\paragraph{Input} None.
+    			\paragraph{Output} A stringified version of the graph from local storage.
+			    \paragraph{Pass Criteria}
+				\begin{itemize}
+				    \item Graph is loaded without an error
+				    \item All nodes of graph are in the exact places from before it was saved.
+				    \item All edges of graph are in the exact places from before it was saved.
+				\end{itemize}
+				\paragraph{Fail Criteria}
+				\begin{itemize}
+				    \item Graph does not load.
+				    \item Graph nodes are not in the correct order.
+				\end{itemize}
+		    \subsubsection{Dalekjs help page relocate}
+		    \label{frontendhelpdalekjstest}
+    			\paragraph{Objective} Test if the a user can relocate to the help page by clicking on the help button successfully.
+    			\paragraph{Input} User clicking on the help button.
+    			\paragraph{Output} None.
+			    \paragraph{Pass Criteria}
+				\begin{itemize}
+				    \item User successfully navigated to help page.
+				\end{itemize}
+				\paragraph{Fail Criteria}
+				\begin{itemize}
+				    \item User stays on home page.
+				\end{itemize}
 			\subsubsection{Logout Dalekjs Test}\label{frontendlogoutdalekjstest}
     			\paragraph{Objective} Test if the a user can logout successfully.
     			\paragraph{Input} User input to logout.
@@ -689,6 +726,12 @@
 			\subsubsection{Frontend Topic Recieve Dalekjs Test (TC \ref{frontendretrievetopicsdalekjstest})}
 				\paragraph{Result} Pass
 				\paragraph{Comment} All conditions tested in this test case executed successfully.
+			\subsubsection{Frontend Topic Recieve Dalekjs Test (TC \ref{frontendloadstoragetopicsdalekjstest})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
+			\subsubsection{Frontend Topic Recieve Dalekjs Test (TC \ref{frontendhelpdalekjstest})}
+				\paragraph{Result} Pass
+				\paragraph{Comment} All conditions tested in this test case executed successfully.
 			\subsubsection{Frontend Logout Dalekjs Test (TC \ref{frontendlogoutdalekjstest})}
 				\paragraph{Result} Pass
 				\paragraph{Comment} All conditions tested in this test case executed successfully.
@@ -702,6 +745,6 @@
 		
 	\section{Conclusion}
 		\paragraph\indent
-		All unit tests passed which is an idication that the application is ready to be deployed on the server. 
+		All unit tests passed which is an indication that the application is ready to be deployed on the server. 
 		
 \end{document}
