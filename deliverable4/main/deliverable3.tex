@@ -44,7 +44,6 @@
 		\paragraph\indent
 		People of this day and age often make use of many technologies and platforms for the purpose of staying in contact with people, sharing moments with friends, communicating with people and organising their day-to-day lives. Generally all the above tasks of a person in the 21st century are done on different platforms for example Facebook, Email and Google Calendar. This project serves to provide a single platform where the information of its users from various platforms are organised into topics. 
 	
-	
 	\section{Vision}
 		\paragraph\indent
 		The vision of this project is to create an application which extracts data from various existing platforms such as Gmail and Facebook. The application will make use of a natural language processor to extract data, determine the general topic of the data then integrate this new information into the interactive mind map. The hope is that this will simplify the user's life by only needing one application to 'monitor' all other platforms on which they might have an account and manage the information of those platforms from our application. The mind map will work in a similar fashion as our minds work. Where the exploration of one topic may lead to the exploration of another topic that is related to the user. Hence the "mind" map, it is a map of your mind visualized by the topics that come up in your life.
@@ -145,7 +144,7 @@
 	\section{Architecture Design}	
 		\subsection{Infrastructure}
 			\paragraph\indent
-			We will be using the micro services architecture. Figure \ref{MicroServicesAchitecture} shows the design at the first level of granularity. The micro services approach with help us to develop different parts of the system concurrently with minimal dependency on other components because the individual services are loosely coupled. And secondly it will control and encapsulate the complexity of the system, thus a simpler development process. Testing each service is also easier which would result in a higher quality system.
+			We will be using the micro services architecture with some elements of pipes and filters. Figure \ref{MicroServicesAchitecture} shows the design at the first level of granularity. The micro services approach with help us to develop different parts of the system concurrently with minimal dependency on other components because the individual services are loosely coupled. And secondly it will control and encapsulate the complexity of the system, thus a simpler development process. Testing each service is also easier which would result in a higher quality system.
 			\begin{figure}[!h]
 				\includegraphics[width=\linewidth]{MicroServicesModel.jpg}
 				\caption{Micro Services System Architecture}
@@ -165,7 +164,6 @@
 			\label{PollingServiceModelFigure}
 			\end{figure}
 			
-						
 			\subsubsection{Processing Service}\label{ProcessingServiceSection}
 			\paragraph\indent
 			Figure \ref{ProcessingModelFigure} shows the class diagram of the processing of raw data. Once raw data has been added to a queue by the poller in section \ref{PollingSection}, one of several worker threads will dequeue this raw data and pass the data to a Natural Language Processor (NLP). Once the NLP has finished processing the data the worker thread will parse this data into a ProcessedData object which will be sent to the database for persistence (see section \ref{DatabaseServiceSection}).

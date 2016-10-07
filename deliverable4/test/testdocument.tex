@@ -55,7 +55,14 @@
 		This document provides details on the tests that were conducted on the system to increase stability, integity and scalability. The tests detailed in this document will be continuously updated as more tests are completed and more testing phases are entered.
 		
 		\paragraph\indent
-		It is essential for this system to be developed in a test driven environment since a minor fault in one of the services could lead to large part of the system not functioning as expected. Thus fully automatic white-box testing will be applied as far as possible with the exception of a few manual tests. 
+		It is essential for this system to be developed in a test driven environment since a minor fault in one of the services could lead to large part of the system not functioning as expected. Thus fully automatic white-box testing will be applied as far as possible with the exception of a few manual tests.
+		
+		\subsection{Assumptions and Dependencies}
+		\begin{itemize}
+			\item The system is currently only able to cater for English items (like emails and posts), thus only this will be tested.
+			\item All third party services (like MongoDB and RabbitMQ) are assumed to be functioning correctly and no tests will check for this.
+			\item The pollers are not tested during the unit tests due to the need for them to receive authentication codes as it is outlined in the OAUTH2 protocol. In order to obtain these authentication codes a manual sign in has to occur by a user. Large parts of these services will thus be tested during the integration tests.
+		\end{itemize} 
 		
 		\subsection{Test Environment}
 		\begin{itemize}
@@ -86,7 +93,6 @@
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		
 	\section{Test Cases}
 		\subsection{Business Logic Test Cases}
 			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -194,6 +200,20 @@
 					\item Any of the fields differ.
 				\end{itemize}
 				
+			\subsubsection{FrontendListener User Update Test 4}\label{businessfrontendlistenerupdatetest4}
+				\paragraph{Objective} Make sure the BusinessLogic service can receive a request to update a user who changed their other settings, like the depth factor and branching factor.
+				\paragraph{Input} A UserUpdateRequestIdentified object that contains all the neccesary information to update any detail about a user.
+				\paragraph{Output} A single UserIdentified object that will be retrieved from the RabbitMQ queue that leads to the database.
+				\paragraph{Pass Criteria}
+				\begin{itemize}
+					\item UserIdentified object's fields must contain the same original values as was specified in the UserUpdateRequestIdentified object.
+				\end{itemize}
+				\paragraph{Fail Criteria}
+				\begin{itemize}
+					\item There is no UserIdentified object sent to the database.
+					\item Any of the fields differ.
+				\end{itemize}
+				
 		\subsection{Database Service Test Cases}
 			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			%
@@ -255,7 +275,7 @@
 					\item No changes were made to the database.
 				\end{itemize}
 				
-				\subsubsection{BsuinessListener User Update Test 1}\label{databasebusinesslistenerupdatetest1}
+				\subsubsection{BusinessListener User Update Test 1}\label{databasebusinesslistenerupdatetest1}
 				\paragraph{Objective} Make sure the Database service can receive a request to update a user who removed a PIM.
 				\paragraph{Input} A UserIdentified object that contains all the neccesary information to update any detail about a user including the PIM that has to be removed.
 				\paragraph{Output} A single UserUpdateResponseIdentified object that will be retrieved from the RabbitMQ queue that leads to the frontend.
@@ -584,24 +604,28 @@
 				\paragraph{Comment} All conditions tested in this test case executed successfully.
 				
 			\subsubsection{FrontendListener Register Request Test (TC \ref{businessfrontendlistenerregistertest2})}
-				\paragraph{Result} Pass
-				\paragraph{Comment} All conditions tested in this test case executed successfully.
+				\paragraph{Result} Not implemented yet.
+				\paragraph{Comment} The results of this test is unknown since the test has not been implemented yet.
 				
 			\subsubsection{FrontendListener Register Request Test (TC \ref{businessfrontendlistenerregistertest3})}
-				\paragraph{Result} Pass
-				\paragraph{Comment} All conditions tested in this test case executed successfully.
+				\paragraph{Result} Not implemented yet.
+				\paragraph{Comment} The results of this test is unknown since the test has not been implemented yet.
 				
 			\subsubsection{FrontendListener User Update Test (TC \ref{businessfrontendlistenerupdatetest1})}
-				\paragraph{Result} Pass
-				\paragraph{Comment} All conditions tested in this test case executed successfully.
+				\paragraph{Result} Not implemented yet.
+				\paragraph{Comment} The results of this test is unknown since the test has not been implemented yet.
 				
 			\subsubsection{FrontendListener User Update Test (TC \ref{businessfrontendlistenerupdatetest2})}
 				\paragraph{Result} Pass
 				\paragraph{Comment} All conditions tested in this test case executed successfully.
 				
 			\subsubsection{FrontendListener User Update Test (TC \ref{businessfrontendlistenerupdatetest3})}
-				\paragraph{Result} Pass
-				\paragraph{Comment} All conditions tested in this test case executed successfully.
+				\paragraph{Result} Not implemented yet.
+				\paragraph{Comment} The results of this test is unknown since the test has not been implemented yet.
+				
+			\subsubsection{FrontendListener User Update Test (TC \ref{businessfrontendlistenerupdatetest4})}
+				\paragraph{Result} Not implemented yet.
+				\paragraph{Comment} The results of this test is unknown since the test has not been implemented yet.
 				
 		
 		\subsection{Database Service Test Cases}
@@ -718,7 +742,7 @@
 			%
 			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			\paragraph\indent
-			All the tests for this service can be found on Github at \sloppy\url{https://github.com/ArmandMaree/MindMapPIM/tree/master/Processing/src/test/javascript/loginTester.js}.
+			All the tests for this service can be found on Github at \sloppy\url{https://github.com/ArmandMaree/MindMapPIM/tree/master/Frontend/src/test/javascript/loginTester.js}.
 			
 			\subsubsection{Frontend Login Dalekjs Test (TC \ref{frontendlogindalekjstest})}
 				\paragraph{Result} Pass
@@ -740,11 +764,8 @@
 		\paragraph\indent
 		All the objects that will be used in the input section of each test will be mocked in order to force certain criteria to be tested. Any RabbitMQ queues that lead out of the service that is being tested will have a dequeuer setup that only runs in the test environment.
 		
-		\paragraph\indent
-		Also note that the pollers is not tested during the unit tests due to the need for them to receive authentication codes as it is outlined in the OAUTH2 protocol. In order to gain these authentication codes a manual sign in has to occur by a user. Large parts of these services will thus be tested during the integration tests.
-		
 	\section{Conclusion}
 		\paragraph\indent
-		All unit tests passed which is an indication that the application is ready to be deployed on the server. 
+		Apart from the unimplemented unit tests all unit tests and integration tests passed which is an indication that the application is fairly stable and of high quality. Due to the thorough nature of the tests that were conducted, the reliability, stability and integrety of the system is increased significantly.
 		
 \end{document}
