@@ -57,6 +57,7 @@
         In order to use this application on a computer browser, you will need Javascript and Cookies enabled. The steps to enable these, if it is not enabled by default, is outlined on the next page.
         \newpage
         \subsection{Chrome}
+            \subsubsection{Enabling Cookies and Javascript}
             \begin{enumerate}
                 \item Click the Customize and control Google Chrome icon (three horizontal bars in the upper right corner).
                 \item Select Settings.
@@ -69,7 +70,23 @@
               \makebox[\textwidth]{\includegraphics[width=\textwidth]{chromecookies.png}}
             \end{center}
         \newpage
+            \subsubsection{Enable Pop-ups}
+            \begin{enumerate}
+                \item Click the Customize and control Google Chrome icon (three horizontal bars in the upper right corner).
+                \item Select Settings.
+                \item Click Show advanced settings... at the bottom.
+                \item Under Privacy, click the Content Settings button.
+                \item In the Pop-up section select Manage exceptions and add our URL : https://unclutter.iminsys.com
+                \item Select Allow under Behaviour.
+                \item Click Done
+            \end{enumerate}
+            \begin{center}
+             \makebox[\textwidth]{\includegraphics[width=\textwidth]{chromepop.png}}
+           \end{center}
+            
+        \newpage
         \subsection{Firefox}
+            \subsubsection{Enable Cookies and Javascript}
             \begin{enumerate}
                 \item Click the Firefox menu in the left hand corner of the window.
                 \item Select Options.
@@ -83,7 +100,23 @@
               \makebox[\textwidth]{\includegraphics[width=\textwidth]{firefoxcookies.png}}
             \end{center}
         \newpage
+            \subsubsection{Enable Pop-ups}
+            \begin{enumerate}
+                \item Click the Firefox menu in the left hand corner of the window.
+                \item Select Options.
+                \item Click Content.
+                \item Under Pop-ups click Exceptions
+                \item Add the URL : https://unclutter.iminsys.com
+                \item Click Allow.
+                \item Click Save Changes.
+            \end{enumerate}
+           \begin{center}
+              \makebox[\textwidth]{\includegraphics[width=\textwidth]{firefoxpop.png}}
+            \end{center}
+     
+        \newpage
         \subsection{Internet Explorer}
+            \subsubsection{Enabling Cookies and Javascript}
             \begin{enumerate}
                 \item From the Tools menu, select Internet Options. (In IE9 and up, the Tools menu is a gear icon)
                 \item To enable session cookies, click the Privacy tab.
@@ -99,8 +132,24 @@
             \begin{center}
               \makebox[\textwidth]{\includegraphics[width=\textwidth]{explocookies.png}}
             \end{center}
+            \newpage
+            \subsubsection{Enabling Pop-ups}
+            \begin{enumerate}
+                \item From the Tools menu, select Internet Options. (In IE9 and up, the Tools menu is a gear icon)
+                \item Click the Privacy tab.
+                \item Under Pop-up Blocker click Settings
+                \item Add URL: https://unclutter.iminsys.com click Add then Close.
+                \item In Microsoft Edge click settings
+                \item Scroll down and click View advanced settings
+                \item Click the Block pop-ups so it changes to off
+                
+            \end{enumerate}
+            \begin{center}
+              \makebox[\textwidth]{\includegraphics[width=\textwidth]{explopop.png}}
+            \end{center}
         \newpage
         \subsection{Safari}
+        \subsubsection{Enabling Cookies and Javascript}
             \begin{enumerate}
                 \item Click Safari in the menu bar and choose Preferences.
                 \item From the Preferences dialog box that opens, select the Security option.
@@ -110,6 +159,15 @@
             \end{enumerate}
             \begin{center}
               \makebox[\textwidth]{\includegraphics[width=\textwidth]{safaricookies.png}}
+            \end{center}
+         \subsubsection{Enabling Pop-ups}
+            \begin{enumerate}
+                \item Click Safari in the menu bar and choose Preferences.
+                \item From the Preferences dialog box that opens, select the Security option.
+                \item Ensure the Block pop-up option is not checked i.e. uncheck it to allow pop-ups
+            \end{enumerate}
+            \begin{center}
+              \makebox[\textwidth]{\includegraphics[width=\textwidth]{safaripop.png}}
             \end{center}
         \subsection{Security}
             Some risks associated with enabling Javascript and/or cookies are Session Hi-jacking, XSS, CSRF and Cookie stealing. However, most of these risks can be circumvented by using an up-to-date browser. Other threats, like CSRF(cross site request forgery) are handled on our server side.
