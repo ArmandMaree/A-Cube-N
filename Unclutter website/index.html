@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Unclutter</title>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="  crossorigin="anonymous"></script>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script src="js/index.js"></script>
+		<link href="css/index.css" rel="stylesheet" >
+	    <link href="https://fonts.googleapis.com/css?family=Pacifico|Raleway" rel="stylesheet"></link>
+	    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon"></link>
+	    <link rel="icon" href="img/favicon.ico" type="image/x-icon"></link>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://arrow.scrolltotop.com/arrow27.js"></script>
+<noscript>Not seeing a <a href="http://www.scrolltotop.com/">Scroll to Top Button</a>? Go to our FAQ page for more info.</noscript>
+
+	</head>
+
+	<body>
+	<nav class = "navbar navbar-inverse navbar-fixed-top" role = "navigation">
+	   <div>
+	   	      <div class="navbar-header">
+		        <img  src="img/bubblelogo.png" style="position:fixed;width:25px;top:13px;left:10px"></a>
+		      </div>
+		      <ul class = "nav navbar-nav" style="position:absolute;left:30px">
+		         <li ><a class="jumper" href = ".livefeed">Live Demo</a></li>
+		         <li ><a class="jumper" href = ".frontend">Frontend Demo</a></li>
+		         <li ><a class="jumper" href = ".backend">Backend Demo</a></li>
+		         <li><a href = "https://github.com/ArmandMaree/MindMapPIM">Github</a></li>
+		         <li><a href = "https://travis-ci.com/ArmandMaree/MindMapPIM">Travis</a></li>
+		         <li><a href = "https://tree.taiga.io/project/arnogrobler-mindmapped-pim/kanban">Kanban</a></li>
+		         
+		         <li class = "dropdown">
+		            <a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">
+		               Documentation
+		               <b class = "caret"></b>
+		            </a>
+		            
+		            <ul class = "dropdown-menu">
+		               <li><a href = "https://drive.google.com/open?id=0BxIC3pKU_FazcU01LUdiaGVabjA">User Manual</a></li>
+		               <li><a href = "https://drive.google.com/open?id=0BxIC3pKU_FazLXhuaW54Zkt2aUE">API Manual</a></li>
+		               <li><a href = "https://drive.google.com/open?id=0BxIC3pKU_FazTm4xeThPM0NDQXc">Architecture Requirements</a></li>
+		               <li><a href = "https://drive.google.com/open?id=0BxIC3pKU_FazY2dCYXhLRFlNUVU">Testing Document</a></li>
+		            </ul>
+		            
+		         </li>
+		      </ul>
+	   </div>
+	   
+	</nav>
+		<!-- Section 1 title -->
+		<div id="sectionblue" style="top:0px">
+			<span id="unclutterlogo" style="opacity:0;position:absolute;color:white;left:50%;top:30%;transform:translate(-50%);font-family:Pacifico;font-size:100px"> unclutter </span>
+			<span class="underlogo" style="opacity:0;position:absolute;color:white;left:50%;top:45%;transform:translate(-50%);font-family:Raleway;font-size:25px"> It's you. Simplified. </span>
+			<span class="underlogo" style="opacity:0;position:absolute;color:white;left:50%;top:60%;transform:translate(-50%);font-family:Raleway;font-size:16px"> Want to know more? Click the video below. </span>
+			<a href = "https://unclutter.iminsys.com"><span class="underlogo" style="opacity:0;cursor:pointer;position:absolute;color:white;left:50%;top:63%;transform:translate(-50%);font-family:Raleway;font-size:16px"> Or go ahead and click here to try Unclutter out for yourself, </span></a>
+			<span style="opacity:0;cursor:pointer;position:absolute;color:white;left:50%;top:70%;transform:translate(-50%);font-size:70px" data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-play-circle underlogo"></span>
+		</div>
+
+		<div id="sectionwhite" class="userexp" style="top:900px">
+			<span id="userexphead" style="position:absolute;color:black;left:60%;top:30%;font-family:Pacifico;font-size:40px"> User Experience </span>
+			<img src="img/graphside.png" style="position:absolute;left:0px;top:0px;height:100%"></img>
+			<span id="userexppara" style="position:absolute;color:black;left:60%;top:40%;font-family:Raleway;font-size:20px;padding:5px"> We have placed a big emphisis on our user interface to give you the best possible experience while enjoying Unclutter. Interactive bubbles and beautifully designed menus gives you a easy and intuitive way to interact with our application. We even give you the option to change what colours you do not like. It's you, personalised.</span>
+		</div>
+
+		<div id="sectionblue" style="top:1800px">
+			<img id="onepuzzle" src="img/onepuzzle.png" style="position:absolute;left:29%;top:166px;width:234px;transform:translate(-50%);"></img>
+			<img id="puzzle" src="img/puzzle.png" style="position:absolute;left:70%;top:30px;width:400px;transform:translate(-50%);"></img>
+			
+			<span style="position:absolute;color:white;left:4%;bottom:10%;font-family:Raleway;font-size:20px;padding:5px"><br><p style="left:50%;bottom:25%;font-family:Pacifico;font-size:40px"> Our API </p> When you sign in, you get the option to select three datasources that will be displayed in the interactive Bubble Map. Are you not happy with the options we give you or would you like to see your favourite social media in Unclutter? We give you the option to write your own plugin! You, as a developer, need only to interact with our seamless API and write your own application for your favourite social media. This will then plug into our system like a puzzle piece. It is really that simple. It's you, customised.</span>
+		</div>
+		<div id="sectionwhite" style="top:2700px">
+			<span style="position:absolute;color:black;left:50%;top:5%;transform:translate(-50%);font-family:Pacifico;font-size:40px"> Real Time Computation </span>
+			<img src="img/watch.png" style="position:absolute;left:50%;top:25%;width:250px;transform:translate(-50%);"></img>
+			<span style="position:absolute;color:black;left:4%;bottom:10%;font-family:Raleway;font-size:20px;padding:5px"> Once you have signed into a your social media, everything that happens on our side will happen in real time. Just recieved an email or did someone just comment on your post? Reload your graph and see how the new information relates to your already loaded bubbles. It's you, optimised.</span>
+			<div id="clock" style="position:absolute;left:49.7%;top:31.5%;width:250px;transform:translate(-50%);">
+			    <div id="hour" style="transform: rotate(334.5deg);top:43.7%;left:62.5px"><img width="130px" src="img/min.png"></div>
+			    <div id="minute" style="transform: rotate(54deg);top:45%;left:64px"><img width="130px"src="img/hour.png"></div>
+			    <div id="second" style="transform: rotate(108deg);"><img src="http://demo.web3designs.com/images/sechand.png"></div>
+			</div>
+		</div>
+		<div id="sectionblue" style="top:3600px">
+			<span style="position:absolute;color:white;left:50%;top:5%;transform:translate(-50%);font-family:Pacifico;font-size:40px"> Your information</span>
+			<span style="position:absolute;color:white;left:50%;top:11%;transform:translate(-50%);font-family:Pacifico;font-size:30px"> right where you want it </span>
+			<span style="position:absolute;color:white;left:4%;top:20%;font-family:Raleway;font-size:20px;padding:5px"> We have designed our application towards how your brain thinks, in concepts. Just how your mind would extrapolate information from your social media, we too have built our application for creating links between topics and how every topic relates with one another. This doesnt help you much unless we give you the data that goes along with that topic, which we have. Double click on any topic you would like to see the emails or posts for and the side bar will expand to give you all the information we collected for that topic. Yuo can even do nifty things like commenting on a post from facebook or retweeting a tweet from twitter, all from Unclutter. Its you, combined.</span>
+			<img id="center" src="img/bubblelogo.png" style="position:absolute;left:50%;transform:translate(-50%);width:100px;top:65%">
+			
+			<img id="facebook" src="img/facebookcircle.png" style="position:absolute;left:50%;transform:translate(-50%);width:80px;top:50%">
+			<img id="google" src="img/google.png" style="position:absolute;left:50%;transform:translate(-50%);width:80px;top:50%">
+			<img id="twitter" src="img/twitter.png" style="position:absolute;left:50%;transform:translate(-50%);width:80px;top:50%">
+			<img id="linkedin" src="img/linkedin.png" style="position:absolute;left:50%;transform:translate(-50%);width:80px;top:50%">
+		</div>
+
+		<div id="sectionwhite" style="top:4500px">
+			<span style="position:absolute;color:black;left:50%;top:5%;transform:translate(-50%);font-family:Pacifico;font-size:40px">Our Story</span>
+			<div style="position:absolute;top:15%;left:50%;height:80%;width:80%;transform:translate(-50%)">
+				<iframe  width="100%" height="100%" src="https://www.youtube.com/embed/XGSy3_Czz8k?controls=0">
+				</iframe>
+			</div>
+		</div>
+		<div id="sectionblue" style="top:5400px" class="frontend">
+			<span style="position:absolute;color:white;left:50%;top:5%;transform:translate(-50%);font-family:Pacifico;font-size:40px">Our Frontend</span>
+			<div style="position:absolute;top:15%;left:50%;height:80%;width:80%;transform:translate(-50%)">
+				<iframe  width="100%" height="100%" src="https://www.youtube.com/embed/XGSy3_Czz8k?controls=0">
+				</iframe>
+			</div>
+		</div>
+		<div id="sectionwhite" style="top:6300px" class="backend">
+			<span style="position:absolute;color:black;left:50%;top:5%;transform:translate(-50%);font-family:Pacifico;font-size:40px">Our Backend</span>
+			<div style="position:absolute;top:15%;left:50%;height:80%;width:80%;transform:translate(-50%)">
+				<iframe  width="100%" height="100%" src="https://www.youtube.com/embed/XGSy3_Czz8k?controls=0">
+				</iframe>
+			</div>
+		</div>
+		<div id="sectionblue" style="top:7200px" class="livefeed">
+			<span style="position:absolute;color:white;left:50%;top:5%;transform:translate(-50%);font-family:Pacifico;font-size:40px">Live Feed</span>
+			<div style="position:absolute;top:15%;left:50%;height:80%;width:80%;transform:translate(-50%)">
+				<iframe  width="100%" height="100%" src="https://www.youtube.com/embed/XGSy3_Czz8k?controls=0">
+				</iframe>
+			</div>
+		</div>
+
+		  <div class="modal fade" id="myModal" role="dialog" height="5000px">
+		    <div class="modal-dialog " >
+		      <div class="modal-content" >
+		        <div class="modal-body" >
+					<iframe width="100%" height="100%" src="https://www.youtube.com/embed/XGSy3_Czz8k?controls=0">
+					</iframe>
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</body>
+</html>
