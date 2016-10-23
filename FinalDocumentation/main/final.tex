@@ -19,7 +19,7 @@
 		\vspace*{\stretch{1.2}}
 		\begin{center}
 			\huge{Architectural and Functional Requirements\\}
-			\huge{Mindmap data source}\\
+			\huge{Mindmap PIM}\\
 			\large{Client: IMINISYS}\\
 			\vspace{10mm}
 			\huge{Team: A-Cube-N}\\
@@ -51,23 +51,33 @@
 	\section{Background}
 		\paragraph\indent
 		We got elected for this project by including it as one of our top 3 choices for the projects that we wanted to do most. Once we were chosen for this project, we began to learn more about what the client expected from us.
-
-		\subsection{Future business/research opportunities}
-			\paragraph\indent
-			The Mind Mapped PIM project provides an opportunity for us to create something that helps to simplify the user's life. It will do this by organizing all relevant information into one system. It can also help the user to plan out their daily and weekly schedules which can lead to reduced stress on the user.
 		
 		\subsection{The Client's Problem}
 			\paragraph\indent
-			The client wants to have a way of displaying all relevant information in one place in the form of a mind map. This will help to organize general life events such as meetings. This information will come from different sources and enables the user to see all relevant information without having to go to each source individually. A key aspect is this project attempts to dig through the clutter contained in other data sources and only display things the user might want to see.
+			The client wants to have a way of displaying all relevant information in one place in the form of a mind map. This will help to organize general life events such as meetings. This information will come from different sources and enables the user to see all relevant information without having to go to each source individually. A key aspect is that Mind Map PIM attempts to dig through the clutter contained in other PIMs and only display things the user might want to see.
+			
+		\subsection{Future business opportunities}
+			\paragraph\indent
+			Unclutter's power is directly in relation with the number of platforms it can integrate with. Thus in the future Unclutter will be constantly expanded to accomodate more platforms and enable more services' functionality to be incorporated into Unclutter. This will increase the number of people that Unclutter can be very useful to.
 		
 	\section{Important Terminology}
 		\begin{itemize}
 			\item \textbf{Unclutter} Commercial name for the application.
 			\item \textbf{Bubble} A single node in the mind map.
 			\item \textbf{Bubble Map} The mind map that is presented to the user.
-			\item \textbf{data source} Personal Information Manager such as Google Calendar and social media platforms like Facebook.
-			\item \textbf{Data Source} It refers to the source (third party data source) where user data is retrieved from.
+			\item \textbf{PIM} Personal Information Manager such as Google Calendar and social media platforms like Facebook.
+			\item \textbf{Data Source} It refers to the source (third party PIM) where user data is retrieved from.
 			\item \textbf{Poller} The service which will constantly ask a data source for new information and then send new information to the processing service.
+		\end{itemize}
+				
+	\section{Technologies}
+		\begin{itemize}
+			\item \textbf{Spring Boot} Framework we used.
+			\item \textbf{RabbitMQ} Message broker used to communicate between services.
+			\item \textbf{JSOUP} The tool used to analyse HTML in text.
+			\item \textbf{Standford's Core NLP} The natural language processor used to analyse text.
+			\item \textbf{Vis.js} The library that builds the graph.
+			\item \textbf{Stomp} The library that places a wrapper around the websocket functionality.
 		\end{itemize}	
 	
 	\section{Architecture Requirements}
@@ -110,7 +120,7 @@
                 
             \subsubsection{Flexibility}
             	\paragraph\indent
-                The system must be flexible in terms of the plugablity of polling services. A new polling service for a new data source should be able to integrate with no change of the rest to the system. The system also should be able to function with any combination of data sources that a user selects.
+                The system must be flexible in terms of the plugablity of polling services. A new polling service for a new PIM should be able to integrate with no change of the rest to the system. The system also should be able to function with any combination of PIMs that a user selects.
 
             \subsubsection{Security}
             	\paragraph\indent
@@ -129,7 +139,7 @@
 		        \item \textbf{TCP:}\\
 		            This protocol will be needed to establish network connections between the user's computers and the system servers. These data streams can then be exchanged between the connected machines. TCP will allow for error detection and rectification of data transmission.
 		        \item \textbf{API:}\\
-		            Since the system will gather its information through the consented use of the users social media, a vital part of the system is to use the already well developed infrastructure created by data sources and access the information through APIs.  
+		            Since the system will gather its information through the consented use of the users social media, a vital part of the system is to use the already well developed infrastructure created by PIMs and access the information through APIs.  
 	    		\end{enumerate}
 		
 		\subsection{Architecture Constraints}
@@ -144,7 +154,7 @@
 	\section{Architecture Design}	
 		\subsection{Infrastructure}
 			\paragraph\indent
-			We will be using the micro services architecture with some elements of pipes and filters. Figure \ref{MicroServicesAchitecture} shows the design at the first level of granularity. The micro services approach with help us to develop different parts of the system concurrently with minimal dependency on other components because the individual services are loosely coupled. And secondly it will control and encapsulate the complexity of the system, thus a simpler development process. Testing each service is also easier which would result in a higher quality system.
+			We will be using the microservices architecture with some elements of pipes and filters. Figure \ref{MicroServicesAchitecture} shows the design at the first level of granularity. The micro services approach with help us to develop different parts of the system concurrently with minimal dependency on other components because the individual services are loosely coupled. And secondly it will control and encapsulate the complexity of the system, thus a simpler development process. Testing each service is also easier which would result in a higher quality system.
 			\begin{figure}[!h]
 				\includegraphics[width=\linewidth]{MicroServicesModel.jpg}
 				\caption{Micro Services System Architecture}
@@ -156,7 +166,7 @@
 		\subsection{Services}			
 			\subsubsection{Polling Service}\label{PollingSection}
 			\paragraph\indent
-			Figure \ref{PollingServiceModelFigure} shows the class diagram of the poller. A poller will either use long polling or polling with a sleep period afterwards (depending on what the API allows) to request new data from a specific data source. Once it receives this information it will parse this information into a RawData object and add it into a queue which will be further processed by worker threads (see section  \ref{ProcessingServiceSection}).			
+			Figure \ref{PollingServiceModelFigure} shows the class diagram of the poller. A poller will either use long polling or polling with a sleep period afterwards (depending on what the API allows) to request new data from a specific PIM. Once it receives this information it will parse this information into a RawData object and add it into a queue which will be further processed by worker threads (see section  \ref{ProcessingServiceSection}).			
 						
 			\begin{figure}[!h]
 			\includegraphics[width=\linewidth]{PollingServiceModel.jpg}
@@ -228,7 +238,7 @@
 		
 		\subsection{Server}
 			\paragraph\indent
-			In the back end, the system would have a polling service that polls the data sources for new information about the users. If a polling thread receives new data from the platform, they add this new data to a queue to be processed. Several worker threads dequeue data from the queue and uses natural language processing to determine the topic(s) contained in the data. This data is then added to a database and the corresponding topic(s) as well. When a user requests their bubble map, the system responds with all relevant topics of their life based on frequency and recency. The topics thus have a weight related to them that is calculated by the frequency and the temperal component. The weight is used to decide which topics should be selected. These topics are then returned to the user in the form of JSON objects. Once a user expands one of the bubbles a request is sent to the server to retrieve all the relevant topic corresponding to the topic to the user. These new topics is then added to the bubble map in the form of bubbles. Relevant topics are found on the basis of your own events and the events of your friends.
+			In the back end, the system would have a polling service that polls the PIMs for new information about the users. If a polling thread receives new data from the platform, they add this new data to a queue to be processed. Several worker threads dequeue data from the queue and uses natural language processing to determine the topic(s) contained in the data. This data is then added to a database and the corresponding topic(s) as well. When a user requests their bubble map, the system responds with all relevant topics of their life based on frequency and recency. The topics thus have a weight related to them that is calculated by the frequency and the temperal component. The weight is used to decide which topics should be selected. These topics are then returned to the user in the form of JSON objects. Once a user expands one of the bubbles a request is sent to the server to retrieve all the relevant topic corresponding to the topic to the user. These new topics is then added to the bubble map in the form of bubbles. Relevant topics are found on the basis of your own events and the events of your friends.
 		
 		\subsection{Front End}
 			\paragraph\indent
@@ -610,7 +620,7 @@
 			\label{DomainModel}
 		\end{figure}
 		\paragraph\indent
-		The mind map for a user will portray information from data sources requested by the user. The mind map will consist of a root node containing child nodes of relevant information (topics). Each topic will point to a data source (Facebook, Google etc.) and will contain a list of information relative to the topic.
+		The mind map for a user will portray information from PIMs requested by the user. The mind map will consist of a root node containing child nodes of relevant information (topics). Each topic will point to a PIM (Facebook, Google etc.) and will contain a list of information relative to the topic.
 			
 	\section{Technologies}
 		\subsection{Framework}
